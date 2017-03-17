@@ -7,6 +7,15 @@
 //
 
 #import "DailyForecastCollectionViewCell.h"
+#import "AppDataUtil.h"
+#import "WeatherSettings.h"
+
+@interface DailyForecastCollectionViewCell()
+
+@property (nonatomic, readonly) AppDataUtil *appDataUtil;
+@property (nonatomic) WeatherSettings *weatherSettings;
+    
+@end
 
 @implementation DailyForecastCollectionViewCell
 
@@ -14,6 +23,7 @@
     [super awakeFromNib];
     // Initialization code
     
+    _appDataUtil = [[AppDataUtil alloc] init];
     [self animateWeatherImage];
 }
 
@@ -24,6 +34,12 @@
 
 -(void) animateWeatherImage
 {
+    _weatherSettings = [_appDataUtil loadWeatherOptions];
+    if (!_weatherSettings.animationsEnabled)
+    {
+        return;
+    }
+    
     CABasicAnimation *rotateAnimation;
     rotateAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
     rotateAnimation.fromValue = [NSNumber numberWithFloat:0];

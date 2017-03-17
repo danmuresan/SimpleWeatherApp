@@ -27,4 +27,10 @@
     return data;
 }
 
+-(BOOL) writeContentsToFile: (NSString *) filePath : (NSString *) contentsAsString;
+{
+    // TODO: not implemented yet
+    return YES;
+}
+
 @end

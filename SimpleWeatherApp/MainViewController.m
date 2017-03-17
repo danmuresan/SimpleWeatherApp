@@ -55,32 +55,6 @@ const long defaultCityId = 2172797;
     
     UINib *cellNib = [UINib nibWithNibName:@"DailyForecastCollectionViewCell" bundle:[NSBundle mainBundle]];
     [_dailyForecastCollectionView registerNib:cellNib forCellWithReuseIdentifier:@"idViewCell"];
-    
-    // MOCK DATA FOR FORECAST
-    /*
-    CurrentWeatherDto* weather1 = [[CurrentWeatherDto alloc] init];
-    weather1.temperature = 24;
-    weather1.weatherDescription = @"sunny";
-    weather1.cityName = @"Some City 1";
-    
-    CurrentWeatherDto* weather2 = [[CurrentWeatherDto alloc] init];
-    weather2.temperature = 20;
-    weather2.weatherDescription = @"cloudy";
-    weather2.cityName = @"Some City 2";
-    
-    CurrentWeatherDto* weather3 = [[CurrentWeatherDto alloc] init];
-    weather3.temperature = 18;
-    weather3.weatherDescription = @"rainy";
-    weather3.cityName = @"Some City 3";
-    
-    CurrentWeatherDto* weather4 = [[CurrentWeatherDto alloc] init];
-    weather4.temperature = 32;
-    weather4.weatherDescription = @"sunny";
-    weather4.cityName = @"Some City 4";
-    
-    _forecastDataArray = [[NSArray alloc] initWithObjects:weather1, weather2, weather3, weather4, nil];
-    */
-    
     _forecastDataArray = [[NSMutableArray alloc] init];
     
     /*
