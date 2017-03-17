@@ -19,4 +19,12 @@
     return content;
 }
 
+-(NSData *) readFileContentsToData: (NSString *) filePath : (NSString *) fileType
+{
+    NSString* path = [[NSBundle mainBundle] pathForResource:filePath ofType:fileType];
+    NSData* data = [NSData dataWithContentsOfFile:path];
+    
+    return data;
+}
+
 @end

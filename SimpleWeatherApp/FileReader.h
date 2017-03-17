@@ -11,6 +11,7 @@
 @interface FileReader : NSObject
 
 -(NSString *) readFileContentsToString: (NSString *) filePath : (NSString *) fileType;
+-(NSData *) readFileContentsToData: (NSString *) filePath : (NSString *) fileType;
 -(BOOL) writeContentsToFile: (NSString *) filePath : (NSString *) contentsAsString;
 
 @end

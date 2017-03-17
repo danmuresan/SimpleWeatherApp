@@ -56,33 +56,16 @@
 
 -(void) loadUpTableData
 {
-    // TODO;
-    /*
-    // mock data
-    LocationDto* city1 = [[LocationDto alloc] init];
-    LocationDto* city2 = [[LocationDto alloc] init];
-    LocationDto* city3 = [[LocationDto alloc] init];
-    city1.cityId = 1;
-    city1.cityName = @"Cluj-Napoca";
-    
-    city2.cityId = 2;
-    city2.cityName = @"San Francisco";
-    
-    city3.cityId = 3;
-    city3.cityName = @"Sibiu";
-    */
-     
-    NSString *cityFileContents = [_fileReader readFileContentsToString:@"city.list" : @"json"];
+    NSData *cityFileContents = [_fileReader readFileContentsToData:@"city.list" : @"json"];
     [self parseCityJsonFile:cityFileContents];
     _tableData = [self parseCityJsonFile:cityFileContents];
     _fullTableData = _tableData.copy;
     [self stopSpinner];
 }
 
--(NSArray *)parseCityJsonFile: (NSString *) cityListAsJson
+-(NSArray *)parseCityJsonFile: (NSData *) cityListAsJson
 {
-    NSData *objectData = [cityListAsJson dataUsingEncoding:NSUTF8StringEncoding];
-    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:objectData options:NSJSONReadingMutableContainers error:NULL];
+    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:cityListAsJson options:NSJSONReadingMutableContainers error:NULL];
     
     NSMutableArray *locations = [[NSMutableArray alloc] init];
     for (NSDictionary *item in jsonArray)
@@ -149,7 +132,7 @@
         [_timer invalidate];
     }
     
-    _timer = [NSTimer timerWithTimeInterval:0.8 repeats:NO block:^(NSTimer * _Nonnull timer) {
+    _timer = [NSTimer timerWithTimeInterval:0.6 repeats:NO block:^(NSTimer * _Nonnull timer) {
         [self beginFilteringLocations];
     }];
     [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
@@ -157,7 +140,8 @@
 
 - (void) beginFilteringLocations
 {
-    if ([_locationsSearchBox.text isEqual: @""])
+    NSString* locationText = [_locationsSearchBox text];
+    if ([locationText isEqual: @""])
     {
         _tableData = _fullTableData.copy;
         return;
@@ -168,13 +152,13 @@
     
     for (LocationDto *location in _fullTableData)
     {
-        if ([location.cityName localizedCaseInsensitiveCompare:_locationsSearchBox.text] == NSOrderedSame)
+        if ([location.cityName localizedCaseInsensitiveCompare:locationText] == NSOrderedSame)
         {
             [exactMatches addObject:location];
             continue;
         }
         
-        if ([location.cityName localizedCaseInsensitiveContainsString:_locationsSearchBox.text])
+        if ([location.cityName localizedCaseInsensitiveContainsString:locationText])
         {
             [newTableData addObject:location];
         }
