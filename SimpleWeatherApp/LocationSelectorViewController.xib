@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationSelectorViewController">
+            <connections>
+                <outlet property="loadingSpinner" destination="AkD-gO-Lga" id="2H9-Ud-J88"/>
+                <outlet property="locationsListView" destination="XNN-6l-lqL" id="GZ8-GM-wEr"/>
+                <outlet property="locationsSearchBox" destination="EWb-6I-I3P" id="qFQ-UJ-a8J"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search location..." textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="EWb-6I-I3P">
+                    <rect key="frame" x="15" y="35" width="345" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XNN-6l-lqL">
+                    <rect key="frame" x="15" y="85" width="345" height="478"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="npw-rQ-KhB"/>
+                        <outlet property="delegate" destination="-1" id="GXf-0h-Mai"/>
+                    </connections>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ol-Yy-ozr">
+                    <rect key="frame" x="40" y="613" width="295" height="34"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                    <state key="normal" title="Save location">
+                        <color key="titleColor" red="0.0088975158530000004" green="0.39565204869999998" blue="0.8072579339" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="saveLocationButtonClick" destination="-1" eventType="touchUpInside" id="TiQ-Af-qwv"/>
+                    </connections>
+                </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AkD-gO-Lga">
+                    <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="XNN-6l-lqL" firstAttribute="leading" secondItem="EWb-6I-I3P" secondAttribute="leading" id="3zZ-oj-n7s"/>
+                <constraint firstItem="EWb-6I-I3P" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="35" id="ACz-UI-STp"/>
+                <constraint firstItem="9Ol-Yy-ozr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Cfu-iR-0VN"/>
+                <constraint firstItem="AkD-gO-Lga" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="GCk-ro-lmw"/>
+                <constraint firstItem="9Ol-Yy-ozr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="Gzj-RP-meq"/>
+                <constraint firstItem="EWb-6I-I3P" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="HQk-je-V9L"/>
+                <constraint firstAttribute="trailing" secondItem="XNN-6l-lqL" secondAttribute="trailing" constant="15" id="Kt3-f5-fXR"/>
+                <constraint firstItem="AkD-gO-Lga" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="TX2-cN-cWg"/>
+                <constraint firstAttribute="bottom" secondItem="9Ol-Yy-ozr" secondAttribute="bottom" constant="20" id="UMO-mI-6jg"/>
+                <constraint firstAttribute="trailing" secondItem="EWb-6I-I3P" secondAttribute="trailing" constant="15" id="Wap-8f-0VB"/>
+                <constraint firstAttribute="trailing" secondItem="9Ol-Yy-ozr" secondAttribute="trailing" constant="40" id="lTa-4D-bJJ"/>
+                <constraint firstItem="9Ol-Yy-ozr" firstAttribute="top" secondItem="XNN-6l-lqL" secondAttribute="bottom" constant="50" id="oou-fl-czv"/>
+                <constraint firstItem="XNN-6l-lqL" firstAttribute="top" secondItem="EWb-6I-I3P" secondAttribute="bottom" constant="20" id="qDt-SZ-Pzz"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <point key="canvasLocation" x="33.5" y="53.5"/>
+        </view>
+    </objects>
+</document>

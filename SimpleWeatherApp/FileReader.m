@@ -1,0 +1,22 @@
+//
+//  FileReader.m
+//  SimpleWeatherApp
+//
+//  Created by Muresan, Dan-Sorin on 3/9/17.
+//  Copyright © 2017 Muresan, Dan-Sorin. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "FileReader.h"
+
+@implementation FileReader : NSObject
+
+-(NSString *) readFileContentsToString: (NSString *) filePath : (NSString *) fileType
+{
+    NSString* path = [[NSBundle mainBundle] pathForResource:filePath ofType:fileType];
+    NSString* content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
+    
+    return content;
+}
+
+@end
