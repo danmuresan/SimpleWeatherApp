@@ -117,6 +117,34 @@ const long defaultCityId = 2172797;
     return cell;
 }
 
+-(void) requestAndStartLocationUpdates
+{
+    lastKnownLocation = nil;
+    NSLog(@"loading...");
+    
+    if (_weatherSettings.autoDetectLocationEnabled)
+    {
+        NSLog(@"auto detect location enabled, waiting for location updates...");
+        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [locationManager requestWhenInUseAuthorization];
+        }
+    
+        [locationManager startUpdatingLocation];
+    }
+    else
+    {
+        [self startSpinner];
+        
+        // begin fetching weather for location
+        [_weatherManager getWeatherDataByLocationId:_weatherSettings.selectedLocation.cityId : _weatherSettings.unitOfMeasurement : ^(CurrentWeatherDto *currentWeatherModel){
+            
+            [self updateUiWithWeatherData:currentWeatherModel];
+            [self stopSpinner:NO];
+            
+        }];
+    }
+}
+
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(nonnull NSArray<CLLocation *> *)locations
 {
     // get last determined location
@@ -133,47 +161,50 @@ const long defaultCityId = 2172797;
     [locationManager stopUpdatingLocation];
     NSLog(@"fetching location...%@", locations.description);
     
-    // TODO: CONSIDER AUTO-LOCATION FOR ACTUALLY FETCHING WEATHER INSTEAD OF JUST MANUALLY SET LOCATIONS
-    long locationId = defaultCityId;
-    if (_weatherSettings.autoDetectLocationEnabled)
-    {
-        lastKnownLocation = (CLLocation *)locations[locations.count - 1];
-        lastKnownLocationCoordinates = [lastKnownLocation coordinate];
-        CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
-        [geoCoder reverseGeocodeLocation:lastKnownLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-            [_locationLabel setText:[NSString stringWithFormat:@"%@, %@", placemarks[placemarks.count - 1].locality, placemarks[placemarks.count - 1].country]];
-        }];
-    }
-    else
-    {
-        if (_weatherSettings.selectedLocation != nil)
-        {
-            locationId = _weatherSettings.selectedLocation.cityId;
-        }
-    }
+    __block long locationId = defaultCityId;
+    lastKnownLocation = (CLLocation *)locations[locations.count - 1];
+    lastKnownLocationCoordinates = [lastKnownLocation coordinate];
+    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+        
+    //[geoCoder reverseGeocodeLocation:lastKnownLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        //[_locationLabel setText:[NSString stringWithFormat:@"%@, %@", placemarks[placemarks.count - 1].locality, placemarks[placemarks.count - 1].country]];
+    //}];
+        
+    [_weatherManager getWeatherForecastDataByCoordinates:lastKnownLocationCoordinates.latitude :lastKnownLocationCoordinates.longitude :_weatherSettings.unitOfMeasurement : ^(CurrentWeatherDto *currentWeatherModel) {
+            
+        locationId = currentWeatherModel.cityId;
+            
+        [self updateUiWithWeatherData:currentWeatherModel];
+            
+    }];
     
+    [self stopSpinner: NO];
+}
+
+- (void) updateUiWithWeatherData: (CurrentWeatherDto *) currentWeatherModel
+{
     dispatch_queue_t queue = dispatch_get_main_queue();
-    
-    // begin fetching weather for location
-    [_weatherManager getWeatherDataByLocationId:locationId : _weatherSettings.unitOfMeasurement : ^(CurrentWeatherDto *currentWeatherModel){
-        
-        currentWeatherModel.cityName = _weatherSettings.selectedLocation.cityName;
-        
-        // update weather image
-        [_weatherManager getImageForWeather:currentWeatherModel :^(NSData *imageData) {
-            dispatch_async(queue, ^{
-                [_weatherStatusIcon setImage:[UIImage imageWithData:imageData]];
-                [self animateWeatherIcon];
-            });
-        }];
-        
-        // update rest of UI elements
+    // update weather image
+    [_weatherManager getImageForWeather:currentWeatherModel :^(NSData *imageData) {
         dispatch_async(queue, ^{
-            [self updateUiFromWeatherModel:currentWeatherModel];
+            [_weatherStatusIcon setImage:[UIImage imageWithData:imageData]];
+            [self animateWeatherIcon];
         });
     }];
     
+    // update rest of UI elements
+    dispatch_async(queue, ^{
+        [self updateUiFromWeatherModel:currentWeatherModel];
+    });
+    
     // begin fetching weather for daily forecast
+    [self updateWeatherForecast:currentWeatherModel.cityId];
+
+}
+
+- (void) updateWeatherForecast: (long) locationId
+{
+    dispatch_queue_t queue = dispatch_get_main_queue();
     [_weatherManager getWeatherForecastDataByLocationId:locationId :_weatherSettings.unitOfMeasurement :^(WeatherForecastDto * weatherForecast) {
         
         // clear out old data
@@ -188,8 +219,7 @@ const long defaultCityId = 2172797;
             [_dailyForecastCollectionView reloadData];
         });
     }];
-    
-    [self stopSpinner: NO];
+
 }
 
 -(void) updateUiFromWeatherModel: (CurrentWeatherDto *) weatherModel
@@ -265,17 +295,6 @@ const long defaultCityId = 2172797;
 {
     NSLog(@"refreshing...");
     [self requestAndStartLocationUpdates];
-}
-
--(void) requestAndStartLocationUpdates
-{
-    lastKnownLocation = nil;
-    NSLog(@"loading...");
-    if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [locationManager requestWhenInUseAuthorization];
-    }
-    
-    [locationManager startUpdatingLocation];
 }
 
 /*

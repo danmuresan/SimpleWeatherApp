@@ -60,14 +60,31 @@
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JLv-2F-4ci">
                     <rect key="frame" x="15" y="312" width="51" height="31"/>
                 </switch>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="GEI-Nq-v18">
+                    <rect key="frame" x="15" y="404" width="345" height="29"/>
+                    <segments>
+                        <segment title="5"/>
+                        <segment title="8"/>
+                        <segment title="12"/>
+                    </segments>
+                </segmentedControl>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of days for daily forecast:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5t-JJ-GmU">
+                    <rect key="frame" x="15" y="363" width="259" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="TtK-qr-908" firstAttribute="top" secondItem="mRs-pa-jsd" secondAttribute="bottom" constant="25" id="2oo-K4-69Q"/>
+                <constraint firstAttribute="trailing" secondItem="GEI-Nq-v18" secondAttribute="trailing" constant="15" id="2r0-qW-brb"/>
                 <constraint firstAttribute="trailing" secondItem="mRs-pa-jsd" secondAttribute="trailing" constant="15" id="3QW-78-UKd"/>
                 <constraint firstItem="m22-j9-DDm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="5gg-Dw-61I"/>
+                <constraint firstItem="GEI-Nq-v18" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="9je-bM-kQf"/>
                 <constraint firstItem="xAS-FM-QRC" firstAttribute="top" secondItem="TtK-qr-908" secondAttribute="bottom" constant="20" id="Aq5-Ks-DTH"/>
                 <constraint firstAttribute="trailing" secondItem="0Lv-M1-gm2" secondAttribute="trailing" constant="15" id="BYm-2N-ehJ"/>
+                <constraint firstItem="A5t-JJ-GmU" firstAttribute="top" secondItem="JLv-2F-4ci" secondAttribute="bottom" constant="20" id="CWw-58-rRk"/>
                 <constraint firstItem="mRs-pa-jsd" firstAttribute="top" secondItem="m22-j9-DDm" secondAttribute="bottom" constant="20" id="Dtw-Qe-ngy"/>
                 <constraint firstItem="mRs-pa-jsd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="EZP-3u-Ohj"/>
                 <constraint firstItem="TtK-qr-908" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="Hgk-bw-dkw"/>
@@ -75,12 +92,16 @@
                 <constraint firstItem="JLv-2F-4ci" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="LNO-8p-qLk"/>
                 <constraint firstItem="JLv-2F-4ci" firstAttribute="top" secondItem="b3J-JJ-WwR" secondAttribute="bottom" constant="20" id="LhL-nl-ZDv"/>
                 <constraint firstItem="0Lv-M1-gm2" firstAttribute="leading" secondItem="xAS-FM-QRC" secondAttribute="trailing" constant="25" id="M1p-DY-ec9"/>
+                <constraint firstItem="A5t-JJ-GmU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="O9e-YB-SFV"/>
                 <constraint firstItem="b3J-JJ-WwR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="PEO-cj-bwP"/>
                 <constraint firstItem="xAS-FM-QRC" firstAttribute="top" secondItem="TtK-qr-908" secondAttribute="bottom" constant="20" id="Q8J-2A-34w"/>
+                <constraint firstItem="GEI-Nq-v18" firstAttribute="top" secondItem="A5t-JJ-GmU" secondAttribute="bottom" constant="20" id="QfH-7n-0F1"/>
                 <constraint firstItem="0Lv-M1-gm2" firstAttribute="top" secondItem="xAS-FM-QRC" secondAttribute="top" id="QlU-Qa-8co"/>
                 <constraint firstItem="b3J-JJ-WwR" firstAttribute="top" secondItem="xAS-FM-QRC" secondAttribute="bottom" constant="25" id="baS-nM-Iuw"/>
+                <constraint firstItem="GEI-Nq-v18" firstAttribute="top" secondItem="A5t-JJ-GmU" secondAttribute="bottom" constant="20" id="cp2-AB-Brg"/>
                 <constraint firstItem="m22-j9-DDm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="dhi-zG-cXo"/>
                 <constraint firstItem="xAS-FM-QRC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="eBP-lP-0P1"/>
+                <constraint firstItem="GEI-Nq-v18" firstAttribute="top" secondItem="A5t-JJ-GmU" secondAttribute="bottom" constant="20" id="loP-mR-5Mu"/>
                 <constraint firstAttribute="trailing" secondItem="0Lv-M1-gm2" secondAttribute="trailing" constant="15" id="qrF-xo-AJ8"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>

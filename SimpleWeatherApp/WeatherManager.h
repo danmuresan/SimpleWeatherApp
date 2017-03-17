@@ -26,6 +26,11 @@ FOUNDATION_EXPORT NSString *const GetCurrentWeatherEndpoint;
                                      (UnitOfMeasurement) unitOfMeasurement:
                                      (void (^)(CurrentWeatherDto *currentWeatherModel)) customCompletion;
 
+-(void) getWeatherForecastDataByCoordinates:(double) latitude:
+                                            (double) longitude:
+                                            (UnitOfMeasurement) unitOfMeasurement:
+                                            (void (^)(CurrentWeatherDto *))customCompletion;
+
 -(void) getWeatherForecastDataByLocationId:(long) cityId:
                                            (UnitOfMeasurement) unitOfMeasurement:
                                            (void (^)(WeatherForecastDto *weatherForecastModel)) customCompletion;

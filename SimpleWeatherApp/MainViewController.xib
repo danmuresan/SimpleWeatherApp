@@ -58,6 +58,7 @@
                         <constraint firstAttribute="height" constant="100" id="7NE-Wy-o2m"/>
                         <constraint firstAttribute="width" secondItem="VDF-fJ-bsC" secondAttribute="height" multiplier="1:1" id="g7E-tY-dWh"/>
                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="ifS-6e-24P"/>
+                        <constraint firstAttribute="width" secondItem="VDF-fJ-bsC" secondAttribute="height" multiplier="1:1" id="laF-x2-uTR"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="pDV-Mq-2Kw"/>
                     </constraints>
                 </imageView>

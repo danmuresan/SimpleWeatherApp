@@ -15,6 +15,7 @@
 NSString* const ServerEnvironmentUrl = @"http://api.openweathermap.org/data/2.5/";
 NSString* const AppId = @"2a590cbc641090d4799ea2ea2e6b9f89";
 NSString* const GetCurrentWeatherEndpoint = @"weather?id=%ld&appid=%@&units=%@";
+NSString* const GetCurrentWeatherEndpointByCoords = @"weather?lat=%lf&lon=%lf&appid=%@&units=%@";
 // 5 day forecast for now (change this if you want more)
 NSString* const GetDailyWeatherForecastEndpoint = @"forecast/daily?id=%ld&appid=%@&units=%@&cnt=5";
 NSString* const GetImageForWeatherEndpoint = @"http://openweathermap.org/img/w/%@.png";
@@ -51,7 +52,25 @@ NSString* const GetImageForWeatherEndpoint = @"http://openweathermap.org/img/w/%
         WeatherForecastDto *forecast = [self parseWeatherForecastJson: jsonDictionary];
         customCompletion(forecast);
     }]resume];
+}
 
+-(void) getWeatherForecastDataByCoordinates:(double) latitude : (double) longitude : (UnitOfMeasurement) unitOfMeasurement : (void (^)(CurrentWeatherDto *))customCompletion
+{
+    NSString* unitOfMeasurementQueryParam = [WeatherManager getStingForUnitOfMeasurement:unitOfMeasurement];
+    NSString* endpoint = [NSString stringWithFormat:@"%@%@", ServerEnvironmentUrl, [NSString stringWithFormat:GetCurrentWeatherEndpointByCoords, latitude, longitude, AppId, unitOfMeasurementQueryParam]];
+    
+    [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString: endpoint] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        // get data into dict
+        NSString *jsonResponseAsString = [NSString stringWithFormat:@"%@", response];
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        
+        // parse into appropriate dto
+        CurrentWeatherDto *currentWeatherModel = [self parseWeatherJson:jsonDictionary];
+        
+        // execute custom completion handler
+        customCompletion(currentWeatherModel);
+    }]resume];
 }
 
 -(void) getImageForWeather: (CurrentWeatherDto *)currentWeatherModel :(void (^)(NSData *))customCompletion
@@ -71,6 +90,10 @@ NSString* const GetImageForWeatherEndpoint = @"http://openweathermap.org/img/w/%
     NSDictionary *coordinatesDict = [jsonDictionary objectForKey:@"coord"];
     currentWeatherModel.latitude = [[coordinatesDict objectForKey:@"lat"] doubleValue];
     currentWeatherModel.longitude = [[coordinatesDict objectForKey:@"lon"] doubleValue];
+    
+    // get general info
+    currentWeatherModel.cityName = [jsonDictionary objectForKey:@"name"];
+    currentWeatherModel.cityId = [[jsonDictionary objectForKey:@"id"] longValue];
     
     // get weather
     NSDictionary *weatherDict = [jsonDictionary objectForKey:@"weather"][0];
