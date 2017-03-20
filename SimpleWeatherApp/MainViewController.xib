@@ -101,15 +101,16 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SgV-1V-5zl" customClass="CPTGraphHostingView">
-                    <rect key="frame" x="20" y="575" width="367" height="229.5"/>
+                    <rect key="frame" x="5" y="575" width="397" height="305.5"/>
                     <color key="backgroundColor" red="0.63864219515931375" green="0.72336632013320923" blue="0.72336632013320923" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="SgV-1V-5zl" secondAttribute="height" multiplier="1.6:1" id="gkE-bg-O6S"/>
+                        <constraint firstAttribute="width" secondItem="SgV-1V-5zl" secondAttribute="height" multiplier="1.3:1" id="gkE-bg-O6S"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.95596259832382202" green="0.9841887354850769" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="SgV-1V-5zl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="0AB-6m-yEb"/>
                 <constraint firstAttribute="trailing" secondItem="gsg-pR-3Pa" secondAttribute="trailing" constant="20" id="2tK-oo-3uI"/>
                 <constraint firstItem="gsg-pR-3Pa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="2tf-A2-Cqw"/>
                 <constraint firstItem="i2c-Jj-LAx" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3xB-oG-3dt"/>
@@ -117,9 +118,8 @@
                 <constraint firstItem="gsg-pR-3Pa" firstAttribute="top" secondItem="fVe-fd-LVM" secondAttribute="bottom" constant="50" id="7Ue-5J-9HH"/>
                 <constraint firstAttribute="trailing" secondItem="q80-2r-GRT" secondAttribute="trailing" constant="15" id="90W-0U-7j0"/>
                 <constraint firstAttribute="trailing" secondItem="kBJ-3v-JLL" secondAttribute="trailing" constant="20" id="9Pq-82-9Rx"/>
-                <constraint firstAttribute="trailing" secondItem="SgV-1V-5zl" secondAttribute="trailing" constant="20" id="Eyu-rf-YaI"/>
                 <constraint firstItem="MGT-tS-3tz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="IUz-FG-MoV"/>
-                <constraint firstItem="SgV-1V-5zl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="IVV-X5-Ap2"/>
+                <constraint firstAttribute="trailing" secondItem="SgV-1V-5zl" secondAttribute="trailing" constant="5" id="KU2-Vw-HY5"/>
                 <constraint firstItem="q80-2r-GRT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="SqZ-QY-RUX"/>
                 <constraint firstItem="rs7-Jv-oez" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TYr-4u-EtV"/>
                 <constraint firstItem="4no-4N-wlU" firstAttribute="trailing" secondItem="MGT-tS-3tz" secondAttribute="trailing" id="Ukg-3M-RxY"/>

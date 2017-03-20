@@ -12,7 +12,7 @@
 #import "SettingsViewController.h"
 #import <CorePlot/CorePlot.h>
 
-@interface MainViewController : UIViewController <CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, CPTPlotDataSource> {
+@interface MainViewController : UIViewController <CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, CPTScatterPlotDataSource, CPTScatterPlotDelegate> {
     CLLocationManager *locationManager;
 }
 

@@ -16,7 +16,7 @@
 @property (nonatomic, readonly) AppDataUtil *appDataUtil;
 @property (nonatomic) WeatherSettings *weatherSettings;
 @property (nonatomic, strong) NSMutableArray<CurrentWeatherDto *> *forecastDataArray;
-@property (nonatomic, readwrite, strong, nullable) CPTXYGraph *graph;
+@property (nonatomic, readwrite, strong, nullable) CPTGraph *graph;
 
 @end
 
@@ -75,6 +75,9 @@ const long defaultCityId = 2172797;
     
     // left nav bar btn
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshButtonClick)];
+    
+    // prepare chart
+    [self prepareChartData];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -147,67 +150,76 @@ const long defaultCityId = 2172797;
 
 -(void) prepareChartData
 {
-    CPTXYGraph *graph = [[CPTXYGraph alloc] initWithFrame:self.view.bounds];
-    CPTTheme *theme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
+    // graph initialization stuff
+    _graph = [[CPTXYGraph alloc] initWithFrame:_chartView.bounds];
+    _graph.plotAreaFrame.plotArea.delegate = self;
     
+    CPTXYPlotSpace *weatherForecastPlotSpace = (CPTXYPlotSpace *)[_graph defaultPlotSpace];
+    
+    // TODO: compute min and max intervals according to the actual data
+    [weatherForecastPlotSpace setXRange:[CPTPlotRange plotRangeWithLocation:@0.0 length:@4.0]];
+    [weatherForecastPlotSpace setYRange:[CPTPlotRange plotRangeWithLocation:@0.0 length:@20.0]];
+
     // general appearance initialization
-    [graph applyTheme:theme];
-    _graph = graph;
+    _graph.plotAreaFrame.paddingLeft = 35;
+    _graph.plotAreaFrame.paddingBottom = 30;
+    _graph.plotAreaFrame.paddingTop = 10;
+    _graph.plotAreaFrame.paddingRight = 10;
     
-    graph.paddingRight = 10;
-    graph.paddingLeft = 10;
-    graph.paddingTop = 10;
-    graph.paddingBottom = 10;
+    CPTTheme *theme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
+    [_graph applyTheme:theme];
     
     CPTMutableLineStyle *borderLineStyle = [CPTMutableLineStyle lineStyle];
     borderLineStyle.lineColor = [CPTColor lightGrayColor];
     borderLineStyle.lineWidth = 2.0;
-    graph.plotAreaFrame.borderLineStyle = borderLineStyle;
+    _graph.plotAreaFrame.borderLineStyle = borderLineStyle;
     CPTColor *chartBackgroundColor = [CPTColor colorWithComponentRed:0 green:0 blue:0 alpha:0];
-    graph.fill = [CPTFill fillWithColor:chartBackgroundColor];
+    _graph.fill = [CPTFill fillWithColor:chartBackgroundColor];
     
-    _chartView.hostedGraph = graph;
+    // set the chart to its superview
+    _chartView.hostedGraph = _graph;
     
-    /*
-    
-    // chart axes
-    CPTXYAxisSet *xyAxisSet = (CPTXYAxisSet *)graph.axisSet;
-    CPTXYAxis *xAxis = xyAxisSet.xAxis;
-    CPTXYAxis *yAxis = xyAxisSet.yAxis;
-    CPTMutableLineStyle *lineStyle = [xAxis.axisLineStyle mutableCopy];
+    // line and label setup
+    CPTMutableLineStyle *lineStyle = [[CPTMutableLineStyle alloc] init];
     lineStyle.lineColor = [CPTColor blueColor];
     lineStyle.lineWidth = 1.5;
     lineStyle.lineCap = kCGLineCapRound;
-    xAxis.axisLineStyle = lineStyle;
-    xAxis.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
+     
+    CPTScatterPlot *weatherForecastScatterPlot = [[CPTScatterPlot alloc] initWithFrame:[_graph bounds]];
+    weatherForecastScatterPlot.identifier = @"WeatherForecastPlot";
+    weatherForecastScatterPlot.dataLineStyle = lineStyle;
+    weatherForecastScatterPlot.delegate = self;
+    weatherForecastScatterPlot.dataSource = self;
+    [_graph addPlot:weatherForecastScatterPlot];
+
+    CPTXYAxisSet *xyAxisSet = (CPTXYAxisSet *)_graph.axisSet;
+    CPTXYAxis *xAxis = xyAxisSet.xAxis;
+    CPTXYAxis *yAxis = xyAxisSet.yAxis;
     
-    yAxis.axisLineStyle = lineStyle;
-    yAxis.labelingPolicy = CPTAxisLabelingPolicyLocationsProvided;
+    xAxis.majorIntervalLength = [NSNumber numberWithInt:1];
+    yAxis.majorIntervalLength = [NSNumber numberWithInt:2];
+    xAxis.minorTicksPerInterval = 0;
+    yAxis.minorTicksPerInterval = 0;
     
-    // line plot gradient fill
-    CPTScatterPlot *dataSourceLinePlot = [[CPTScatterPlot alloc] initWithFrame:graph.bounds];
-    dataSourceLinePlot.identifier = @"Data Source Plot";
-    dataSourceLinePlot.dataLineStyle = nil;
-    dataSourceLinePlot.dataSource = self;
-    dataSourceLinePlot.cachePrecision = CPTPlotCachePrecisionDouble;
-    [graph addPlot:dataSourceLinePlot];
+    CPTMutableTextStyle * ts = [CPTMutableTextStyle new];
+    ts.color = [CPTColor blueColor];
+    ts.fontSize = 12;
     
-    // TODO: maybe choose other color
-    CPTColor *areaColor = [CPTColor colorWithComponentRed:1 green:1 blue:1 alpha:0.5];
+    yAxis.labelingPolicy = CPTAxisLabelingPolicyFixedInterval;
+    yAxis.labelAlignment = CPTAlignmentCenter;
+    yAxis.labelTextStyle = ts;
+    
+    xAxis.labelingPolicy = CPTAxisLabelingPolicyFixedInterval;
+    xAxis.labelAlignment = CPTAlignmentCenter;
+    xAxis.labelTextStyle = ts;
+    
+    // area gradient beneath the line chart
+    CPTColor *areaColor = [CPTColor blueColor];
     CPTGradient *areaGradient = [CPTGradient gradientWithBeginningColor:areaColor endingColor:[CPTColor clearColor]];
-    areaGradient.angle = -90.0;
+    [areaGradient setAngle:90.0f];
     CPTFill *areaGradientFill = [CPTFill fillWithGradient:areaGradient];
-    dataSourceLinePlot.areaFill = areaGradientFill;
-    dataSourceLinePlot.areaBaseValue = @200.0;
-    
-    areaColor = [CPTColor colorWithComponentRed:0 green:0 blue:0 alpha:0];
-    areaGradient = [CPTGradient gradientWithBeginningColor:[CPTColor clearColor] endingColor:areaColor];
-    areaGradient.angle = -90.0;
-    areaGradientFill = [CPTFill fillWithGradient:areaGradient];
-    dataSourceLinePlot.areaFill2 = areaGradientFill;
-    dataSourceLinePlot.areaBaseValue = @400.0;
-    
-     */
+    [weatherForecastScatterPlot setAreaFill:areaGradientFill];
+    [weatherForecastScatterPlot setAreaBaseValue:0];
 }
 
 -(NSUInteger) numberOfRecordsForPlot:(nonnull CPTPlot *)plot
@@ -218,24 +230,36 @@ const long defaultCityId = 2172797;
 
 -(id)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)idx
 {
-    if([_forecastDataArray count] > 0)
+    if ([_forecastDataArray count] > 0)
     {
         CurrentWeatherDto *item = [_forecastDataArray objectAtIndex:idx];
         
-        switch (fieldEnum)
+        if (item != nil)
         {
-            case CPTBarPlotFieldBarLocation:
-                return [NSNumber numberWithInt:idx];
-                break;
-            case CPTBarPlotFieldBarTip:
-                return [NSNumber numberWithDouble:item.temperature];
-                break;
-            default:
-                return @0;
+            switch (fieldEnum) {
+                case CPTScatterPlotFieldX:
+                    return  [NSNumber numberWithInteger:idx];
+                  
+                case CPTScatterPlotFieldY:
+                    return  [NSNumber numberWithDouble: item.temperature];
+                    
+                default:
+                    break;
+            }
         }
     }
     
     return nil;
+}
+
+- (CPTPlotSymbol *)symbolForScatterPlot:(CPTScatterPlot *)plot recordIndex:(NSUInteger)idx
+{
+    CPTPlotSymbol *plotSymbol = [CPTPlotSymbol ellipsePlotSymbol];
+    [plotSymbol setSize:CGSizeMake(8.5, 8.5)];
+    [plotSymbol setFill:[CPTFill fillWithColor:[CPTColor blueColor]]];
+    [plot setPlotSymbol:plotSymbol];
+    
+    return plotSymbol;
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(nonnull NSArray<CLLocation *> *)locations
@@ -310,6 +334,7 @@ const long defaultCityId = 2172797;
         
         dispatch_async(queue, ^{
             [_dailyForecastCollectionView reloadData];
+            [_graph reloadData];
         });
     }];
 
