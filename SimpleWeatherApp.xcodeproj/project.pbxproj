@@ -26,9 +26,91 @@
 		B26FD6551E729DCB0077BCC5 /* DailyForecastCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD6531E729DCB0077BCC5 /* DailyForecastCollectionViewCell.m */; };
 		B26FD6561E729DCB0077BCC5 /* DailyForecastCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B26FD6541E729DCB0077BCC5 /* DailyForecastCollectionViewCell.xib */; };
 		B26FD6591E72F19C0077BCC5 /* WeatherForecastDto.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD6581E72F19C0077BCC5 /* WeatherForecastDto.m */; };
+		B26FD67A1E7C1F580077BCC5 /* CorePlot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26FD66F1E7C1F0F0077BCC5 /* CorePlot.framework */; };
+		B26FD67B1E7C1F580077BCC5 /* CorePlot.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B26FD66F1E7C1F0F0077BCC5 /* CorePlot.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B295AEBF1E6EFF36002D6F0B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B295AEBD1E6EFF36002D6F0B /* SettingsViewController.m */; };
 		B295AEC01E6EFF36002D6F0B /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B295AEBE1E6EFF36002D6F0B /* SettingsViewController.xib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B26FD66A1E7C1F0F0077BCC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B26FD65A1E7C1F0F0077BCC5 /* CorePlot.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = "CorePlot Mac";
+		};
+		B26FD66C1E7C1F0F0077BCC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B26FD65A1E7C1F0F0077BCC5 /* CorePlot.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0730F600109492D800E95162;
+			remoteInfo = "UnitTests Mac";
+		};
+		B26FD66E1E7C1F0F0077BCC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B26FD65A1E7C1F0F0077BCC5 /* CorePlot.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C38A09781A46185200D45436;
+			remoteInfo = "CorePlot iOS";
+		};
+		B26FD6701E7C1F0F0077BCC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B26FD65A1E7C1F0F0077BCC5 /* CorePlot.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C38A09821A46185300D45436;
+			remoteInfo = "UnitTests iOS";
+		};
+		B26FD6721E7C1F0F0077BCC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B26FD65A1E7C1F0F0077BCC5 /* CorePlot.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C38A09BA1A4619A900D45436;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
+		B26FD6741E7C1F0F0077BCC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B26FD65A1E7C1F0F0077BCC5 /* CorePlot.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C38A09C41A4619A900D45436;
+			remoteInfo = "CorePlot-CocoaTouchTests";
+		};
+		B26FD6761E7C1F0F0077BCC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B26FD65A1E7C1F0F0077BCC5 /* CorePlot.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C37EA6921BC83F2A0091C8F7;
+			remoteInfo = "CorePlot tvOS";
+		};
+		B26FD6781E7C1F0F0077BCC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B26FD65A1E7C1F0F0077BCC5 /* CorePlot.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C37EA6B71BC83F2D0091C8F7;
+			remoteInfo = "UnitTests tvOS";
+		};
+		B26FD67C1E7C1F580077BCC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B26FD65A1E7C1F0F0077BCC5 /* CorePlot.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C38A09771A46185200D45436;
+			remoteInfo = "CorePlot iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B26FD67E1E7C1F580077BCC5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B26FD67B1E7C1F580077BCC5 /* CorePlot.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B22AE2FA1E6D75CD00651C84 /* SimpleWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +145,7 @@
 		B26FD6541E729DCB0077BCC5 /* DailyForecastCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailyForecastCollectionViewCell.xib; sourceTree = "<group>"; };
 		B26FD6571E72F1890077BCC5 /* WeatherForecastDto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherForecastDto.h; sourceTree = "<group>"; };
 		B26FD6581E72F19C0077BCC5 /* WeatherForecastDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherForecastDto.m; sourceTree = "<group>"; };
+		B26FD65A1E7C1F0F0077BCC5 /* CorePlot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CorePlot.xcodeproj; path = framework/CorePlot.xcodeproj; sourceTree = "<group>"; };
 		B295AEBC1E6EFF36002D6F0B /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		B295AEBD1E6EFF36002D6F0B /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B295AEBE1E6EFF36002D6F0B /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -73,6 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B26FD67A1E7C1F580077BCC5 /* CorePlot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +166,7 @@
 		B22AE2F11E6D75CD00651C84 = {
 			isa = PBXGroup;
 			children = (
+				B26FD65A1E7C1F0F0077BCC5 /* CorePlot.xcodeproj */,
 				B22AE2FC1E6D75CD00651C84 /* SimpleWeatherApp */,
 				B22AE2FB1E6D75CD00651C84 /* Products */,
 			);
@@ -144,6 +229,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B26FD65B1E7C1F0F0077BCC5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B26FD66B1E7C1F0F0077BCC5 /* CorePlot.framework */,
+				B26FD66D1E7C1F0F0077BCC5 /* UnitTests.xctest */,
+				B26FD66F1E7C1F0F0077BCC5 /* CorePlot.framework */,
+				B26FD6711E7C1F0F0077BCC5 /* UnitTests iOS.xctest */,
+				B26FD6731E7C1F0F0077BCC5 /* libCorePlot-CocoaTouch.a */,
+				B26FD6751E7C1F0F0077BCC5 /* CorePlot-CocoaTouchTests.xctest */,
+				B26FD6771E7C1F0F0077BCC5 /* CorePlot.framework */,
+				B26FD6791E7C1F0F0077BCC5 /* UnitTests tvOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -154,10 +254,12 @@
 				B22AE2F61E6D75CD00651C84 /* Sources */,
 				B22AE2F71E6D75CD00651C84 /* Frameworks */,
 				B22AE2F81E6D75CD00651C84 /* Resources */,
+				B26FD67E1E7C1F580077BCC5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B26FD67D1E7C1F580077BCC5 /* PBXTargetDependency */,
 			);
 			name = SimpleWeatherApp;
 			productName = SimpleWeatherApp;
@@ -190,12 +292,77 @@
 			mainGroup = B22AE2F11E6D75CD00651C84;
 			productRefGroup = B22AE2FB1E6D75CD00651C84 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B26FD65B1E7C1F0F0077BCC5 /* Products */;
+					ProjectRef = B26FD65A1E7C1F0F0077BCC5 /* CorePlot.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				B22AE2F91E6D75CD00651C84 /* SimpleWeatherApp */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B26FD66B1E7C1F0F0077BCC5 /* CorePlot.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CorePlot.framework;
+			remoteRef = B26FD66A1E7C1F0F0077BCC5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B26FD66D1E7C1F0F0077BCC5 /* UnitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTests.xctest;
+			remoteRef = B26FD66C1E7C1F0F0077BCC5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B26FD66F1E7C1F0F0077BCC5 /* CorePlot.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CorePlot.framework;
+			remoteRef = B26FD66E1E7C1F0F0077BCC5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B26FD6711E7C1F0F0077BCC5 /* UnitTests iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "UnitTests iOS.xctest";
+			remoteRef = B26FD6701E7C1F0F0077BCC5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B26FD6731E7C1F0F0077BCC5 /* libCorePlot-CocoaTouch.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libCorePlot-CocoaTouch.a";
+			remoteRef = B26FD6721E7C1F0F0077BCC5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B26FD6751E7C1F0F0077BCC5 /* CorePlot-CocoaTouchTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "CorePlot-CocoaTouchTests.xctest";
+			remoteRef = B26FD6741E7C1F0F0077BCC5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B26FD6771E7C1F0F0077BCC5 /* CorePlot.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CorePlot.framework;
+			remoteRef = B26FD6761E7C1F0F0077BCC5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B26FD6791E7C1F0F0077BCC5 /* UnitTests tvOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "UnitTests tvOS.xctest";
+			remoteRef = B26FD6781E7C1F0F0077BCC5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B22AE2F81E6D75CD00651C84 /* Resources */ = {
@@ -237,6 +404,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B26FD67D1E7C1F580077BCC5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CorePlot iOS";
+			targetProxy = B26FD67C1E7C1F580077BCC5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B22AE30E1E6D75CD00651C84 /* LaunchScreen.storyboard */ = {

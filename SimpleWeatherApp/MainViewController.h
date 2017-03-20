@@ -10,8 +10,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import "WeatherManager.h"
 #import "SettingsViewController.h"
+#import <CorePlot/CorePlot.h>
 
-@interface MainViewController : UIViewController <CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource> {
+@interface MainViewController : UIViewController <CLLocationManagerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, CPTPlotDataSource> {
     CLLocationManager *locationManager;
 }
 
@@ -23,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *dailyForecastCollectionView;
 @property (strong, nonatomic) IBOutlet UIImageView *weatherStatusIcon;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
+@property (strong, nonatomic) IBOutlet CPTGraphHostingView *chartView;
 @property (strong, nonatomic) WeatherManager *weatherManager;
 @property SettingsViewController *settingsViewController;
 
