@@ -16,5 +16,6 @@
 @property (strong, nonatomic) IBOutlet UISwitch *animationsEnabledSwitch;
 @property (strong, nonatomic) IBOutlet UITextField *customLocationTextField;
 @property (nonatomic, readonly) WeatherSettings *weatherSettings;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *numberOfDaysInForecastSelectionControl;
 
 @end

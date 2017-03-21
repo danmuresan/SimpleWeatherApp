@@ -382,7 +382,7 @@ const long defaultCityId = 2172797;
         //[_locationLabel setText:[NSString stringWithFormat:@"%@, %@", placemarks[placemarks.count - 1].locality, placemarks[placemarks.count - 1].country]];
     //}];
         
-    [_weatherManager getWeatherForecastDataByCoordinates:lastKnownLocationCoordinates.latitude :lastKnownLocationCoordinates.longitude :_weatherSettings.unitOfMeasurement : ^(CurrentWeatherDto *currentWeatherModel) {
+    [_weatherManager getWeatherDataByCoordinates:lastKnownLocationCoordinates.latitude :lastKnownLocationCoordinates.longitude :_weatherSettings.unitOfMeasurement : ^(CurrentWeatherDto *currentWeatherModel) {
             
         locationId = currentWeatherModel.cityId;
             
@@ -415,7 +415,6 @@ const long defaultCityId = 2172797;
 
 }
 
-
 -(void) updateUiFromWeatherModel: (CurrentWeatherDto *) weatherModel
 {
     [_temperatureLabel setText: [NSString stringWithFormat:@"%.1f%@", weatherModel.temperature, @"\u00B0"]];
@@ -434,7 +433,7 @@ const long defaultCityId = 2172797;
 - (void) baginFetchingAndUpdatingWeatherForecast:(long) locationId
 {
     dispatch_queue_t queue = dispatch_get_main_queue();
-    [_weatherManager getWeatherForecastDataByLocationId:locationId :_weatherSettings.unitOfMeasurement :^(WeatherForecastDto * weatherForecast) {
+    [_weatherManager getWeatherForecastDataByLocationId:locationId :_weatherSettings.unitOfMeasurement :_weatherSettings.numberOfDaysInForecast :^(WeatherForecastDto * weatherForecast) {
         
         // clear out old data
         [_forecastDataArray removeAllObjects];

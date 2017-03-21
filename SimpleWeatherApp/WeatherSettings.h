@@ -15,5 +15,6 @@
 @property BOOL animationsEnabled;
 @property UnitOfMeasurement unitOfMeasurement;
 @property LocationDto *selectedLocation;
+@property int numberOfDaysInForecast;
 
 @end

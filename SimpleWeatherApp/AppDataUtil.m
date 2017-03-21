@@ -36,6 +36,7 @@
     [[NSUserDefaults standardUserDefaults] setBool:weatherSettings.autoDetectLocationEnabled forKey:@"autoDetectLocationEnabledKey"];
     [[NSUserDefaults standardUserDefaults] setBool:weatherSettings.animationsEnabled forKey:@"animationsEnabledKey"];
     [[NSUserDefaults standardUserDefaults] setInteger:weatherSettings.unitOfMeasurement forKey:@"unitOfMeasurementKey"];
+    [[NSUserDefaults standardUserDefaults] setInteger:weatherSettings.numberOfDaysInForecast forKey:@"numberOfDaysInForecast"];
 }
 
 - (WeatherSettings *)loadWeatherOptions
@@ -44,6 +45,7 @@
     weatherSettings.animationsEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"animationsEnabledKey"];
     weatherSettings.autoDetectLocationEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"autoDetectLocationEnabledKey"];
     weatherSettings.unitOfMeasurement = (UnitOfMeasurement)[[NSUserDefaults standardUserDefaults] integerForKey:@"unitOfMeasurementKey"];
+    weatherSettings.numberOfDaysInForecast = [[NSUserDefaults standardUserDefaults] integerForKey:@"numberOfDaysInForecast"];
     
     return weatherSettings;
 }

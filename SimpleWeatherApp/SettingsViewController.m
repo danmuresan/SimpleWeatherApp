@@ -39,6 +39,7 @@
     [_autoDetectLocationEnabledSwitch addTarget:self action:@selector(onAutoDetectLocationSettingSwitched) forControlEvents:UIControlEventValueChanged];
     [_animationsEnabledSwitch addTarget:self action:@selector(onAnimtationsSettingSwitched) forControlEvents:UIControlEventValueChanged];
     [_customLocationTextField addTarget:self action:@selector(onCustomLocationTextFieldClick) forControlEvents:UIControlEventTouchDown];
+    [_numberOfDaysInForecastSelectionControl addTarget:self action:@selector(onNumberOfDaysSettingSelected) forControlEvents:UIControlEventValueChanged];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -66,11 +67,46 @@
     [_autoDetectLocationEnabledSwitch isOn] ? [_customLocationTextField setEnabled:NO] : [_customLocationTextField setEnabled:YES];
     [_animationsEnabledSwitch setOn:_weatherSettings.animationsEnabled];
     [_unitOfMeasurementSelectionControl setSelectedSegmentIndex:_weatherSettings.unitOfMeasurement];
+    [_numberOfDaysInForecastSelectionControl setSelectedSegmentIndex:[self getIndexFromNumberOfDaysInForecastSegmentedControl]];
 }
 
 -(void) saveCurrentSettings
 {
     [_appDataUtil saveWeatherOptions: _weatherSettings];
+}
+
+-(int) getIndexFromNumberOfDaysInForecastSegmentedControl
+{
+    if (_weatherSettings.numberOfDaysInForecast == 5)
+    {
+        return 0;
+    }
+    else if (_weatherSettings.numberOfDaysInForecast == 8)
+    {
+        return 1;
+    }
+    else if (_weatherSettings.numberOfDaysInForecast == 12)
+    {
+        return 2;
+    }
+    
+    return 0;
+}
+
+-(void) setIndexFromNumberOfDaysInForecastSegmentedControl
+{
+    if ([_numberOfDaysInForecastSelectionControl selectedSegmentIndex] == 0)
+    {
+        _weatherSettings.numberOfDaysInForecast = 5;
+    }
+    else if ([_numberOfDaysInForecastSelectionControl selectedSegmentIndex] == 1)
+    {
+        _weatherSettings.numberOfDaysInForecast = 8;
+    }
+    else if ([_numberOfDaysInForecastSelectionControl selectedSegmentIndex] == 2)
+    {
+        _weatherSettings.numberOfDaysInForecast = 12;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -112,6 +148,11 @@
 -(void) onAnimtationsSettingSwitched
 {
     _weatherSettings.animationsEnabled = [_animationsEnabledSwitch isOn];
+}
+
+-(void) onNumberOfDaysSettingSelected
+{
+    [self setIndexFromNumberOfDaysInForecastSegmentedControl];
 }
 
 /*
