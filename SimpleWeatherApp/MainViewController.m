@@ -162,7 +162,7 @@ const long defaultCityId = 2172797;
 
     // general appearance initialization
     _graph.plotAreaFrame.paddingLeft = 35;
-    _graph.plotAreaFrame.paddingBottom = 30;
+    _graph.plotAreaFrame.paddingBottom = 60;
     _graph.plotAreaFrame.paddingTop = 10;
     _graph.plotAreaFrame.paddingRight = 10;
     
@@ -209,7 +209,8 @@ const long defaultCityId = 2172797;
     yAxis.labelAlignment = CPTAlignmentCenter;
     yAxis.labelTextStyle = ts;
     
-    xAxis.labelingPolicy = CPTAxisLabelingPolicyFixedInterval;
+    xAxis.labelingPolicy = CPTAxisLabelingPolicyNone;
+    xAxis.labelOffset = 0;
     xAxis.labelAlignment = CPTAlignmentCenter;
     xAxis.labelTextStyle = ts;
     
@@ -222,9 +223,63 @@ const long defaultCityId = 2172797;
     [weatherForecastScatterPlot setAreaBaseValue:0];
 }
 
+-(void) updateChartLabels
+{
+    CPTXYAxisSet *axisSet = _graph.axisSet;
+    CPTXYAxis *xAxis = axisSet.xAxis;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMM dd"];
+    CPTMutableTextStyle * ts = [CPTMutableTextStyle new];
+    ts.color = [CPTColor blueColor];
+    ts.fontSize = 12;
+    
+    NSMutableArray *majorTickLocations = [NSMutableArray new];
+    NSMutableArray *axisLabels = [NSMutableArray new];
+    int index = 0;
+    
+    for (CurrentWeatherDto *weatherItem in _forecastDataArray)
+    {
+        [majorTickLocations addObject:[NSNumber numberWithInt: index]];
+        CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:[dateFormatter stringFromDate:weatherItem.date] textStyle:ts];
+        [label setTickLocation:[NSNumber numberWithInt:index]];
+        [label setRotation:M_PI_4];
+        [label setAlignment:CPTAlignmentCenter];
+        [axisLabels addObject:label];
+        index++;
+    }
+    
+    // update only X Axis labels for now
+    [xAxis setMajorTickLocations:[CPTNumberSet setWithArray:majorTickLocations]];
+    [xAxis setAxisLabels:[CPTAxisLabelSet setWithArray:axisLabels]];
+    
+    // update value according to forecast ranges
+    double minTemp = 10000;
+    double maxTemp = -10000;
+    for (CurrentWeatherDto *currentWeatherItem in _forecastDataArray)
+    {
+        if (maxTemp < currentWeatherItem.temperature)
+        {
+            maxTemp = currentWeatherItem.temperature;
+        }
+        
+        if (minTemp > currentWeatherItem.temperature)
+        {
+            minTemp = currentWeatherItem.temperature;
+        }
+    }
+    minTemp -= 5;
+    maxTemp += 5;
+    
+    // update axes origin and value ranges
+    CPTXYPlotSpace *weatherForecastPlotSpace = (CPTXYPlotSpace *)[_graph defaultPlotSpace];
+    [weatherForecastPlotSpace setXRange:[CPTPlotRange plotRangeWithLocation:@0.0 length:[NSNumber numberWithLong:_forecastDataArray.count - 1]]];
+    [weatherForecastPlotSpace setYRange:[CPTPlotRange plotRangeWithLocation:[NSNumber numberWithDouble:minTemp] length:[NSNumber numberWithDouble:(maxTemp - minTemp)]]];
+    [xAxis setOrthogonalPosition:[NSNumber numberWithDouble:minTemp]];
+    [_graph.allPlots[0] setAreaBaseValue:[NSNumber numberWithDouble:minTemp]];
+}
+
 -(NSUInteger) numberOfRecordsForPlot:(nonnull CPTPlot *)plot
 {
-    // TODO: ...
     return [_forecastDataArray count];
 }
 
@@ -260,6 +315,45 @@ const long defaultCityId = 2172797;
     [plot setPlotSymbol:plotSymbol];
     
     return plotSymbol;
+}
+
+-(void)scatterPlot:(CPTScatterPlot *)plot plotSymbolWasSelectedAtRecordIndex:(NSUInteger)idx
+{
+    // first, clear old annotations
+    [_graph.plotAreaFrame removeAllAnnotations];
+    
+    // create text layer and new annotation
+    CPTMutableTextStyle * ts = [CPTMutableTextStyle new];
+    ts.color = [CPTColor blackColor];
+    ts.fontSize = 12;
+
+    // determine position (from plot space coords) and data from selected item
+    NSNumber *plotXValue = [self numberForPlot:plot field:CPTScatterPlotFieldX recordIndex:idx];
+    NSNumber *plotYValue = [self numberForPlot:plot field:CPTScatterPlotFieldY recordIndex:idx];
+    
+    CurrentWeatherDto *selectedItem = [_forecastDataArray objectAtIndex:idx];
+    NSString *selectedItemCurrentTemperature = [NSString stringWithFormat:@"%.1f%@", selectedItem.temperature, @"\u00B0"];
+    NSString *tooltipText = [NSString stringWithFormat:@"%@\n%@", selectedItemCurrentTemperature, selectedItem.weatherDescription];
+    
+    CPTTextLayer *textLayer = [[CPTTextLayer alloc] initWithText:tooltipText style:ts];
+    CPTPlotSpaceAnnotation *annotation = [[CPTPlotSpaceAnnotation alloc] initWithPlotSpace:plot.plotSpace anchorPlotPoint:[CPTMutableNumberArray arrayWithObjects:plotXValue, plotYValue, nil]];
+    //annotation.rectAnchor = CPTRectAnchorTopLeft;
+    
+    // position annotation
+    annotation.displacement = CGPointMake(3, 8);
+    annotation.contentLayer = textLayer;
+    
+    if (idx == _forecastDataArray.count - 1)
+    {
+        annotation.contentAnchorPoint = CGPointMake(1, 0);
+    }
+    else
+    {
+        annotation.contentAnchorPoint = CGPointMake(0, 0);
+    }
+    
+    // add new annotation
+    [_graph.plotAreaFrame addAnnotation:annotation];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(nonnull NSArray<CLLocation *> *)locations
@@ -335,6 +429,7 @@ const long defaultCityId = 2172797;
         dispatch_async(queue, ^{
             [_dailyForecastCollectionView reloadData];
             [_graph reloadData];
+            [self updateChartLabels];
         });
     }];
 
