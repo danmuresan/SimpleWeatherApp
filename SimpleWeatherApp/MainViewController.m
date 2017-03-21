@@ -267,6 +267,7 @@ const long defaultCityId = 2172797;
             minTemp = currentWeatherItem.temperature;
         }
     }
+    
     minTemp -= 5;
     maxTemp += 5;
     
@@ -386,7 +387,6 @@ const long defaultCityId = 2172797;
         locationId = currentWeatherModel.cityId;
             
         [self updateUiWithWeatherData:currentWeatherModel];
-            
     }];
     
     [self stopSpinner: NO];
@@ -395,45 +395,26 @@ const long defaultCityId = 2172797;
 - (void) updateUiWithWeatherData: (CurrentWeatherDto *) currentWeatherModel
 {
     dispatch_queue_t queue = dispatch_get_main_queue();
-    // update weather image
+    
+    // update weather image and data
     [_weatherManager getImageForWeather:currentWeatherModel :^(NSData *imageData) {
         dispatch_async(queue, ^{
+            // set newly fetched image
             [_weatherStatusIcon setImage:[UIImage imageWithData:imageData]];
+            
+            // animate icon
             [self animateWeatherIcon];
+            
+            // update rest of UI elements
+            [self updateUiFromWeatherModel:currentWeatherModel];
         });
     }];
-    
-    // update rest of UI elements
-    dispatch_async(queue, ^{
-        [self updateUiFromWeatherModel:currentWeatherModel];
-    });
     
     // begin fetching weather for daily forecast
-    [self updateWeatherForecast:currentWeatherModel.cityId];
+    [self baginFetchingAndUpdatingWeatherForecast:currentWeatherModel.cityId];
 
 }
 
-- (void) updateWeatherForecast: (long) locationId
-{
-    dispatch_queue_t queue = dispatch_get_main_queue();
-    [_weatherManager getWeatherForecastDataByLocationId:locationId :_weatherSettings.unitOfMeasurement :^(WeatherForecastDto * weatherForecast) {
-        
-        // clear out old data
-        [_forecastDataArray removeAllObjects];
-        
-        for (CurrentWeatherDto *forecastItem in weatherForecast.weatherForecastList)
-        {
-            [_forecastDataArray addObject:forecastItem];
-        }
-        
-        dispatch_async(queue, ^{
-            [_dailyForecastCollectionView reloadData];
-            [_graph reloadData];
-            [self updateChartLabels];
-        });
-    }];
-
-}
 
 -(void) updateUiFromWeatherModel: (CurrentWeatherDto *) weatherModel
 {
@@ -448,6 +429,28 @@ const long defaultCityId = 2172797;
     [_lastUpdateLabel setText:[format stringFromDate:[NSDate date]]];
     
     NSLog(@"refreshed...");
+}
+
+- (void) baginFetchingAndUpdatingWeatherForecast:(long) locationId
+{
+    dispatch_queue_t queue = dispatch_get_main_queue();
+    [_weatherManager getWeatherForecastDataByLocationId:locationId :_weatherSettings.unitOfMeasurement :^(WeatherForecastDto * weatherForecast) {
+        
+        // clear out old data
+        [_forecastDataArray removeAllObjects];
+        
+        for (CurrentWeatherDto *forecastItem in weatherForecast.weatherForecastList)
+        {
+            [_forecastDataArray addObject:forecastItem];
+        }
+        
+        // update UI
+        dispatch_async(queue, ^{
+            [_dailyForecastCollectionView reloadData];
+            [_graph reloadData];
+            [self updateChartLabels];
+        });
+    }];
 }
 
 -(void) animateWeatherIcon
