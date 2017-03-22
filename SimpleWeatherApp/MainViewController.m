@@ -453,6 +453,7 @@ const long defaultCityId = 2172797;
     [_lastUpdateLabel setText:[format stringFromDate:[NSDate date]]];
     
     // update circle charts percentages
+    // TODO: check why reanimation (at refresh doesn't work)
     _humidityPercetageCircleView.percentage = weatherModel.humidity;
     [_humidityPercetageCircleView setNeedsDisplay];
     _cloudinessPercentageCircleView.percentage = weatherModel.cloudiness;
