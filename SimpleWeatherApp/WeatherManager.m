@@ -27,6 +27,12 @@ NSString* const GetImageForWeatherEndpoint = @"http://openweathermap.org/img/w/%
     
     [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString: endpoint] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
+        if ([((NSHTTPURLResponse *)response) statusCode] != 200)
+        {
+            NSLog(@"%@", response.description);
+            customCompletion(nil);
+        }
+        
         // get data into dict
         NSString *jsonResponseAsString = [NSString stringWithFormat:@"%@", response];
         NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
@@ -46,6 +52,12 @@ NSString* const GetImageForWeatherEndpoint = @"http://openweathermap.org/img/w/%
     
     [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString: endpoint] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
+        if ([((NSHTTPURLResponse *)response) statusCode] != 200)
+        {
+            NSLog(@"%@", response.description);
+            customCompletion(nil);
+        }
+        
         // get data into dict
         NSString *jsonResponseAsString = [NSString stringWithFormat:@"%@", response];
         NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
@@ -63,7 +75,19 @@ NSString* const GetImageForWeatherEndpoint = @"http://openweathermap.org/img/w/%
     NSString* unitOfMeasurementQueryParam = [WeatherManager getStingForUnitOfMeasurement:unitOfMeasurement];
     NSString* endpoint = [NSString stringWithFormat:@"%@%@", ServerEnvironmentUrl, [NSString stringWithFormat:GetDailyWeatherForecastEndpoint, cityId, AppId, unitOfMeasurementQueryParam, numberOfDaysInForecast]];
     
+    // default to 5 days if we receive bullshit data
+    if (numberOfDaysInForecast <= 0)
+    {
+        numberOfDaysInForecast = 5;
+    }
+    
     [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString: endpoint] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if ([((NSHTTPURLResponse *)response) statusCode] != 200)
+        {
+            NSLog(@"%@", response.description);
+            customCompletion(nil);
+        }
         
         // get data into dict
         NSString *jsonResponseAsString = [NSString stringWithFormat:@"%@", response];

@@ -110,7 +110,7 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0lQ-Qn-TwK">
                     <rect key="frame" x="5" y="961" width="397" height="264.5"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="0lQ-Qn-TwK" secondAttribute="height" multiplier="1.5:1" id="N2e-O0-d0t"/>
                     </constraints>

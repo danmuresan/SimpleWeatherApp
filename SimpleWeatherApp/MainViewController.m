@@ -423,7 +423,16 @@ const long defaultCityId = 2172797;
     
     // update weather image and data
     [_weatherManager getImageForWeather:currentWeatherModel :^(NSData *imageData) {
+        
         dispatch_async(queue, ^{
+            
+            if (currentWeatherModel == nil)
+            {
+                // TODO: NO DATA CASE
+                [self signalNetworkFetchingError];
+                return;
+            }
+            
             // set newly fetched image
             [_weatherStatusIcon setImage:[UIImage imageWithData:imageData]];
             
@@ -477,11 +486,28 @@ const long defaultCityId = 2172797;
         
         // update UI
         dispatch_async(queue, ^{
+
+            if (_forecastDataArray.count == 0)
+            {
+                // TODO: NO DATA CASE
+                [self signalNetworkFetchingError];
+                return;
+            }
+            
             [_dailyForecastCollectionView reloadData];
             [_graph reloadData];
             [self updateChartLabels];
         });
     }];
+}
+
+-(void) signalNetworkFetchingError
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Warning" message: @"Something went wrong with retrieving the data! Check internet connection or refresh to try again!" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"OK!" style:UIAlertActionStyleDefault handler:nil];
+
+    [alertController addAction:alertAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 -(void) animateWeatherIcon
