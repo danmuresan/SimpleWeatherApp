@@ -109,6 +109,10 @@ NSString* const GetImageForWeatherEndpoint = @"http://openweathermap.org/img/w/%
     currentWeatherModel.minTemperature = [[mainDataDict objectForKey:@"temp_min"] doubleValue];
     currentWeatherModel.maxTemperature = [[mainDataDict objectForKey:@"temp_max"] doubleValue];
     
+    // get clouds data
+    NSDictionary *cloudDataDict = [jsonDictionary objectForKey:@"clouds"];
+    currentWeatherModel.cloudiness = [[cloudDataDict objectForKey:@"all"] intValue];
+    
     return currentWeatherModel;
 }
 

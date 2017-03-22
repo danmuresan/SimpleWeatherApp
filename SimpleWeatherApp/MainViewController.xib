@@ -18,6 +18,7 @@
                 <outlet property="lastUpdateLabel" destination="fVe-fd-LVM" id="gSQ-rx-Mpb"/>
                 <outlet property="loadingSpinner" destination="eA4-9w-sZ3" id="dQo-lh-CHY"/>
                 <outlet property="locationLabel" destination="q80-2r-GRT" id="Kv3-Se-9ml"/>
+                <outlet property="percentageCircleHostView" destination="0lQ-Qn-TwK" id="K5b-Ti-bTe"/>
                 <outlet property="tempUnitLabel" destination="kBJ-3v-JLL" id="rLk-fq-YUc"/>
                 <outlet property="temperatureLabel" destination="rs7-Jv-oez" id="jeS-fs-0KS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="g78-c2-0pc"/>
@@ -26,7 +27,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <scrollView clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="407" height="1044"/>
+            <rect key="frame" x="0.0" y="0.0" width="407" height="1301"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rs7-Jv-oez">
@@ -69,7 +70,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="eA4-9w-sZ3">
-                    <rect key="frame" x="193.5" y="512" width="20" height="20"/>
+                    <rect key="frame" x="193.5" y="640.5" width="20" height="20"/>
                 </activityIndicatorView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="MGT-tS-3tz">
                     <rect key="frame" x="20" y="331" width="367" height="180"/>
@@ -107,6 +108,13 @@
                         <constraint firstAttribute="width" secondItem="SgV-1V-5zl" secondAttribute="height" multiplier="1.1:1" id="gkE-bg-O6S"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0lQ-Qn-TwK">
+                    <rect key="frame" x="5" y="961" width="397" height="264.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="0lQ-Qn-TwK" secondAttribute="height" multiplier="1.5:1" id="N2e-O0-d0t"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.95596259832382202" green="0.9841887354850769" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -121,9 +129,9 @@
                 <constraint firstItem="MGT-tS-3tz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="IUz-FG-MoV"/>
                 <constraint firstAttribute="trailing" secondItem="SgV-1V-5zl" secondAttribute="trailing" constant="5" id="KU2-Vw-HY5"/>
                 <constraint firstItem="q80-2r-GRT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="SqZ-QY-RUX"/>
+                <constraint firstItem="0lQ-Qn-TwK" firstAttribute="top" secondItem="SgV-1V-5zl" secondAttribute="bottom" constant="25" id="TNg-fo-FEZ"/>
                 <constraint firstItem="rs7-Jv-oez" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TYr-4u-EtV"/>
                 <constraint firstItem="4no-4N-wlU" firstAttribute="trailing" secondItem="MGT-tS-3tz" secondAttribute="trailing" id="Ukg-3M-RxY"/>
-                <constraint firstAttribute="bottom" secondItem="SgV-1V-5zl" secondAttribute="bottom" id="VF5-VC-hT2"/>
                 <constraint firstAttribute="trailing" secondItem="MGT-tS-3tz" secondAttribute="trailing" constant="20" id="VMz-k6-igN"/>
                 <constraint firstItem="i2c-Jj-LAx" firstAttribute="top" secondItem="rs7-Jv-oez" secondAttribute="bottom" constant="15" id="XxV-O0-t55"/>
                 <constraint firstItem="SgV-1V-5zl" firstAttribute="top" secondItem="4no-4N-wlU" secondAttribute="bottom" constant="20" id="YGh-pa-ITf"/>
@@ -131,10 +139,13 @@
                 <constraint firstItem="4no-4N-wlU" firstAttribute="leading" secondItem="MGT-tS-3tz" secondAttribute="leading" id="bqq-3U-7Gy"/>
                 <constraint firstItem="VDF-fJ-bsC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="cHO-o3-Ek5"/>
                 <constraint firstItem="kBJ-3v-JLL" firstAttribute="leading" secondItem="rs7-Jv-oez" secondAttribute="trailing" constant="20" id="cON-0o-Xq6"/>
+                <constraint firstAttribute="trailing" secondItem="0lQ-Qn-TwK" secondAttribute="trailing" constant="5" id="eQe-Nh-ONe"/>
                 <constraint firstItem="VDF-fJ-bsC" firstAttribute="height" secondItem="rs7-Jv-oez" secondAttribute="height" id="ea8-F0-1rf"/>
                 <constraint firstItem="q80-2r-GRT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="ekC-jw-pIc"/>
+                <constraint firstItem="0lQ-Qn-TwK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="fEc-Xg-XuF"/>
                 <constraint firstItem="fVe-fd-LVM" firstAttribute="centerX" secondItem="i2c-Jj-LAx" secondAttribute="centerX" id="kxB-AW-kNZ"/>
                 <constraint firstItem="MGT-tS-3tz" firstAttribute="top" secondItem="gsg-pR-3Pa" secondAttribute="bottom" constant="20" id="nmw-Gj-2ZC"/>
+                <constraint firstAttribute="bottom" secondItem="0lQ-Qn-TwK" secondAttribute="bottom" constant="20" id="okj-z3-3Lb"/>
                 <constraint firstItem="kBJ-3v-JLL" firstAttribute="centerY" secondItem="VDF-fJ-bsC" secondAttribute="centerY" id="oqC-8x-54u"/>
                 <constraint firstItem="kBJ-3v-JLL" firstAttribute="centerY" secondItem="rs7-Jv-oez" secondAttribute="centerY" id="r5Z-kX-1iY"/>
                 <constraint firstItem="rs7-Jv-oez" firstAttribute="top" secondItem="q80-2r-GRT" secondAttribute="bottom" constant="15" id="rFm-DO-BLc"/>
@@ -145,7 +156,7 @@
                 <constraint firstItem="rs7-Jv-oez" firstAttribute="centerY" secondItem="VDF-fJ-bsC" secondAttribute="centerY" id="zXR-fJ-I6p"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="51.5" y="243"/>
+            <point key="canvasLocation" x="51.5" y="371.5"/>
         </scrollView>
         <navigationItem title="Title" id="gQq-Dx-aT7"/>
     </objects>

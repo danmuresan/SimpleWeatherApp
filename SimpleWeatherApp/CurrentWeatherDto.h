@@ -30,6 +30,7 @@ struct Coordinates
 @property double maxTemperature;
 @property double pressure;
 @property NSDate *date;
+@property int cloudiness;
 
 @end
 

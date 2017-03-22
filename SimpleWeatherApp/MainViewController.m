@@ -10,6 +10,7 @@
 #import "CurrentWeatherDto.h"
 #import "DailyForecastCollectionViewCell.h"
 #import "WeatherForecastDto.h"
+#import "PercentageCircleView.h"
 
 @interface MainViewController ()
 
@@ -17,6 +18,8 @@
 @property (nonatomic) WeatherSettings *weatherSettings;
 @property (nonatomic, strong) NSMutableArray<CurrentWeatherDto *> *forecastDataArray;
 @property (nonatomic, readwrite, strong, nullable) CPTGraph *graph;
+@property (nonatomic) PercentageCircleView *humidityPercetageCircleView;
+@property (nonatomic) PercentageCircleView *cloudinessPercentageCircleView;
 
 @end
 
@@ -77,7 +80,10 @@ const long defaultCityId = 2172797;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshButtonClick)];
     
     // prepare chart
-    [self prepareChartData];
+    [self prepareForeacastChartData];
+    
+    // prepare round chart
+    [self prepareCircleChart];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -148,7 +154,26 @@ const long defaultCityId = 2172797;
     }
 }
 
--(void) prepareChartData
+-(void) prepareCircleChart
+{
+    int humidityPercentage = 0;
+    int cloudinessPercentage = 0;
+    
+    CGRect firstFrame = CGRectMake(0, 0, self.percentageCircleHostView.bounds.size.width / 2, self.percentageCircleHostView.bounds.size.height);
+    CGRect secondFrame = CGRectMake(self.percentageCircleHostView.bounds.size.width / 2 + 1, 0, self.percentageCircleHostView.bounds.size.width / 2, self.percentageCircleHostView.bounds.size.height);
+    
+    _humidityPercetageCircleView = [[PercentageCircleView alloc] initWithFrame:firstFrame];
+    _humidityPercetageCircleView.percentage = humidityPercentage;
+    _humidityPercetageCircleView.title = @"Humidity";
+    [self.percentageCircleHostView addSubview:_humidityPercetageCircleView];
+    
+    _cloudinessPercentageCircleView = [[PercentageCircleView alloc] initWithFrame:secondFrame];
+    _cloudinessPercentageCircleView.percentage = cloudinessPercentage;
+    _cloudinessPercentageCircleView.title = @"Cloudiness";
+    [self.percentageCircleHostView addSubview:_cloudinessPercentageCircleView];
+}
+
+-(void) prepareForeacastChartData
 {
     // graph initialization stuff
     _graph = [[CPTXYGraph alloc] initWithFrame:_chartView.bounds];
@@ -426,6 +451,12 @@ const long defaultCityId = 2172797;
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"MMM dd, yyyy HH:mm"];
     [_lastUpdateLabel setText:[format stringFromDate:[NSDate date]]];
+    
+    // update circle charts percentages
+    _humidityPercetageCircleView.percentage = weatherModel.humidity;
+    [_humidityPercetageCircleView setNeedsDisplay];
+    _cloudinessPercentageCircleView.percentage = weatherModel.cloudiness;
+    [_cloudinessPercentageCircleView setNeedsDisplay];
     
     NSLog(@"refreshed...");
 }

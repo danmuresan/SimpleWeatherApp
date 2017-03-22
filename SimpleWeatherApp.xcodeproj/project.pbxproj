@@ -28,6 +28,7 @@
 		B26FD6591E72F19C0077BCC5 /* WeatherForecastDto.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD6581E72F19C0077BCC5 /* WeatherForecastDto.m */; };
 		B26FD67A1E7C1F580077BCC5 /* CorePlot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26FD66F1E7C1F0F0077BCC5 /* CorePlot.framework */; };
 		B26FD67B1E7C1F580077BCC5 /* CorePlot.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B26FD66F1E7C1F0F0077BCC5 /* CorePlot.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B26FD6931E817D630077BCC5 /* PercentageCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD6921E817D630077BCC5 /* PercentageCircleView.m */; };
 		B295AEBF1E6EFF36002D6F0B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B295AEBD1E6EFF36002D6F0B /* SettingsViewController.m */; };
 		B295AEC01E6EFF36002D6F0B /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B295AEBE1E6EFF36002D6F0B /* SettingsViewController.xib */; };
 /* End PBXBuildFile section */
@@ -146,6 +147,8 @@
 		B26FD6571E72F1890077BCC5 /* WeatherForecastDto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherForecastDto.h; sourceTree = "<group>"; };
 		B26FD6581E72F19C0077BCC5 /* WeatherForecastDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherForecastDto.m; sourceTree = "<group>"; };
 		B26FD65A1E7C1F0F0077BCC5 /* CorePlot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CorePlot.xcodeproj; path = framework/CorePlot.xcodeproj; sourceTree = "<group>"; };
+		B26FD6911E817D510077BCC5 /* PercentageCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PercentageCircleView.h; sourceTree = "<group>"; };
+		B26FD6921E817D630077BCC5 /* PercentageCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PercentageCircleView.m; sourceTree = "<group>"; };
 		B295AEBC1E6EFF36002D6F0B /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		B295AEBD1E6EFF36002D6F0B /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B295AEBE1E6EFF36002D6F0B /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -183,6 +186,7 @@
 		B22AE2FC1E6D75CD00651C84 /* SimpleWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				B26FD6911E817D510077BCC5 /* PercentageCircleView.h */,
 				B26FD6501E718A430077BCC5 /* city.list.json */,
 				B22AE3001E6D75CD00651C84 /* AppDelegate.h */,
 				B22AE3011E6D75CD00651C84 /* AppDelegate.m */,
@@ -217,6 +221,7 @@
 				B26FD6541E729DCB0077BCC5 /* DailyForecastCollectionViewCell.xib */,
 				B26FD6571E72F1890077BCC5 /* WeatherForecastDto.h */,
 				B26FD6581E72F19C0077BCC5 /* WeatherForecastDto.m */,
+				B26FD6921E817D630077BCC5 /* PercentageCircleView.m */,
 			);
 			path = SimpleWeatherApp;
 			sourceTree = "<group>";
@@ -386,6 +391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B26FD6931E817D630077BCC5 /* PercentageCircleView.m in Sources */,
 				B26FD6441E714B290077BCC5 /* LocationSelectorViewController.m in Sources */,
 				B26FD6591E72F19C0077BCC5 /* WeatherForecastDto.m in Sources */,
 				B22AE3201E6D961100651C84 /* CurrentWeatherDto.m in Sources */,

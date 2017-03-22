@@ -27,5 +27,6 @@
 @property (strong, nonatomic) IBOutlet CPTGraphHostingView *chartView;
 @property (strong, nonatomic) WeatherManager *weatherManager;
 @property SettingsViewController *settingsViewController;
+@property (strong, nonatomic) IBOutlet UIView *percentageCircleHostView;
 
 @end
