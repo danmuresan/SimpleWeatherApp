@@ -75,6 +75,7 @@
     shapeLayer.frame = rect;
     shapeLayer.path = bezierPath.CGPath;
     shapeLayer.fillColor = [UIColor clearColor].CGColor;
+    self.layer.sublayers = nil;
     [self.layer addSublayer:shapeLayer];
     
     /*
