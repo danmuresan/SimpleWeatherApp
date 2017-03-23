@@ -175,8 +175,7 @@
 -(void)onSelectLocationFromMapClick
 {
     mapViewController = [[MapViewController alloc] initWithLocation:_weatherSettings.selectedLocation];
-    [self presentViewController:mapViewController animated:YES completion:^{
-    }];
+    [self presentViewController:mapViewController animated:YES completion:^{}];
 }
 
 /*

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,15 +22,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Simple Weather App" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vg3-oL-blF">
-                                <rect key="frame" x="16" y="312" width="343" height="42"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <color key="textColor" red="0.30307352149738176" green="0.33046923105367443" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Simple Weather App" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vg3-oL-blF">
+                                <rect key="frame" x="16" y="306" width="343" height="73"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" red="0.0" green="0.38979570619999998" blue="0.80829015540000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_weather_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Ffi-Dd-0bj">
+                                <rect key="frame" x="51" y="55" width="273" height="196"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="196" id="EZr-Nv-AFQ"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.95596259829999997" green="0.98418873549999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Ffi-Dd-0bj" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="35" id="3dk-o4-sf9"/>
+                            <constraint firstItem="Vg3-oL-blF" firstAttribute="centerX" secondItem="Ffi-Dd-0bj" secondAttribute="centerX" id="JOl-VV-RFg"/>
+                            <constraint firstItem="Vg3-oL-blF" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="KZU-BS-zAf"/>
+                            <constraint firstItem="Ffi-Dd-0bj" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="35" id="Kb1-Ze-CRn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ffi-Dd-0bj" secondAttribute="trailing" constant="35" id="SoR-Fv-o6m"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Vg3-oL-blF" secondAttribute="bottom" constant="288" id="l68-cg-ByF"/>
+                            <constraint firstItem="Vg3-oL-blF" firstAttribute="top" secondItem="Ffi-Dd-0bj" secondAttribute="bottom" constant="55" id="t42-7u-1pH"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -37,4 +52,7 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="launch_weather_icon" width="432" height="399"/>
+    </resources>
 </document>
