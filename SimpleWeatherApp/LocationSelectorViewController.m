@@ -40,6 +40,7 @@
     // Do any additional setup after loading the view from its nib.
     [self startSpinner];
     [_locationsSearchBox addTarget:self action:@selector(searchTextChanged) forControlEvents:UIControlEventEditingChanged];
+    
     [self loadUpTableData];
 }
 
@@ -56,11 +57,19 @@
 
 -(void) loadUpTableData
 {
-    NSData *cityFileContents = [_fileReader readFileContentsToData:@"city.list" : @"json"];
-    [self parseCityJsonFile:cityFileContents];
-    _tableData = [self parseCityJsonFile:cityFileContents];
-    _fullTableData = _tableData.copy;
-    [self stopSpinner];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSData *cityFileContents = [_fileReader readFileContentsToData:@"city.list" : @"json"];
+        [self parseCityJsonFile:cityFileContents];
+        _tableData = [self parseCityJsonFile:cityFileContents];
+        _fullTableData = _tableData.copy;
+        
+        // update any UI elements back on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_locationsListView reloadData];
+            [self stopSpinner];
+        });
+    });
 }
 
 -(NSArray *)parseCityJsonFile: (NSData *) cityListAsJson
