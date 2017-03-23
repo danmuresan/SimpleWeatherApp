@@ -48,6 +48,7 @@
 {
     [super viewWillAppear:animated];
     _weatherSettings = [_appDataUtil loadWeatherOptions];
+    [_locationSelectionButton setTitle:@"Cancel" forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,6 +58,7 @@
 
 -(void) loadUpTableData
 {
+    // move this computation to a different thread since it's quite expensive for such a large file
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSData *cityFileContents = [_fileReader readFileContentsToData:@"city.list" : @"json"];
@@ -112,13 +114,6 @@
     }
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@, %@", ((LocationDto*)[_tableData objectAtIndex:indexPath.row]).cityName, ((LocationDto*)[_tableData objectAtIndex:indexPath.row]).country];
-    
-    /*
-    NSData* imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:((GarminDeviceModel*)[tableData objectAtIndex:indexPath.row]).deviceImage]];
-    cell.deviceImageView.image = [UIImage imageWithData:imageData];
-    [cell.deviceTypeLabel setText:[self getStringFromBluetoothType:((GarminDeviceModel*)[tableData objectAtIndex:indexPath.row]).bluetoothType]];
-     */
-    
     return cell;
 }
 
@@ -127,6 +122,7 @@
     LocationDto *locationAtSelectedIndex = (LocationDto *)[_tableData objectAtIndex:indexPath.row];
     _weatherSettings.selectedLocation = locationAtSelectedIndex;
     [_appDataUtil saveLocation:_weatherSettings.selectedLocation];
+    [_locationSelectionButton setTitle:@"Save Location" forState:UIControlStateNormal];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -144,6 +140,7 @@
     _timer = [NSTimer timerWithTimeInterval:0.6 repeats:NO block:^(NSTimer * _Nonnull timer) {
         [self beginFilteringLocations];
     }];
+    
     [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
 }
 

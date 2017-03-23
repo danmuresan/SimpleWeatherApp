@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationSelectorViewController">
             <connections>
                 <outlet property="loadingSpinner" destination="AkD-gO-Lga" id="2H9-Ud-J88"/>
+                <outlet property="locationSelectionButton" destination="9Ol-Yy-ozr" id="TgL-Pc-4Ka"/>
                 <outlet property="locationsListView" destination="XNN-6l-lqL" id="GZ8-GM-wEr"/>
                 <outlet property="locationsSearchBox" destination="EWb-6I-I3P" id="qFQ-UJ-a8J"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
