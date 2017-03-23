@@ -28,7 +28,6 @@
     if (self) {
         _appDataUtil = [[AppDataUtil alloc] init];
         _locationSelectorViewController = [[LocationSelectorViewController alloc] init];
-        mapViewController = [[MapViewController alloc] init];
     }
     return self;
 }
@@ -57,7 +56,8 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    _customLocationTextField.text = [_appDataUtil loadLocation].cityName;
+    _weatherSettings.selectedLocation = [_appDataUtil loadLocation];
+    _customLocationTextField.text = _weatherSettings.selectedLocation.cityName;
 }
 
 -(void) viewDidDisappear:(BOOL)animated
@@ -174,8 +174,8 @@
 
 -(void)onSelectLocationFromMapClick
 {
+    mapViewController = [[MapViewController alloc] initWithLocation:_weatherSettings.selectedLocation];
     [self presentViewController:mapViewController animated:YES completion:^{
-        
     }];
 }
 

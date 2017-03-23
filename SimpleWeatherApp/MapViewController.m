@@ -16,6 +16,17 @@
 
 @implementation MapViewController
 
+- (instancetype)initWithLocation:(LocationDto *)location
+{
+    self = [super init];
+    if (self)
+    {
+        _selectedLocation = location;
+    }
+    return self;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -31,12 +42,34 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:_selectedLocation.latitude longitude:_selectedLocation.longitude];
+    [_mapView setCenterCoordinate:location.coordinate animated:YES];
+    [self zoomMapIntoMyLocation:location];
+    [self placePinOnMapAtSelectedLocation];
+    
+    // invalidate old location
     _selectedLocation = nil;
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) zoomMapIntoMyLocation:(CLLocation *)location
+{
+    MKCoordinateRegion region = {{0.0, 0.0}, {0.0, 0.0}};
+    region.center.latitude = location.coordinate.latitude;
+    region.center.longitude = location.coordinate.longitude;
+    region.span.longitudeDelta = 1.0f;
+    region.span.latitudeDelta = 1.0f;
+    [_mapView setRegion:region animated:YES];
 }
 
 - (void)onMapLocationSelected: (UILongPressGestureRecognizer *)gestureRecognizer
