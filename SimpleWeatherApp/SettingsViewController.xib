@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="animationsEnabledSwitch" destination="JLv-2F-4ci" id="iFR-FW-WIo"/>
                 <outlet property="autoDetectLocationEnabledSwitch" destination="xAS-FM-QRC" id="5r9-1W-Q9C"/>
+                <outlet property="customLocationFromMapButton" destination="8UM-rA-IUm" id="ePE-40-3Lp"/>
                 <outlet property="customLocationTextField" destination="0Lv-M1-gm2" id="lrP-md-dsF"/>
                 <outlet property="numberOfDaysInForecastSelectionControl" destination="GEI-Nq-v18" id="9Ek-Tp-3QV"/>
                 <outlet property="unitOfMeasurementSelectionControl" destination="mRs-pa-jsd" id="ctp-Lk-iXG"/>
@@ -58,6 +59,12 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of days for daily forecast:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5t-JJ-GmU">
+                    <rect key="frame" x="15" y="363" width="259" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JLv-2F-4ci">
                     <rect key="frame" x="15" y="312" width="51" height="31"/>
                 </switch>
@@ -69,12 +76,11 @@
                         <segment title="12"/>
                     </segments>
                 </segmentedControl>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of days for daily forecast:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5t-JJ-GmU">
-                    <rect key="frame" x="15" y="363" width="259" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8UM-rA-IUm">
+                    <rect key="frame" x="15" y="452" width="210" height="33"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <state key="normal" title="Choose location from map"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -82,6 +88,7 @@
                 <constraint firstAttribute="trailing" secondItem="GEI-Nq-v18" secondAttribute="trailing" constant="15" id="2r0-qW-brb"/>
                 <constraint firstAttribute="trailing" secondItem="mRs-pa-jsd" secondAttribute="trailing" constant="15" id="3QW-78-UKd"/>
                 <constraint firstItem="m22-j9-DDm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="5gg-Dw-61I"/>
+                <constraint firstItem="8UM-rA-IUm" firstAttribute="top" secondItem="GEI-Nq-v18" secondAttribute="bottom" constant="20" id="63T-OM-lYS"/>
                 <constraint firstItem="GEI-Nq-v18" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="9je-bM-kQf"/>
                 <constraint firstItem="xAS-FM-QRC" firstAttribute="top" secondItem="TtK-qr-908" secondAttribute="bottom" constant="20" id="Aq5-Ks-DTH"/>
                 <constraint firstAttribute="trailing" secondItem="0Lv-M1-gm2" secondAttribute="trailing" constant="15" id="BYm-2N-ehJ"/>
@@ -96,6 +103,7 @@
                 <constraint firstItem="A5t-JJ-GmU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="O9e-YB-SFV"/>
                 <constraint firstItem="b3J-JJ-WwR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="PEO-cj-bwP"/>
                 <constraint firstItem="xAS-FM-QRC" firstAttribute="top" secondItem="TtK-qr-908" secondAttribute="bottom" constant="20" id="Q8J-2A-34w"/>
+                <constraint firstItem="8UM-rA-IUm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="QIv-iV-iK4"/>
                 <constraint firstItem="GEI-Nq-v18" firstAttribute="top" secondItem="A5t-JJ-GmU" secondAttribute="bottom" constant="20" id="QfH-7n-0F1"/>
                 <constraint firstItem="0Lv-M1-gm2" firstAttribute="top" secondItem="xAS-FM-QRC" secondAttribute="top" id="QlU-Qa-8co"/>
                 <constraint firstItem="b3J-JJ-WwR" firstAttribute="top" secondItem="xAS-FM-QRC" secondAttribute="bottom" constant="25" id="baS-nM-Iuw"/>

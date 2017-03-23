@@ -17,6 +17,8 @@
     locationModel.cityId = [[objectAsJson objectForKey:@"_id"] longValue];
     locationModel.cityName = [objectAsJson objectForKey:@"name"];
     locationModel.country = [objectAsJson objectForKey:@"country"];
+    locationModel.latitude = [[[objectAsJson objectForKey:@"coord"] objectForKey:@"lat"] doubleValue];
+    locationModel.longitude = [[[objectAsJson objectForKey:@"coord"] objectForKey:@"lon"] doubleValue];
     
     return locationModel;
 }

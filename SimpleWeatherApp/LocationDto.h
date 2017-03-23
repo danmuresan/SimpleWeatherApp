@@ -13,6 +13,8 @@
 @property (strong, nonatomic) NSString *cityName;
 @property long cityId;
 @property (strong, nonatomic) NSString *country;
+@property (nonatomic, readwrite) double latitude;
+@property (nonatomic, readwrite) double longitude;
 
 +(LocationDto *) deserializeFromJson: (NSDictionary *) objectAsJson;
 

@@ -8,8 +8,12 @@
 
 #import "SettingsViewController.h"
 #import "LocationSelectorViewController.h"
+#import "MapViewController.h"
 
 @interface SettingsViewController ()
+{
+    MapViewController *mapViewController;
+}
 
 @property (nonatomic, readonly) AppDataUtil *appDataUtil;
 @property (nonatomic, readonly) LocationSelectorViewController *locationSelectorViewController;
@@ -24,6 +28,7 @@
     if (self) {
         _appDataUtil = [[AppDataUtil alloc] init];
         _locationSelectorViewController = [[LocationSelectorViewController alloc] init];
+        mapViewController = [[MapViewController alloc] init];
     }
     return self;
 }
@@ -40,6 +45,7 @@
     [_animationsEnabledSwitch addTarget:self action:@selector(onAnimtationsSettingSwitched) forControlEvents:UIControlEventValueChanged];
     [_customLocationTextField addTarget:self action:@selector(onCustomLocationTextFieldClick) forControlEvents:UIControlEventTouchDown];
     [_numberOfDaysInForecastSelectionControl addTarget:self action:@selector(onNumberOfDaysSettingSelected) forControlEvents:UIControlEventValueChanged];
+    [_customLocationFromMapButton addTarget:self action:@selector(onSelectLocationFromMapClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -68,6 +74,15 @@
     [_animationsEnabledSwitch setOn:_weatherSettings.animationsEnabled];
     [_unitOfMeasurementSelectionControl setSelectedSegmentIndex:_weatherSettings.unitOfMeasurement];
     [_numberOfDaysInForecastSelectionControl setSelectedSegmentIndex:[self getIndexFromNumberOfDaysInForecastSegmentedControl]];
+    _customLocationFromMapButton.enabled = !_weatherSettings.autoDetectLocationEnabled;
+    
+    // maybe the user selected the location from the map
+    if (mapViewController.selectedLocation != nil)
+    {
+        _customLocationTextField.text = mapViewController.selectedLocation.cityName;
+        _weatherSettings.selectedLocation = mapViewController.selectedLocation;
+        [_appDataUtil saveLocation:mapViewController.selectedLocation];
+    }
 }
 
 -(void) saveCurrentSettings
@@ -126,10 +141,12 @@
     if (_weatherSettings.autoDetectLocationEnabled)
     {
         [_customLocationTextField setEnabled:NO];
+        _customLocationFromMapButton.enabled = NO;
     }
     else
     {
         [_customLocationTextField setEnabled:YES];
+        _customLocationFromMapButton.enabled = YES;
     }
 }
 
@@ -153,6 +170,13 @@
 -(void) onNumberOfDaysSettingSelected
 {
     [self setIndexFromNumberOfDaysInForecastSegmentedControl];
+}
+
+-(void)onSelectLocationFromMapClick
+{
+    [self presentViewController:mapViewController animated:YES completion:^{
+        
+    }];
 }
 
 /*

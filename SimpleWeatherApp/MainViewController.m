@@ -144,13 +144,27 @@ const long defaultCityId = 2172797;
     else
     {
         [self startSpinner];
-        
         // begin fetching weather for location
-        [_weatherManager getWeatherDataByLocationId:_weatherSettings.selectedLocation.cityId : _weatherSettings.unitOfMeasurement : ^(CurrentWeatherDto *currentWeatherModel){
-            
-            [self updateUiWithWeatherData:currentWeatherModel];
-            [self stopSpinner:NO];
-        }];
+        if (_weatherSettings.selectedLocation.cityId != 0)
+        {
+            [_weatherManager getWeatherDataByLocationId:_weatherSettings.selectedLocation.cityId : _weatherSettings.unitOfMeasurement : ^(CurrentWeatherDto *currentWeatherModel){
+                
+                [self updateUiWithWeatherData:currentWeatherModel];
+                [self stopSpinner:NO];
+                
+            }];
+        }
+        else
+        {
+            // if city id was 0, we must've chosen the location from the map, so we will need the coord based retrieval
+            [_weatherManager getWeatherDataByCoordinates:_weatherSettings.selectedLocation.latitude :_weatherSettings.selectedLocation.longitude :_weatherSettings.unitOfMeasurement
+                :^(CurrentWeatherDto *currentWeatherModel) {
+                    
+                    [self updateUiWithWeatherData:currentWeatherModel];
+                    [self stopSpinner:NO];
+                    
+            }];
+        }
     }
 }
 
@@ -401,8 +415,8 @@ const long defaultCityId = 2172797;
     __block long locationId = defaultCityId;
     lastKnownLocation = (CLLocation *)locations[locations.count - 1];
     lastKnownLocationCoordinates = [lastKnownLocation coordinate];
-    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
-        
+    
+    //CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
     //[geoCoder reverseGeocodeLocation:lastKnownLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
         //[_locationLabel setText:[NSString stringWithFormat:@"%@, %@", placemarks[placemarks.count - 1].locality, placemarks[placemarks.count - 1].country]];
     //}];

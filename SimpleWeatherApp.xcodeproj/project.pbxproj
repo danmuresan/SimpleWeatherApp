@@ -29,6 +29,9 @@
 		B26FD67A1E7C1F580077BCC5 /* CorePlot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26FD66F1E7C1F0F0077BCC5 /* CorePlot.framework */; };
 		B26FD67B1E7C1F580077BCC5 /* CorePlot.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B26FD66F1E7C1F0F0077BCC5 /* CorePlot.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B26FD6931E817D630077BCC5 /* PercentageCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD6921E817D630077BCC5 /* PercentageCircleView.m */; };
+		B26FD6971E83B7B40077BCC5 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD6951E83B7B40077BCC5 /* MapViewController.m */; };
+		B26FD6981E83B7B40077BCC5 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B26FD6961E83B7B40077BCC5 /* MapViewController.xib */; };
+		B26FD69B1E83C1A30077BCC5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26FD69A1E83C1A30077BCC5 /* MapKit.framework */; };
 		B295AEBF1E6EFF36002D6F0B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B295AEBD1E6EFF36002D6F0B /* SettingsViewController.m */; };
 		B295AEC01E6EFF36002D6F0B /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B295AEBE1E6EFF36002D6F0B /* SettingsViewController.xib */; };
 /* End PBXBuildFile section */
@@ -149,6 +152,10 @@
 		B26FD65A1E7C1F0F0077BCC5 /* CorePlot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CorePlot.xcodeproj; path = framework/CorePlot.xcodeproj; sourceTree = "<group>"; };
 		B26FD6911E817D510077BCC5 /* PercentageCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PercentageCircleView.h; sourceTree = "<group>"; };
 		B26FD6921E817D630077BCC5 /* PercentageCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PercentageCircleView.m; sourceTree = "<group>"; };
+		B26FD6941E83B7B40077BCC5 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		B26FD6951E83B7B40077BCC5 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		B26FD6961E83B7B40077BCC5 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		B26FD69A1E83C1A30077BCC5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B295AEBC1E6EFF36002D6F0B /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		B295AEBD1E6EFF36002D6F0B /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B295AEBE1E6EFF36002D6F0B /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -159,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B26FD69B1E83C1A30077BCC5 /* MapKit.framework in Frameworks */,
 				B26FD67A1E7C1F580077BCC5 /* CorePlot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,6 +180,7 @@
 				B26FD65A1E7C1F0F0077BCC5 /* CorePlot.xcodeproj */,
 				B22AE2FC1E6D75CD00651C84 /* SimpleWeatherApp */,
 				B22AE2FB1E6D75CD00651C84 /* Products */,
+				B26FD6991E83C1A30077BCC5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -222,6 +231,9 @@
 				B26FD6571E72F1890077BCC5 /* WeatherForecastDto.h */,
 				B26FD6581E72F19C0077BCC5 /* WeatherForecastDto.m */,
 				B26FD6921E817D630077BCC5 /* PercentageCircleView.m */,
+				B26FD6941E83B7B40077BCC5 /* MapViewController.h */,
+				B26FD6951E83B7B40077BCC5 /* MapViewController.m */,
+				B26FD6961E83B7B40077BCC5 /* MapViewController.xib */,
 			);
 			path = SimpleWeatherApp;
 			sourceTree = "<group>";
@@ -247,6 +259,14 @@
 				B26FD6791E7C1F0F0077BCC5 /* UnitTests tvOS.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B26FD6991E83C1A30077BCC5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B26FD69A1E83C1A30077BCC5 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,6 +397,7 @@
 				B22AE3101E6D75CD00651C84 /* LaunchScreen.storyboard in Resources */,
 				B22AE31B1E6D767000651C84 /* MainViewController.xib in Resources */,
 				B26FD6451E714B290077BCC5 /* LocationSelectorViewController.xib in Resources */,
+				B26FD6981E83B7B40077BCC5 /* MapViewController.xib in Resources */,
 				B26FD6561E729DCB0077BCC5 /* DailyForecastCollectionViewCell.xib in Resources */,
 				B22AE30D1E6D75CD00651C84 /* Assets.xcassets in Resources */,
 				B295AEC01E6EFF36002D6F0B /* SettingsViewController.xib in Resources */,
@@ -402,6 +423,7 @@
 				B22AE2FF1E6D75CD00651C84 /* main.m in Sources */,
 				B22AE31A1E6D767000651C84 /* MainViewController.m in Sources */,
 				B26FD6481E71771F0077BCC5 /* LocationDto.m in Sources */,
+				B26FD6971E83B7B40077BCC5 /* MapViewController.m in Sources */,
 				B26FD63D1E6F0FFC0077BCC5 /* WeatherSettings.m in Sources */,
 				B26FD6551E729DCB0077BCC5 /* DailyForecastCollectionViewCell.m in Sources */,
 				B22AE31E1E6D942200651C84 /* WeatherManager.m in Sources */,

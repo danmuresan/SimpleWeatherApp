@@ -17,5 +17,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *customLocationTextField;
 @property (nonatomic, readonly) WeatherSettings *weatherSettings;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *numberOfDaysInForecastSelectionControl;
+@property (strong, nonatomic) IBOutlet UIButton *customLocationFromMapButton;
 
 @end

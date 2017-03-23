@@ -54,6 +54,8 @@
 {
     [[NSUserDefaults standardUserDefaults] setInteger: location.cityId forKey:@"cityIdKey"];
     [[NSUserDefaults standardUserDefaults] setObject:location.cityName forKey:@"cityNameKey"];
+    [[NSUserDefaults standardUserDefaults] setDouble:location.latitude forKey:@"latitude"];
+    [[NSUserDefaults standardUserDefaults] setDouble:location.longitude forKey:@"longitude"];
 }
 
 - (LocationDto *)loadLocation
@@ -61,6 +63,8 @@
     LocationDto *locationModel = [[LocationDto alloc] init];
     locationModel.cityId = [[NSUserDefaults standardUserDefaults] integerForKey:@"cityIdKey"];
     locationModel.cityName = [[NSUserDefaults standardUserDefaults] stringForKey:@"cityNameKey"];
+    locationModel.latitude = [[NSUserDefaults standardUserDefaults] doubleForKey:@"latitude"];
+    locationModel.longitude = [[NSUserDefaults standardUserDefaults] doubleForKey:@"longitude"];
     
     return locationModel;
 }
