@@ -101,6 +101,7 @@
 
 -(void) saveLocationButtonClick
 {
+    [_appDataUtil saveLocation:_weatherSettings.selectedLocation];
     [self dismissViewControllerAnimated:YES completion:^{ }];
 }
 
@@ -121,7 +122,7 @@
 {
     LocationDto *locationAtSelectedIndex = (LocationDto *)[_tableData objectAtIndex:indexPath.row];
     _weatherSettings.selectedLocation = locationAtSelectedIndex;
-    [_appDataUtil saveLocation:_weatherSettings.selectedLocation];
+
     [_locationSelectionButton setTitle:@"Save Location" forState:UIControlStateNormal];
 }
 

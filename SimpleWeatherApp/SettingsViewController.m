@@ -56,7 +56,6 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    _weatherSettings.selectedLocation = [_appDataUtil loadLocation];
     _customLocationTextField.text = _weatherSettings.selectedLocation.cityName;
 }
 
@@ -69,6 +68,7 @@
 -(void) loadCurrentSettings
 {
     _weatherSettings = [_appDataUtil loadWeatherOptions];
+    _weatherSettings.selectedLocation = [_appDataUtil loadLocation];
     [_autoDetectLocationEnabledSwitch setOn:_weatherSettings.autoDetectLocationEnabled];
     [_autoDetectLocationEnabledSwitch isOn] ? [_customLocationTextField setEnabled:NO] : [_customLocationTextField setEnabled:YES];
     [_animationsEnabledSwitch setOn:_weatherSettings.animationsEnabled];
@@ -82,6 +82,7 @@
         _customLocationTextField.text = mapViewController.selectedLocation.cityName;
         _weatherSettings.selectedLocation = mapViewController.selectedLocation;
         [_appDataUtil saveLocation:mapViewController.selectedLocation];
+        mapViewController = nil;
     }
 }
 

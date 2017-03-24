@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *selectLocationButton;
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic, readonly) LocationDto *previouslySelectedLocation;
 @property (strong, nonatomic, readonly) LocationDto *selectedLocation;
 - (instancetype)initWithLocation:(LocationDto *)location;
 

@@ -21,7 +21,8 @@
     self = [super init];
     if (self)
     {
-        _selectedLocation = location;
+        _previouslySelectedLocation = location;
+        _selectedLocation = nil;
     }
     return self;
 }
@@ -42,13 +43,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    CLLocation *location = [[CLLocation alloc] initWithLatitude:_selectedLocation.latitude longitude:_selectedLocation.longitude];
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:_previouslySelectedLocation.latitude longitude:_previouslySelectedLocation.longitude];
     [_mapView setCenterCoordinate:location.coordinate animated:YES];
     [self zoomMapIntoMyLocation:location];
     [self placePinOnMapAtSelectedLocation];
-    
-    // invalidate old location
-    _selectedLocation = nil;
 }
 
 -(void) viewWillDisappear:(BOOL)animated
