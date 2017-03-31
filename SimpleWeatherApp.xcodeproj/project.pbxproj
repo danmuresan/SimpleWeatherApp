@@ -16,6 +16,7 @@
 		B22AE31B1E6D767000651C84 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B22AE3191E6D767000651C84 /* MainViewController.xib */; };
 		B22AE31E1E6D942200651C84 /* WeatherManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B22AE31D1E6D942200651C84 /* WeatherManager.m */; };
 		B22AE3201E6D961100651C84 /* CurrentWeatherDto.m in Sources */ = {isa = PBXBuildFile; fileRef = B22AE31F1E6D961100651C84 /* CurrentWeatherDto.m */; };
+		B25981FD1E8E3756009E82B5 /* ManualUiContraintsTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25981FC1E8E3756009E82B5 /* ManualUiContraintsTestViewController.m */; };
 		B26FD63D1E6F0FFC0077BCC5 /* WeatherSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD63C1E6F0FFC0077BCC5 /* WeatherSettings.m */; };
 		B26FD6401E6F124F0077BCC5 /* AppDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD63F1E6F124F0077BCC5 /* AppDataUtil.m */; };
 		B26FD6441E714B290077BCC5 /* LocationSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD6421E714B290077BCC5 /* LocationSelectorViewController.m */; };
@@ -132,6 +133,8 @@
 		B22AE31D1E6D942200651C84 /* WeatherManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherManager.m; sourceTree = "<group>"; };
 		B22AE31F1E6D961100651C84 /* CurrentWeatherDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentWeatherDto.m; sourceTree = "<group>"; };
 		B22AE3211E6D9F6A00651C84 /* CurrentWeatherDto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrentWeatherDto.h; sourceTree = "<group>"; };
+		B25981FB1E8E3756009E82B5 /* ManualUiContraintsTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManualUiContraintsTestViewController.h; sourceTree = "<group>"; };
+		B25981FC1E8E3756009E82B5 /* ManualUiContraintsTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManualUiContraintsTestViewController.m; sourceTree = "<group>"; };
 		B26FD63B1E6F0FBC0077BCC5 /* WeatherSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherSettings.h; sourceTree = "<group>"; };
 		B26FD63C1E6F0FFC0077BCC5 /* WeatherSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherSettings.m; sourceTree = "<group>"; };
 		B26FD63E1E6F11D40077BCC5 /* AppDataUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDataUtil.h; sourceTree = "<group>"; };
@@ -234,6 +237,8 @@
 				B26FD6941E83B7B40077BCC5 /* MapViewController.h */,
 				B26FD6951E83B7B40077BCC5 /* MapViewController.m */,
 				B26FD6961E83B7B40077BCC5 /* MapViewController.xib */,
+				B25981FB1E8E3756009E82B5 /* ManualUiContraintsTestViewController.h */,
+				B25981FC1E8E3756009E82B5 /* ManualUiContraintsTestViewController.m */,
 			);
 			path = SimpleWeatherApp;
 			sourceTree = "<group>";
@@ -416,6 +421,7 @@
 				B26FD6441E714B290077BCC5 /* LocationSelectorViewController.m in Sources */,
 				B26FD6591E72F19C0077BCC5 /* WeatherForecastDto.m in Sources */,
 				B22AE3201E6D961100651C84 /* CurrentWeatherDto.m in Sources */,
+				B25981FD1E8E3756009E82B5 /* ManualUiContraintsTestViewController.m in Sources */,
 				B26FD64D1E71854B0077BCC5 /* FileReader.m in Sources */,
 				B22AE30B1E6D75CD00651C84 /* SimpleWeatherApp.xcdatamodeld in Sources */,
 				B26FD6401E6F124F0077BCC5 /* AppDataUtil.m in Sources */,

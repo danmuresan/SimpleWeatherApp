@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="animationsEnabledSwitch" destination="JLv-2F-4ci" id="iFR-FW-WIo"/>
                 <outlet property="autoDetectLocationEnabledSwitch" destination="xAS-FM-QRC" id="5r9-1W-Q9C"/>
+                <outlet property="customConstraintsTestPageButton" destination="v74-No-9q5" id="9Aq-jp-KNx"/>
                 <outlet property="customLocationFromMapButton" destination="8UM-rA-IUm" id="ePE-40-3Lp"/>
                 <outlet property="customLocationTextField" destination="0Lv-M1-gm2" id="lrP-md-dsF"/>
                 <outlet property="numberOfDaysInForecastSelectionControl" destination="GEI-Nq-v18" id="9Ek-Tp-3QV"/>
@@ -81,6 +82,11 @@
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                     <state key="normal" title="Choose location from map"/>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v74-No-9q5">
+                    <rect key="frame" x="15" y="500" width="221" height="33"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <state key="normal" title="Test page for UI constraints"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -106,6 +112,8 @@
                 <constraint firstItem="8UM-rA-IUm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="QIv-iV-iK4"/>
                 <constraint firstItem="GEI-Nq-v18" firstAttribute="top" secondItem="A5t-JJ-GmU" secondAttribute="bottom" constant="20" id="QfH-7n-0F1"/>
                 <constraint firstItem="0Lv-M1-gm2" firstAttribute="top" secondItem="xAS-FM-QRC" secondAttribute="top" id="QlU-Qa-8co"/>
+                <constraint firstItem="v74-No-9q5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="TAf-tU-WNM"/>
+                <constraint firstItem="v74-No-9q5" firstAttribute="top" secondItem="8UM-rA-IUm" secondAttribute="bottom" constant="15" id="YPn-tU-Yxz"/>
                 <constraint firstItem="b3J-JJ-WwR" firstAttribute="top" secondItem="xAS-FM-QRC" secondAttribute="bottom" constant="25" id="baS-nM-Iuw"/>
                 <constraint firstItem="GEI-Nq-v18" firstAttribute="top" secondItem="A5t-JJ-GmU" secondAttribute="bottom" constant="20" id="cp2-AB-Brg"/>
                 <constraint firstItem="m22-j9-DDm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="dhi-zG-cXo"/>

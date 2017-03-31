@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "LocationSelectorViewController.h"
 #import "MapViewController.h"
+#import "ManualUiContraintsTestViewController.h"
 
 @interface SettingsViewController ()
 {
@@ -45,6 +46,7 @@
     [_customLocationTextField addTarget:self action:@selector(onCustomLocationTextFieldClick) forControlEvents:UIControlEventTouchDown];
     [_numberOfDaysInForecastSelectionControl addTarget:self action:@selector(onNumberOfDaysSettingSelected) forControlEvents:UIControlEventValueChanged];
     [_customLocationFromMapButton addTarget:self action:@selector(onSelectLocationFromMapClick) forControlEvents:UIControlEventTouchUpInside];
+    [_customConstraintsTestPageButton addTarget:self action:@selector(onUiConstraintsTestPageButtonClicked) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -177,6 +179,12 @@
 {
     mapViewController = [[MapViewController alloc] initWithLocation:_weatherSettings.selectedLocation];
     [self presentViewController:mapViewController animated:YES completion:^{}];
+}
+
+-(void)onUiConstraintsTestPageButtonClicked
+{
+    ManualUiContraintsTestViewController *testUiVc = [[ManualUiContraintsTestViewController alloc] init];
+    [self.navigationController pushViewController:testUiVc animated:YES];
 }
 
 /*

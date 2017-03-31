@@ -18,5 +18,6 @@
 @property (nonatomic, readonly) WeatherSettings *weatherSettings;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *numberOfDaysInForecastSelectionControl;
 @property (strong, nonatomic) IBOutlet UIButton *customLocationFromMapButton;
+@property (strong, nonatomic) IBOutlet UIButton *customConstraintsTestPageButton;
 
 @end
