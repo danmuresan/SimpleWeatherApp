@@ -14,9 +14,8 @@ struct Coordinates
 };
  */
 
-@interface CurrentWeatherDto : NSObject
+@interface CurrentWeatherDto : NSObject <NSCoding>
 
-//@property struct Coordinates coordinates;
 @property double latitude;
 @property double longitude;
 @property NSString* cityName;

@@ -69,4 +69,14 @@
     return locationModel;
 }
 
+- (void) saveWeatherDto: (CurrentWeatherDto *)weatherDto {
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:weatherDto];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"currentWeatherDto"];
+}
+
+- (CurrentWeatherDto *) loadWeatherDto {
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentWeatherDto"];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
+}
+
 @end

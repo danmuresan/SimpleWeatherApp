@@ -19,6 +19,7 @@
 -(WeatherSettings *) loadWeatherOptions;
 -(void) saveLocation:(LocationDto *)location;
 -(LocationDto *) loadLocation;
-
+- (void) saveWeatherDto: (CurrentWeatherDto *)weatherDto;
+- (CurrentWeatherDto *) loadWeatherDto;
 
 @end

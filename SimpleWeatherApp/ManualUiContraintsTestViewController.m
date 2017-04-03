@@ -8,6 +8,8 @@
 
 #import "ManualUiContraintsTestViewController.h"
 #import <Masonry/Masonry.h>
+#import "CurrentWeatherDto.h"
+#import "AppDataUtil.h"
 
 @interface ManualUiContraintsTestViewController ()
 
@@ -159,6 +161,7 @@
     [changePrivacyBtn setTitle: @"Change your privacy settings" forState:UIControlStateNormal];
     [changePrivacyBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [changePrivacyBtn setEnabled:YES];
+    [changePrivacyBtn addTarget:self action:@selector(onTestObjectSerializationDeserialization) forControlEvents:UIControlEventTouchUpInside];
     [buttonsSubView addSubview:changePrivacyBtn];
     [changePrivacyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(buttonsSubView.mas_centerX);
@@ -172,7 +175,7 @@
     [nextBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(buttonsSubView.mas_centerX);
-        make.top.equalTo(changePrivacyBtn.mas_top).offset(20);
+        make.top.equalTo(changePrivacyBtn.mas_bottom).offset(20);
     }];
 }
 
@@ -363,6 +366,30 @@
     [baseView addConstraint:verticalPrivacyButtonConstraint];
     [baseView addConstraint:horizontalNextButtonConstraint];
     [baseView addConstraint:verticalNextButtonConstraint];
+}
+
+-(void) onTestObjectSerializationDeserialization {
+    CurrentWeatherDto *weatherObjectToTest = [[CurrentWeatherDto alloc] init];
+    weatherObjectToTest.cityId = 333333;
+    weatherObjectToTest.latitude = 33.3;
+    weatherObjectToTest.longitude = 25.5;
+    weatherObjectToTest.temperature = 24;
+    weatherObjectToTest.maxTemperature = 25;
+    weatherObjectToTest.minTemperature = 10;
+    weatherObjectToTest.humidity = 55;
+    weatherObjectToTest.cloudiness = 35;
+    weatherObjectToTest.date = [NSDate date];
+    weatherObjectToTest.pressure = 735.5;
+    
+    AppDataUtil *appDataUtil = [[AppDataUtil alloc] init];
+    [appDataUtil saveWeatherDto:weatherObjectToTest];
+    CurrentWeatherDto *weatherDto = [appDataUtil loadWeatherDto];
+    
+    NSString *message = [NSString stringWithFormat:@"Deserialized Weather DTO:\ncityId: %ld\nlatitude: %lf\nlongitude: %lf\ntemperature: %lf ...", weatherDto.cityId, weatherDto.latitude, weatherDto.longitude, weatherDto.temperature];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Serialization / Deserialization example" message:message preferredStyle:UIAlertActionStyleDefault];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Great Job!" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 /*
