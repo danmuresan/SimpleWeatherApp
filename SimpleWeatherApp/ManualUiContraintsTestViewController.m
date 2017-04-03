@@ -10,6 +10,7 @@
 #import <Masonry/Masonry.h>
 #import "CurrentWeatherDto.h"
 #import "AppDataUtil.h"
+#import "AutoLayoutConstraintsAnimationViewController.h"
 
 @interface ManualUiContraintsTestViewController ()
 
@@ -159,7 +160,7 @@
     [baseView addSubview:buttonsSubView];
     [buttonsSubView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(shareInformationSubView.mas_bottom).offset(50);
-        make.bottom.equalTo(baseView.mas_bottom).offset(-50);
+        make.bottom.equalTo(baseView.mas_bottom).offset(-20);
         make.leading.equalTo(baseView.mas_leading).offset(70);
         make.trailing.equalTo(baseView.mas_trailing).offset(-70);
         make.centerX.equalTo(centerSubView.mas_centerX);
@@ -181,10 +182,11 @@
     [buttonsSubView addSubview:nextBtn];
     [nextBtn setEnabled:YES];
     [nextBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [nextBtn addTarget:self action:@selector(onTestLayoutAnimationsView) forControlEvents:UIControlEventTouchUpInside];
     [nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(buttonsSubView.mas_centerX);
         make.top.equalTo(changePrivacyBtn.mas_bottom).offset(20);
-        make.bottom.equalTo(baseView.mas_bottom).offset(-10);
+        make.bottom.equalTo(buttonsSubView.mas_bottom).offset(-10);
     }];
 }
 
@@ -399,6 +401,12 @@
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Great Job!" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:ok];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void) onTestLayoutAnimationsView
+{
+    AutoLayoutConstraintsAnimationViewController *autoLayoutAnimVc = [[AutoLayoutConstraintsAnimationViewController alloc] init];
+    [self.navigationController pushViewController:autoLayoutAnimVc animated:YES];
 }
 
 /*

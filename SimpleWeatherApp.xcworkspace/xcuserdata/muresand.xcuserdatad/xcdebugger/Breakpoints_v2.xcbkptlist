@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SimpleWeatherApp/ManualUiContraintsTestViewController.m"
-            timestampString = "512906458.567285"
+            timestampString = "512913792.26009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "-initializeViewComponentsWithMasonry"
             landmarkType = "7">
             <Locations>
@@ -72,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SimpleWeatherApp/ManualUiContraintsTestViewController.m"
-            timestampString = "512906458.567285"
+            timestampString = "512913792.26009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "-initializeViewComponentsWithMasonry"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,6 +94,38 @@
             startingLineNumber = "79"
             endingLineNumber = "79"
             landmarkName = "-loadWeatherDto"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SimpleWeatherApp/ManualUiContraintsTestViewController.m"
+            timestampString = "512913877.359424"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
+            landmarkName = "-onTestLayoutAnimationsView"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SimpleWeatherApp/ManualUiContraintsTestViewController.m"
+            timestampString = "512913920.685132"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "408"
+            endingLineNumber = "408"
+            landmarkName = "-onTestLayoutAnimationsView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
