@@ -10,6 +10,7 @@
 #import "LocationSelectorViewController.h"
 #import "MapViewController.h"
 #import "ManualUiContraintsTestViewController.h"
+#import "NetworkManager.h"
 
 @interface SettingsViewController ()
 {
@@ -47,6 +48,7 @@
     [_numberOfDaysInForecastSelectionControl addTarget:self action:@selector(onNumberOfDaysSettingSelected) forControlEvents:UIControlEventValueChanged];
     [_customLocationFromMapButton addTarget:self action:@selector(onSelectLocationFromMapClick) forControlEvents:UIControlEventTouchUpInside];
     [_customConstraintsTestPageButton addTarget:self action:@selector(onUiConstraintsTestPageButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [_testPostRequestsButton addTarget:self action:@selector(onTestPostRequestButtonClicked) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -185,6 +187,21 @@
 {
     ManualUiContraintsTestViewController *testUiVc = [[ManualUiContraintsTestViewController alloc] init];
     [self.navigationController pushViewController:testUiVc animated:YES];
+}
+
+-(void) onTestPostRequestButtonClicked
+{
+    NetworkManager *netwMgr = [[NetworkManager alloc] init];
+    
+    [netwMgr makeDummyPostRequest:^(BOOL wasRequestSuccessful) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Dummy POST request" message:wasRequestSuccessful ? @"POST request was successful :)" : @"POST request failed :(" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:wasRequestSuccessful ? @"OK:)" : @"OK :(" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:ok];
+            [self presentViewController:alert animated:YES completion:nil];
+        });
+    }];
 }
 
 /*
