@@ -34,7 +34,6 @@ NSString* const GetImageForWeatherEndpoint = @"http://openweathermap.org/img/w/%
         }
         
         // get data into dict
-        NSString *jsonResponseAsString = [NSString stringWithFormat:@"%@", response];
         NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
         
         // parse into appropriate dto
@@ -59,7 +58,6 @@ NSString* const GetImageForWeatherEndpoint = @"http://openweathermap.org/img/w/%
         }
         
         // get data into dict
-        NSString *jsonResponseAsString = [NSString stringWithFormat:@"%@", response];
         NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
         
         // parse into appropriate dto
@@ -72,14 +70,14 @@ NSString* const GetImageForWeatherEndpoint = @"http://openweathermap.org/img/w/%
 
 -(void) getWeatherForecastDataByLocationId:(long) cityId : (UnitOfMeasurement) unitOfMeasurement : (int) numberOfDaysInForecast : (void (^)(WeatherForecastDto *))customCompletion
 {
-    NSString* unitOfMeasurementQueryParam = [WeatherManager getStingForUnitOfMeasurement:unitOfMeasurement];
-    NSString* endpoint = [NSString stringWithFormat:@"%@%@", ServerEnvironmentUrl, [NSString stringWithFormat:GetDailyWeatherForecastEndpoint, cityId, AppId, unitOfMeasurementQueryParam, numberOfDaysInForecast]];
-    
     // default to 5 days if we receive bullshit data
     if (numberOfDaysInForecast <= 0)
     {
         numberOfDaysInForecast = 5;
     }
+    
+    NSString* unitOfMeasurementQueryParam = [WeatherManager getStingForUnitOfMeasurement:unitOfMeasurement];
+    NSString* endpoint = [NSString stringWithFormat:@"%@%@", ServerEnvironmentUrl, [NSString stringWithFormat:GetDailyWeatherForecastEndpoint, cityId, AppId, unitOfMeasurementQueryParam, numberOfDaysInForecast]];
     
     [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString: endpoint] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
@@ -90,7 +88,6 @@ NSString* const GetImageForWeatherEndpoint = @"http://openweathermap.org/img/w/%
         }
         
         // get data into dict
-        NSString *jsonResponseAsString = [NSString stringWithFormat:@"%@", response];
         NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
         WeatherForecastDto *forecast = [self parseWeatherForecastJson: jsonDictionary];
         customCompletion(forecast);

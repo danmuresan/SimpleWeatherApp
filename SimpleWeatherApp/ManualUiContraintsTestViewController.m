@@ -7,6 +7,7 @@
 //
 
 #import "ManualUiContraintsTestViewController.h"
+#import <Masonry/Masonry.h>
 
 @interface ManualUiContraintsTestViewController ()
 
@@ -17,12 +18,162 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self initializeViewComponents];
+    //[self initializeViewComponents];
+    [self initializeViewComponentsWithMasonry];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) initializeViewComponentsWithMasonry
+{
+    UIView * baseView = self.view;
+    baseView.userInteractionEnabled = YES;
+    [baseView setBackgroundColor:[UIColor whiteColor]];
+    
+    // title label + constraints
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.text = @"The next few questions will help calculate:";
+    [baseView addSubview:titleLabel];
+    [titleLabel setAutoresizesSubviews:YES];
+    [titleLabel setNumberOfLines:@2];
+    [titleLabel setTextAlignment:NSTextAlignmentCenter];
+    
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(baseView.mas_top).offset(75);
+        make.centerX.equalTo(baseView.mas_centerX);
+        make.leading.equalTo(baseView.mas_leading).offset(50);
+        make.trailing.equalTo(baseView.mas_trailing).offset(-50);
+    }];
+    
+    // icons
+    UIImageView *caloriesImageView = [[UIImageView alloc] init];
+    [caloriesImageView setImage:[UIImage imageNamed:@"gcm3_insight_list_icon_calories"]];
+    
+    UIImageView *weightImageView = [[UIImageView alloc] init];
+    [weightImageView setImage:[UIImage imageNamed:@"gcm3_insight_list_icon_weight"]];
+    
+    UIImageView *stepsImageView = [[UIImageView alloc] init];
+    [stepsImageView setImage:[UIImage imageNamed:@"gcm3_insight_list_icon_steps"]];
+    
+    UIView *centerSubView = [[UIView alloc] init];
+    [baseView addSubview:centerSubView];
+    [centerSubView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(baseView.mas_centerX);
+        make.centerY.equalTo(baseView.mas_centerY);
+        make.leading.equalTo(baseView.mas_leading).offset(24);
+        make.trailing.equalTo(baseView.mas_trailing).offset(-24);
+        make.top.equalTo(titleLabel.mas_top).offset(80);
+    }];
+    
+    [centerSubView addSubview:caloriesImageView];
+    [caloriesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(centerSubView.mas_top).offset(10);
+        make.leading.equalTo(centerSubView.mas_leading).offset(10);
+    }];
+    
+    [centerSubView addSubview:weightImageView];
+    [weightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(caloriesImageView.mas_top).offset(100);
+        make.leading.equalTo(centerSubView.mas_leading).offset(10);
+    }];
+    
+    [centerSubView addSubview:stepsImageView];
+    [stepsImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weightImageView.mas_top).offset(100);
+        make.leading.equalTo(centerSubView.mas_leading).offset(10);
+    }];
+    
+    UILabel *caloriesLabel = [[UILabel alloc] init];
+    caloriesLabel.text = @"How fast you burn calories";
+    [centerSubView addSubview:caloriesLabel];
+    [caloriesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(centerSubView.mas_top).offset(30);
+        make.leading.equalTo(caloriesImageView.mas_trailing).offset(30);
+        make.trailing.equalTo(centerSubView.mas_trailing).offset(-10);
+    }];
+    
+    UILabel *weightLabel = [[UILabel alloc] init];
+    weightLabel.text = @"Your body mass index (BMI)";
+    [centerSubView addSubview:weightLabel];
+    [weightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(caloriesLabel.mas_top).offset(100);
+        make.leading.equalTo(weightImageView.mas_trailing).offset(30);
+        make.trailing.equalTo(centerSubView.mas_trailing).offset(-10);
+    }];
+    
+    UILabel *stepsLabel = [[UILabel alloc] init];
+    stepsLabel.text = @"Your initial step goal";
+    [centerSubView addSubview:stepsLabel];
+    [stepsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weightLabel.mas_top).offset(100);
+        make.leading.equalTo(stepsImageView.mas_trailing).offset(30);
+        make.trailing.equalTo(centerSubView.mas_trailing).offset(-10);
+    }];
+    
+    UIView *shareInformationSubView = [[UIView alloc] init];
+    [centerSubView addSubview:shareInformationSubView];
+    [shareInformationSubView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(stepsLabel.mas_top).offset(80);
+        make.bottom.equalTo(centerSubView.mas_bottom).offset(-20);
+        make.leading.equalTo(centerSubView.mas_leading).offset(50);
+        make.trailing.equalTo(centerSubView.mas_trailing).offset(-50);
+        make.centerY.equalTo(centerSubView.mas_centerY);
+    }];
+    
+    UILabel *profileInfoLabel = [[UILabel alloc] init];
+    profileInfoLabel.text = @"Profile information will not be shared";
+    profileInfoLabel.textColor = [UIColor darkGrayColor];
+    profileInfoLabel.font = [profileInfoLabel.font fontWithSize:12];
+    profileInfoLabel.textAlignment = NSTextAlignmentLeft;
+    [shareInformationSubView addSubview:profileInfoLabel];
+    [profileInfoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(shareInformationSubView.mas_leading);
+        make.top.equalTo(shareInformationSubView.mas_top).offset(5);
+    }];
+    
+    UILabel *activityInfoLabel = [[UILabel alloc] init];
+    activityInfoLabel.text = @"Activities will not be shared";
+    activityInfoLabel.textColor = [UIColor darkGrayColor];
+    activityInfoLabel.textAlignment = NSTextAlignmentLeft;
+    activityInfoLabel.font = [activityInfoLabel.font fontWithSize:12];
+    [shareInformationSubView addSubview:activityInfoLabel];
+    [activityInfoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(shareInformationSubView.mas_leading);
+        make.top.equalTo(profileInfoLabel.mas_top).offset(20);
+    }];
+
+    UIView *buttonsSubView = [[UIView alloc] init];
+    [baseView addSubview:buttonsSubView];
+    [buttonsSubView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(centerSubView.mas_bottom).offset(50);
+        make.bottom.equalTo(baseView.mas_bottom).offset(-20);
+        make.leading.equalTo(baseView.mas_leading).offset(70);
+        make.trailing.equalTo(baseView.mas_trailing).offset(-70);
+        make.centerX.equalTo(centerSubView.mas_centerX);
+    }];
+    
+    UIButton *changePrivacyBtn = [[UIButton alloc] init];
+    [changePrivacyBtn setTitle: @"Change your privacy settings" forState:UIControlStateNormal];
+    [changePrivacyBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [changePrivacyBtn setEnabled:YES];
+    [buttonsSubView addSubview:changePrivacyBtn];
+    [changePrivacyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(buttonsSubView.mas_centerX);
+        make.top.equalTo(buttonsSubView.mas_top);
+    }];
+    
+    UIButton *nextBtn = [[UIButton alloc] init];
+    [nextBtn setTitle:@"Next" forState:UIControlStateNormal];
+    [buttonsSubView addSubview:nextBtn];
+    [nextBtn setEnabled:YES];
+    [nextBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(buttonsSubView.mas_centerX);
+        make.top.equalTo(changePrivacyBtn.mas_top).offset(20);
+    }];
 }
 
 -(void)initializeViewComponents
