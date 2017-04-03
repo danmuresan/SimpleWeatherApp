@@ -31,9 +31,16 @@
 
 -(void) initializeViewComponentsWithMasonry
 {
-    UIView * baseView = self.view;
+    UIScrollView *baseView = [[UIScrollView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+    [self.view addSubview:baseView];
     baseView.userInteractionEnabled = YES;
     [baseView setBackgroundColor:[UIColor whiteColor]];
+    [baseView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top);
+        make.leading.equalTo(self.view.mas_leading);
+        make.bottom.equalTo(self.view.mas_bottom);
+        make.trailing.equalTo(self.view.mas_trailing);
+    }];
     
     // title label + constraints
     UILabel *titleLabel = [[UILabel alloc] init];
@@ -44,7 +51,7 @@
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(baseView.mas_top).offset(75);
+        make.top.equalTo(baseView.mas_top).offset(15);
         make.centerX.equalTo(baseView.mas_centerX);
         make.leading.equalTo(baseView.mas_leading).offset(50);
         make.trailing.equalTo(baseView.mas_trailing).offset(-50);
@@ -68,6 +75,7 @@
         make.leading.equalTo(baseView.mas_leading).offset(24);
         make.trailing.equalTo(baseView.mas_trailing).offset(-24);
         make.top.equalTo(titleLabel.mas_top).offset(80);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-130);
     }];
     
     [centerSubView addSubview:caloriesImageView];
@@ -150,8 +158,8 @@
     UIView *buttonsSubView = [[UIView alloc] init];
     [baseView addSubview:buttonsSubView];
     [buttonsSubView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(centerSubView.mas_bottom).offset(50);
-        make.bottom.equalTo(baseView.mas_bottom).offset(-20);
+        make.top.equalTo(shareInformationSubView.mas_bottom).offset(50);
+        make.bottom.equalTo(baseView.mas_bottom).offset(-50);
         make.leading.equalTo(baseView.mas_leading).offset(70);
         make.trailing.equalTo(baseView.mas_trailing).offset(-70);
         make.centerX.equalTo(centerSubView.mas_centerX);
@@ -176,6 +184,7 @@
     [nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(buttonsSubView.mas_centerX);
         make.top.equalTo(changePrivacyBtn.mas_bottom).offset(20);
+        make.bottom.equalTo(baseView.mas_bottom).offset(-10);
     }];
 }
 
