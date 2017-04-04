@@ -193,7 +193,7 @@
 {
     NetworkManager *netwMgr = [[NetworkManager alloc] init];
     
-    [netwMgr makeDummyPostRequest:^(BOOL wasRequestSuccessful, int responseCode) {
+    [netwMgr makeDummyAfPostRequest:^(BOOL wasRequestSuccessful, int responseCode) {
         
         NSString *responseStatus = wasRequestSuccessful ? [NSString stringWithFormat:@"POST request was successful (response code: %d) :)", responseCode] : [NSString stringWithFormat:@"POST request failed (response code: %d) :(", responseCode];
         

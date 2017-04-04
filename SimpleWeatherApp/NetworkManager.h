@@ -11,6 +11,11 @@
 @interface NetworkManager : NSObject
 
 - (void) makeDummyPostRequest: (void (^)(BOOL wasRequestSuccessful, int responseCode)) customCompletion;
+- (void) makeDummyAfPostRequest:(void (^)(BOOL wasRequestSuccessful, int responseCode)) customCompletion;
+
 - (void) makeDummyPutRequest: (void (^)(BOOL wasRequestSuccessful)) customCompletion;
+- (void) makeDummyAfPutRequest:(void (^)(BOOL wasRequestSuccessful, int responseCode)) customCompletion;
+
+- (void) makeDummyAfGetRequest:(void (^)(BOOL wasRequestSuccessful, int responseCode)) customCompletion;
 
 @end
