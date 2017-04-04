@@ -15,5 +15,6 @@
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
 @property (strong, nonatomic) IBOutlet UITextField *locationsSearchBox;
 @property (strong, nonatomic) IBOutlet UIButton *locationSelectionButton;
+@property (strong, nonatomic) IBOutlet UIProgressView *progressView;
 
 @end

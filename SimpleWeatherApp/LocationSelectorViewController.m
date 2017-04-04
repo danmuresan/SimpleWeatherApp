@@ -91,17 +91,25 @@
 {
     [self.loadingSpinner startAnimating];
     [self.loadingSpinner setHidden:NO];
+    [self.progressView setHidden:NO];
+    [self.progressView setProgress:0.0];
 }
 
 -(void)stopSpinner
 {
     [self.loadingSpinner stopAnimating];
     [self.loadingSpinner setHidden:YES];
+    [self.progressView setProgress:100.0];
+    [self.progressView setHidden:YES];
 }
 
 -(void) saveLocationButtonClick
 {
-    [_appDataUtil saveLocation:_weatherSettings.selectedLocation];
+    if (_weatherSettings.selectedLocation != nil)
+    {
+        [_appDataUtil saveLocation:_weatherSettings.selectedLocation];
+    }
+
     [self dismissViewControllerAnimated:YES completion:^{ }];
 }
 
