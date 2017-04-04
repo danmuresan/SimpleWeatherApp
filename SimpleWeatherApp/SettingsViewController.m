@@ -193,10 +193,12 @@
 {
     NetworkManager *netwMgr = [[NetworkManager alloc] init];
     
-    [netwMgr makeDummyPostRequest:^(BOOL wasRequestSuccessful) {
+    [netwMgr makeDummyPostRequest:^(BOOL wasRequestSuccessful, int responseCode) {
+        
+        NSString *responseStatus = wasRequestSuccessful ? [NSString stringWithFormat:@"POST request was successful (response code: %d) :)", responseCode] : [NSString stringWithFormat:@"POST request failed (response code: %d) :(", responseCode];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Dummy POST request" message:wasRequestSuccessful ? @"POST request was successful :)" : @"POST request failed :(" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Dummy POST request" message:responseStatus preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *ok = [UIAlertAction actionWithTitle:wasRequestSuccessful ? @"OK:)" : @"OK :(" style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:ok];
             [self presentViewController:alert animated:YES completion:nil];

@@ -10,7 +10,7 @@
 
 @implementation NetworkManager
 
-- (void) makeDummyPostRequest: (void (^)(BOOL wasRequestSuccessful)) customCompletion
+- (void) makeDummyPostRequest: (void (^)(BOOL wasRequestSuccessful, int responseCode)) customCompletion
 {
     // set POST data
     NSString *postDataAsString = [NSString stringWithFormat:@"Username=%@&Password=%@", @"username", @"password"];
@@ -32,13 +32,14 @@
     // create url connection
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
-        if ([((NSHTTPURLResponse *)response) statusCode] != 200)
+        int responseCode = [((NSHTTPURLResponse *)response) statusCode];
+        if (responseCode != 200)
         {
             NSLog(@"%@", response.description);
-            customCompletion(NO);
+            customCompletion(NO, responseCode);
         }
         
-        customCompletion(YES);
+        customCompletion(YES, responseCode);
         
     }]resume];
 }
