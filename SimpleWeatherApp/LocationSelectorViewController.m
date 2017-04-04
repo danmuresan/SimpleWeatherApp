@@ -60,10 +60,14 @@
 {
     // move this computation to a different thread since it's quite expensive for such a large file
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
+
+        [self updateProgressView:0.15 : 0.45];
         NSData *cityFileContents = [_fileReader readFileContentsToData:@"city.list" : @"json"];
-        [self parseCityJsonFile:cityFileContents];
+
+        [self updateProgressView:0.35 : 0.85];
         _tableData = [self parseCityJsonFile:cityFileContents];
+
+        [self updateProgressView:0.85 : 1];
         _fullTableData = _tableData.copy;
         
         // update any UI elements back on the main thread
@@ -71,6 +75,14 @@
             [_locationsListView reloadData];
             [self stopSpinner];
         });
+    });
+}
+
+- (void) updateProgressView:(float) percentage : (int) delayInSeconds
+{
+    [NSThread sleepForTimeInterval:delayInSeconds];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_progressView setProgress:percentage];
     });
 }
 
@@ -99,7 +111,7 @@
 {
     [self.loadingSpinner stopAnimating];
     [self.loadingSpinner setHidden:YES];
-    [self.progressView setProgress:100.0];
+    [self.progressView setProgress:1.0];
     [self.progressView setHidden:YES];
 }
 

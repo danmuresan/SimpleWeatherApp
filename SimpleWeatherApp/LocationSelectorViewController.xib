@@ -51,13 +51,14 @@
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AkD-gO-Lga">
                     <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
                 </activityIndicatorView>
-                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="84e-FK-lne">
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="84e-FK-lne">
                     <rect key="frame" x="16" y="603" width="343" height="2"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </progressView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="9Ol-Yy-ozr" firstAttribute="top" secondItem="84e-FK-lne" secondAttribute="bottom" constant="8" id="0ip-lp-ng7"/>
+                <constraint firstAttribute="trailing" secondItem="84e-FK-lne" secondAttribute="trailing" constant="16" id="187-sX-fX1"/>
                 <constraint firstItem="XNN-6l-lqL" firstAttribute="leading" secondItem="EWb-6I-I3P" secondAttribute="leading" id="3zZ-oj-n7s"/>
                 <constraint firstItem="EWb-6I-I3P" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="35" id="ACz-UI-STp"/>
                 <constraint firstItem="9Ol-Yy-ozr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Cfu-iR-0VN"/>
@@ -66,11 +67,13 @@
                 <constraint firstItem="EWb-6I-I3P" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="HQk-je-V9L"/>
                 <constraint firstAttribute="trailing" secondItem="XNN-6l-lqL" secondAttribute="trailing" constant="15" id="Kt3-f5-fXR"/>
                 <constraint firstItem="AkD-gO-Lga" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="TX2-cN-cWg"/>
+                <constraint firstItem="84e-FK-lne" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="UDN-gx-CUl"/>
                 <constraint firstAttribute="bottom" secondItem="9Ol-Yy-ozr" secondAttribute="bottom" constant="20" id="UMO-mI-6jg"/>
                 <constraint firstAttribute="trailing" secondItem="EWb-6I-I3P" secondAttribute="trailing" constant="15" id="Wap-8f-0VB"/>
                 <constraint firstAttribute="trailing" secondItem="9Ol-Yy-ozr" secondAttribute="trailing" constant="40" id="lTa-4D-bJJ"/>
                 <constraint firstItem="9Ol-Yy-ozr" firstAttribute="top" secondItem="XNN-6l-lqL" secondAttribute="bottom" constant="50" id="oou-fl-czv"/>
                 <constraint firstItem="XNN-6l-lqL" firstAttribute="top" secondItem="EWb-6I-I3P" secondAttribute="bottom" constant="20" id="qDt-SZ-Pzz"/>
+                <constraint firstItem="84e-FK-lne" firstAttribute="top" secondItem="XNN-6l-lqL" secondAttribute="bottom" constant="40" id="xuA-Kg-a2c"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <point key="canvasLocation" x="33.5" y="53.5"/>
