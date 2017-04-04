@@ -105,6 +105,7 @@
     [self.loadingSpinner setHidden:NO];
     [self.progressView setHidden:NO];
     [self.progressView setProgress:0.0];
+    [_locationsSearchBox setEnabled:NO];
 }
 
 -(void)stopSpinner
@@ -113,6 +114,7 @@
     [self.loadingSpinner setHidden:YES];
     [self.progressView setProgress:1.0];
     [self.progressView setHidden:YES];
+    [_locationsSearchBox setEnabled:YES];
 }
 
 -(void) saveLocationButtonClick
@@ -144,6 +146,7 @@
     _weatherSettings.selectedLocation = locationAtSelectedIndex;
 
     [_locationSelectionButton setTitle:@"Save Location" forState:UIControlStateNormal];
+    [self.view endEditing:YES];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -157,11 +160,8 @@
     {
         [_timer invalidate];
     }
-    
-    _timer = [NSTimer timerWithTimeInterval:0.6 repeats:NO block:^(NSTimer * _Nonnull timer) {
-        [self beginFilteringLocations];
-    }];
-    
+
+    _timer = [NSTimer timerWithTimeInterval:0.6 target:self selector:@selector(beginFilteringLocations) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
 }
 

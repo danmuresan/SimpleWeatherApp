@@ -90,7 +90,7 @@
             customCompletion(NO);
         }
         
-        customCompletion(YES);        
+        customCompletion(YES);
     }]resume];
 }
 
