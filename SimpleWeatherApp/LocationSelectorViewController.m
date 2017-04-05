@@ -8,14 +8,12 @@
 
 #import "LocationSelectorViewController.h"
 #import "LocationDto.h"
-#import "WeatherSettings.h"
 #import "AppDataUtil.h"
 #import "FileReader.h"
 
 @interface LocationSelectorViewController ()
 
 @property (nonatomic, readonly) AppDataUtil *appDataUtil;
-@property (nonatomic) WeatherSettings *weatherSettings;
 @property (nonatomic) NSArray<LocationDto *> *tableData;
 @property (nonatomic) NSArray<LocationDto *> *fullTableData;
 @property (nonatomic, readonly) FileReader *fileReader;
@@ -29,10 +27,22 @@
 {
     self = [super init];
     if (self) {
-        _appDataUtil = [[AppDataUtil alloc] init];
-        _fileReader = [[FileReader alloc] init];
+        [self initializeStuff];
     }
     return self;
+}
+
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    [self initializeStuff];
+    return self;
+}
+
+- (void) initializeStuff
+{
+    _appDataUtil = [[AppDataUtil alloc] init];
+    _fileReader = [[FileReader alloc] init];
 }
 
 - (void)viewDidLoad {

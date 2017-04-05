@@ -11,6 +11,7 @@
 #import "MapViewController.h"
 #import "ManualUiContraintsTestViewController.h"
 #import "NetworkManager.h"
+#import "FavoriteLocationsViewController.h"
 
 @interface SettingsViewController ()
 {
@@ -39,6 +40,7 @@
     // Do any additional setup after loading the view from its nib.
     
     self.title = @"Settings";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(addFavoritesButtonClick)];
     
     // add events for controls
     [_unitOfMeasurementSelectionControl addTarget:self action:@selector(onUnitOfMeasurementSettingSelected) forControlEvents:UIControlEventValueChanged];
@@ -204,6 +206,12 @@
             [self presentViewController:alert animated:YES completion:nil];
         });
     }];
+}
+
+- (void) addFavoritesButtonClick
+{
+    FavoriteLocationsViewController *favoritesVc = [[FavoriteLocationsViewController alloc] init];
+    [self.navigationController pushViewController:favoritesVc animated:YES];
 }
 
 /*

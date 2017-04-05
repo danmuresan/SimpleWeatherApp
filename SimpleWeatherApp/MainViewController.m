@@ -264,7 +264,7 @@ const long defaultCityId = 2172797;
 
 -(void) updateChartLabels
 {
-    CPTXYAxisSet *axisSet = _graph.axisSet;
+    CPTXYAxisSet *axisSet = (CPTXYAxisSet *)_graph.axisSet;
     CPTXYAxis *xAxis = axisSet.xAxis;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMM dd"];
@@ -350,7 +350,7 @@ const long defaultCityId = 2172797;
 - (CPTPlotSymbol *)symbolForScatterPlot:(CPTScatterPlot *)plot recordIndex:(NSUInteger)idx
 {
     CPTPlotSymbol *plotSymbol = [CPTPlotSymbol ellipsePlotSymbol];
-    [plotSymbol setSize:CGSizeMake(8.5, 8.5)];
+    [plotSymbol setSize:CGSizeMake(11, 11)];
     [plotSymbol setFill:[CPTFill fillWithColor:[CPTColor blueColor]]];
     [plot setPlotSymbol:plotSymbol];
     

@@ -20,6 +20,8 @@
 		B25981FD1E8E3756009E82B5 /* ManualUiContraintsTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25981FC1E8E3756009E82B5 /* ManualUiContraintsTestViewController.m */; };
 		B259821E1E926C60009E82B5 /* AutoLayoutConstraintsAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B259821D1E926C60009E82B5 /* AutoLayoutConstraintsAnimationViewController.m */; };
 		B25982211E928588009E82B5 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B25982201E928588009E82B5 /* NetworkManager.m */; };
+		B25982321E93D6D0009E82B5 /* FavoriteLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25982311E93D6D0009E82B5 /* FavoriteLocationsViewController.m */; };
+		B25982381E93E49D009E82B5 /* AddFavoriteLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25982371E93E49D009E82B5 /* AddFavoriteLocationViewController.m */; };
 		B26FD63D1E6F0FFC0077BCC5 /* WeatherSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD63C1E6F0FFC0077BCC5 /* WeatherSettings.m */; };
 		B26FD6401E6F124F0077BCC5 /* AppDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD63F1E6F124F0077BCC5 /* AppDataUtil.m */; };
 		B26FD6441E714B290077BCC5 /* LocationSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD6421E714B290077BCC5 /* LocationSelectorViewController.m */; };
@@ -143,6 +145,10 @@
 		B259821D1E926C60009E82B5 /* AutoLayoutConstraintsAnimationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLayoutConstraintsAnimationViewController.m; sourceTree = "<group>"; };
 		B259821F1E928554009E82B5 /* NetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		B25982201E928588009E82B5 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		B25982301E93D6D0009E82B5 /* FavoriteLocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteLocationsViewController.h; sourceTree = "<group>"; };
+		B25982311E93D6D0009E82B5 /* FavoriteLocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteLocationsViewController.m; sourceTree = "<group>"; };
+		B25982361E93E49D009E82B5 /* AddFavoriteLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFavoriteLocationViewController.h; sourceTree = "<group>"; };
+		B25982371E93E49D009E82B5 /* AddFavoriteLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFavoriteLocationViewController.m; sourceTree = "<group>"; };
 		B26FD63B1E6F0FBC0077BCC5 /* WeatherSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherSettings.h; sourceTree = "<group>"; };
 		B26FD63C1E6F0FFC0077BCC5 /* WeatherSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherSettings.m; sourceTree = "<group>"; };
 		B26FD63E1E6F11D40077BCC5 /* AppDataUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDataUtil.h; sourceTree = "<group>"; };
@@ -264,6 +270,10 @@
 				B259821D1E926C60009E82B5 /* AutoLayoutConstraintsAnimationViewController.m */,
 				B259821F1E928554009E82B5 /* NetworkManager.h */,
 				B25982201E928588009E82B5 /* NetworkManager.m */,
+				B25982301E93D6D0009E82B5 /* FavoriteLocationsViewController.h */,
+				B25982311E93D6D0009E82B5 /* FavoriteLocationsViewController.m */,
+				B25982361E93E49D009E82B5 /* AddFavoriteLocationViewController.h */,
+				B25982371E93E49D009E82B5 /* AddFavoriteLocationViewController.m */,
 			);
 			path = SimpleWeatherApp;
 			sourceTree = "<group>";
@@ -500,9 +510,11 @@
 				B26FD6591E72F19C0077BCC5 /* WeatherForecastDto.m in Sources */,
 				B22AE3201E6D961100651C84 /* CurrentWeatherDto.m in Sources */,
 				B25981FD1E8E3756009E82B5 /* ManualUiContraintsTestViewController.m in Sources */,
+				B25982321E93D6D0009E82B5 /* FavoriteLocationsViewController.m in Sources */,
 				B259821E1E926C60009E82B5 /* AutoLayoutConstraintsAnimationViewController.m in Sources */,
 				B26FD64D1E71854B0077BCC5 /* FileReader.m in Sources */,
 				B22AE30B1E6D75CD00651C84 /* SimpleWeatherApp.xcdatamodeld in Sources */,
+				B25982381E93E49D009E82B5 /* AddFavoriteLocationViewController.m in Sources */,
 				B26FD6401E6F124F0077BCC5 /* AppDataUtil.m in Sources */,
 				B22AE3021E6D75CD00651C84 /* AppDelegate.m in Sources */,
 				B22AE2FF1E6D75CD00651C84 /* main.m in Sources */,
@@ -632,7 +644,18 @@
 			baseConfigurationReference = FDB7BF85BBA6C0EEF3A5A0DA /* Pods-SimpleWeatherApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_ASSIGN_ENUM = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				DEVELOPMENT_TEAM = 8GHSFQS4M7;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = SimpleWeatherApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -647,7 +670,18 @@
 			baseConfigurationReference = 3B1C70B3DF3882DC1ECB9102 /* Pods-SimpleWeatherApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_ASSIGN_ENUM = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				DEVELOPMENT_TEAM = 8GHSFQS4M7;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = SimpleWeatherApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

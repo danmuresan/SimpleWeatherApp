@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WeatherSettings.h"
 
 @interface LocationSelectorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
@@ -16,5 +17,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *locationsSearchBox;
 @property (strong, nonatomic) IBOutlet UIButton *locationSelectionButton;
 @property (strong, nonatomic) IBOutlet UIProgressView *progressView;
+@property (strong, nonatomic, readonly) WeatherSettings *weatherSettings;
 
 @end
