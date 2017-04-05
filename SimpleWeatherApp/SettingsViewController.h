@@ -20,5 +20,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *customLocationFromMapButton;
 @property (strong, nonatomic) IBOutlet UIButton *customConstraintsTestPageButton;
 @property (strong, nonatomic) IBOutlet UIButton *testPostRequestsButton;
+@property (strong, nonatomic) IBOutlet UIButton *testBluetoothButton;
 
 @end

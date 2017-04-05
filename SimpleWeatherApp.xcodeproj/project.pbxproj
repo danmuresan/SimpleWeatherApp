@@ -22,6 +22,8 @@
 		B25982211E928588009E82B5 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B25982201E928588009E82B5 /* NetworkManager.m */; };
 		B25982321E93D6D0009E82B5 /* FavoriteLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25982311E93D6D0009E82B5 /* FavoriteLocationsViewController.m */; };
 		B25982381E93E49D009E82B5 /* AddFavoriteLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25982371E93E49D009E82B5 /* AddFavoriteLocationViewController.m */; };
+		B259823B1E9520B1009E82B5 /* BluetoothTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B259823A1E9520B1009E82B5 /* BluetoothTestViewController.m */; };
+		B259823D1E95249F009E82B5 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B259823C1E95249F009E82B5 /* CoreBluetooth.framework */; };
 		B26FD63D1E6F0FFC0077BCC5 /* WeatherSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD63C1E6F0FFC0077BCC5 /* WeatherSettings.m */; };
 		B26FD6401E6F124F0077BCC5 /* AppDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD63F1E6F124F0077BCC5 /* AppDataUtil.m */; };
 		B26FD6441E714B290077BCC5 /* LocationSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD6421E714B290077BCC5 /* LocationSelectorViewController.m */; };
@@ -149,6 +151,9 @@
 		B25982311E93D6D0009E82B5 /* FavoriteLocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteLocationsViewController.m; sourceTree = "<group>"; };
 		B25982361E93E49D009E82B5 /* AddFavoriteLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFavoriteLocationViewController.h; sourceTree = "<group>"; };
 		B25982371E93E49D009E82B5 /* AddFavoriteLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFavoriteLocationViewController.m; sourceTree = "<group>"; };
+		B25982391E9520B1009E82B5 /* BluetoothTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothTestViewController.h; sourceTree = "<group>"; };
+		B259823A1E9520B1009E82B5 /* BluetoothTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothTestViewController.m; sourceTree = "<group>"; };
+		B259823C1E95249F009E82B5 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		B26FD63B1E6F0FBC0077BCC5 /* WeatherSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherSettings.h; sourceTree = "<group>"; };
 		B26FD63C1E6F0FFC0077BCC5 /* WeatherSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherSettings.m; sourceTree = "<group>"; };
 		B26FD63E1E6F11D40077BCC5 /* AppDataUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDataUtil.h; sourceTree = "<group>"; };
@@ -185,6 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B259823D1E95249F009E82B5 /* CoreBluetooth.framework in Frameworks */,
 				B26FD69B1E83C1A30077BCC5 /* MapKit.framework in Frameworks */,
 				B26FD67A1E7C1F580077BCC5 /* CorePlot.framework in Frameworks */,
 				06F8A90134ACA928FF086075 /* Pods_SimpleWeatherApp.framework in Frameworks */,
@@ -274,6 +280,8 @@
 				B25982311E93D6D0009E82B5 /* FavoriteLocationsViewController.m */,
 				B25982361E93E49D009E82B5 /* AddFavoriteLocationViewController.h */,
 				B25982371E93E49D009E82B5 /* AddFavoriteLocationViewController.m */,
+				B25982391E9520B1009E82B5 /* BluetoothTestViewController.h */,
+				B259823A1E9520B1009E82B5 /* BluetoothTestViewController.m */,
 			);
 			path = SimpleWeatherApp;
 			sourceTree = "<group>";
@@ -304,6 +312,7 @@
 		B26FD6991E83C1A30077BCC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B259823C1E95249F009E82B5 /* CoreBluetooth.framework */,
 				B26FD69A1E83C1A30077BCC5 /* MapKit.framework */,
 				E2CD41411E77A136D2D863E3 /* Pods_SimpleWeatherApp.framework */,
 			);
@@ -506,6 +515,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B26FD6931E817D630077BCC5 /* PercentageCircleView.m in Sources */,
+				B259823B1E9520B1009E82B5 /* BluetoothTestViewController.m in Sources */,
 				B26FD6441E714B290077BCC5 /* LocationSelectorViewController.m in Sources */,
 				B26FD6591E72F19C0077BCC5 /* WeatherForecastDto.m in Sources */,
 				B22AE3201E6D961100651C84 /* CurrentWeatherDto.m in Sources */,

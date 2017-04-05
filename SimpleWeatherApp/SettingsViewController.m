@@ -12,6 +12,7 @@
 #import "ManualUiContraintsTestViewController.h"
 #import "NetworkManager.h"
 #import "FavoriteLocationsViewController.h"
+#import "BluetoothTestViewController.h"
 
 @interface SettingsViewController ()
 {
@@ -51,6 +52,7 @@
     [_customLocationFromMapButton addTarget:self action:@selector(onSelectLocationFromMapClick) forControlEvents:UIControlEventTouchUpInside];
     [_customConstraintsTestPageButton addTarget:self action:@selector(onUiConstraintsTestPageButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [_testPostRequestsButton addTarget:self action:@selector(onTestPostRequestButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [_testBluetoothButton addTarget:self action:@selector(onBluetoothTestPageButtonClicked) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -212,6 +214,12 @@
 {
     FavoriteLocationsViewController *favoritesVc = [[FavoriteLocationsViewController alloc] init];
     [self.navigationController pushViewController:favoritesVc animated:YES];
+}
+
+-(void) onBluetoothTestPageButtonClicked
+{
+    BluetoothTestViewController *btTestVc = [[BluetoothTestViewController alloc] init];
+    [self.navigationController pushViewController:btTestVc animated:YES];
 }
 
 /*
