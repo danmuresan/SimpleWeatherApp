@@ -14,7 +14,6 @@
 @interface LocationSelectorViewController ()
 
 @property (nonatomic, readonly) AppDataUtil *appDataUtil;
-@property (nonatomic) NSArray<LocationDto *> *tableData;
 @property (nonatomic) NSArray<LocationDto *> *fullTableData;
 @property (nonatomic, readonly) FileReader *fileReader;
 @property (nonatomic) NSTimer *timer;

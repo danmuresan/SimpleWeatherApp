@@ -52,6 +52,20 @@
     [self arrangeViewControls];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    // notify subscribers
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"FavoritesListChanged" object:weatherLocationDictionary];
+
+    if (![[self.navigationController viewControllers] containsObject:self])
+    {
+        // TODO: begin saving favorites & notify favorites changed
+        // ...
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -147,7 +161,20 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO...
+    if (indexPath.row >= _favoritesCount)
+    {
+        return;
+    }
+
+    LocationDto *locationAtCurrentRow = (LocationDto*)[_tableData objectAtIndex:indexPath.row];
+    CurrentWeatherDto *weatherAtCurrentLocation = [weatherLocationDictionary objectForKey:[NSNumber numberWithLong: locationAtCurrentRow.cityId]];
+
+    NSString *title = [NSString stringWithFormat:@"Weather in %@", locationAtCurrentRow.cityName];
+    NSString *message = [NSString stringWithFormat:@"Current temperature: %.1lf%@\nDescription: %@\nMin temperature: %.1lf%@\nMax temperature: %.1lf%@\nHumidity: %d%%", weatherAtCurrentLocation.temperature, @"\u00B0", weatherAtCurrentLocation.weatherDescription, weatherAtCurrentLocation.minTemperature, @"\u00B0", weatherAtCurrentLocation.maxTemperature, @"\u00B0", weatherAtCurrentLocation.humidity];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -159,8 +186,14 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
+        long cityId = ((LocationDto*)[_tableData objectAtIndex:indexPath.row]).cityId;
+
+        // cleanup lists and counters
         [self.tableData removeObjectAtIndex:indexPath.row];
+        [weatherLocationDictionary removeObjectForKey:[NSNumber numberWithLong: cityId]];
         self.favoritesCount--;
+
+        // update UI
         self.favoritesCountLabel.text = [NSString stringWithFormat:@"Favorited cities: %d", self.favoritesCount];
         [tableView reloadData];
     }

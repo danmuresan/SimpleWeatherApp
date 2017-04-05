@@ -11,6 +11,7 @@
 
 @interface LocationSelectorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
+- (void) initializeStuff;
 -(IBAction) saveLocationButtonClick;
 @property (strong, nonatomic) IBOutlet UITableView *locationsListView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingSpinner;
@@ -18,5 +19,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *locationSelectionButton;
 @property (strong, nonatomic) IBOutlet UIProgressView *progressView;
 @property (strong, nonatomic, readonly) WeatherSettings *weatherSettings;
+@property (nonatomic) NSArray<LocationDto *> *tableData;
 
 @end

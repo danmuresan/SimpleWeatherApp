@@ -9,6 +9,9 @@
 #import "AddFavoriteLocationViewController.h"
 
 @interface AddFavoriteLocationViewController ()
+{
+    NSDictionary *favoriteLocationsWeatherDict;
+}
 
 @end
 
@@ -18,15 +21,33 @@
 {
     self = [super initWithNibName:@"LocationSelectorViewController" bundle:[NSBundle mainBundle]];
     if (self) {
-
+        [self initializeStuff];
     }
+
     return self;
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:@"LocationSelectorViewController" bundle:nibBundleOrNil];
+    if (self) {
+        [self initializeStuff];
+    }
+
     return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void) initializeStuff
+{
+    [super initializeStuff];
+
+    // subscribe for notifications regarding favorite locations changes
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFavoritesList:) name:@"FavoritesListChanged" object:nil];
 }
 
 - (void)viewDidLoad {
@@ -37,6 +58,29 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)updateFavoritesList: (NSNotification *) notification
+{
+    favoriteLocationsWeatherDict = (NSDictionary *)notification.object;
+    [super.locationsListView reloadData];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    LocationDto *currentLocation = (LocationDto*)[super.tableData objectAtIndex:indexPath.row];
+
+    // disable selection of already favorite items
+    if ([favoriteLocationsWeatherDict objectForKey:[NSNumber numberWithLong:currentLocation.cityId]])
+    {
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.backgroundColor = [UIColor darkGrayColor];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.userInteractionEnabled = NO;
+    }
+
+    return cell;
 }
 
 -(void) saveLocationButtonClick
