@@ -49,6 +49,7 @@
     // Do any additional setup after loading the view from its nib.
     [self startSpinner];
     [_locationsSearchBox addTarget:self action:@selector(searchTextChanged) forControlEvents:UIControlEventEditingChanged];
+    [_clearFilterButton addTarget:self action:@selector(resetFilters) forControlEvents:UIControlEventTouchUpInside];
     
     [self loadUpTableData];
 }
@@ -201,6 +202,13 @@
     }
     
     _tableData = [exactMatches arrayByAddingObjectsFromArray:newTableData];
+    [_locationsListView reloadData];
+}
+
+-(void) resetFilters
+{
+    _tableData = _fullTableData;
+    _locationsSearchBox.text = @"";
     [_locationsListView reloadData];
 }
 

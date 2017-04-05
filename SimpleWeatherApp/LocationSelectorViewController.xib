@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationSelectorViewController">
             <connections>
+                <outlet property="clearFilterButton" destination="PpC-nO-vvr" id="1HR-YY-0RA"/>
                 <outlet property="loadingSpinner" destination="AkD-gO-Lga" id="2H9-Ud-J88"/>
                 <outlet property="locationSelectionButton" destination="9Ol-Yy-ozr" id="TgL-Pc-4Ka"/>
                 <outlet property="locationsListView" destination="XNN-6l-lqL" id="GZ8-GM-wEr"/>
@@ -54,13 +55,19 @@
                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="84e-FK-lne">
                     <rect key="frame" x="16" y="603" width="343" height="2"/>
                 </progressView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PpC-nO-vvr">
+                    <rect key="frame" x="313" y="35" width="46" height="30"/>
+                    <state key="normal" title="Clear"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="9Ol-Yy-ozr" firstAttribute="top" secondItem="84e-FK-lne" secondAttribute="bottom" constant="8" id="0ip-lp-ng7"/>
                 <constraint firstAttribute="trailing" secondItem="84e-FK-lne" secondAttribute="trailing" constant="16" id="187-sX-fX1"/>
                 <constraint firstItem="XNN-6l-lqL" firstAttribute="leading" secondItem="EWb-6I-I3P" secondAttribute="leading" id="3zZ-oj-n7s"/>
+                <constraint firstItem="PpC-nO-vvr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="35" id="8OI-tB-mlD"/>
                 <constraint firstItem="EWb-6I-I3P" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="35" id="ACz-UI-STp"/>
+                <constraint firstAttribute="trailing" secondItem="PpC-nO-vvr" secondAttribute="trailing" constant="16" id="AZ8-Mh-s0G"/>
                 <constraint firstItem="9Ol-Yy-ozr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Cfu-iR-0VN"/>
                 <constraint firstItem="AkD-gO-Lga" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="GCk-ro-lmw"/>
                 <constraint firstItem="9Ol-Yy-ozr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="Gzj-RP-meq"/>
@@ -70,6 +77,8 @@
                 <constraint firstItem="84e-FK-lne" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="UDN-gx-CUl"/>
                 <constraint firstAttribute="bottom" secondItem="9Ol-Yy-ozr" secondAttribute="bottom" constant="20" id="UMO-mI-6jg"/>
                 <constraint firstAttribute="trailing" secondItem="EWb-6I-I3P" secondAttribute="trailing" constant="15" id="Wap-8f-0VB"/>
+                <constraint firstItem="XNN-6l-lqL" firstAttribute="top" secondItem="PpC-nO-vvr" secondAttribute="bottom" constant="20" id="YOb-aC-zas"/>
+                <constraint firstItem="PpC-nO-vvr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="313" id="cPT-A7-Bx4"/>
                 <constraint firstAttribute="trailing" secondItem="9Ol-Yy-ozr" secondAttribute="trailing" constant="40" id="lTa-4D-bJJ"/>
                 <constraint firstItem="9Ol-Yy-ozr" firstAttribute="top" secondItem="XNN-6l-lqL" secondAttribute="bottom" constant="50" id="oou-fl-czv"/>
                 <constraint firstItem="XNN-6l-lqL" firstAttribute="top" secondItem="EWb-6I-I3P" secondAttribute="bottom" constant="20" id="qDt-SZ-Pzz"/>

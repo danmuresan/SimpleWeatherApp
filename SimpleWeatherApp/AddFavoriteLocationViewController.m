@@ -79,6 +79,13 @@
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.userInteractionEnabled = NO;
     }
+    else
+    {
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+        cell.backgroundColor = [UIColor clearColor];
+        cell.textLabel.textColor = [UIColor blackColor];
+        cell.userInteractionEnabled = YES;
+    }
 
     return cell;
 }
