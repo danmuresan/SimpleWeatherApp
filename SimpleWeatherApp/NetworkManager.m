@@ -35,7 +35,7 @@
     // create url connection
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
-        int responseCode = [((NSHTTPURLResponse *)response) statusCode];
+        int responseCode = (int)[((NSHTTPURLResponse *)response) statusCode];
         if (responseCode != 200)
         {
             NSLog(@"%@", response.description);
@@ -58,7 +58,7 @@
     }
     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error.description);
-        customCompletion(NO, [(NSHTTPURLResponse *)task.response statusCode]);
+        customCompletion(NO, (int)[(NSHTTPURLResponse *)task.response statusCode]);
     }];
 }
 
@@ -106,7 +106,7 @@
     }
     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error.description);
-        customCompletion(NO, [(NSHTTPURLResponse *)task.response statusCode]);
+        customCompletion(NO, (int)[(NSHTTPURLResponse *)task.response statusCode]);
     }];
 }
 
@@ -122,7 +122,7 @@
 
         // TODO: send nil via completion (or something)
         NSLog(@"%@", error.description);
-        customCompletion(NO, [(NSHTTPURLResponse *)task.response statusCode]);
+        customCompletion(NO, (int)[(NSHTTPURLResponse *)task.response statusCode]);
     }];
 }
 

@@ -448,7 +448,7 @@ const long defaultCityId = 2172797;
             }
             
             // set newly fetched image
-            [_weatherStatusIcon setImage:[UIImage imageWithData:imageData]];
+            [self.weatherStatusIcon setImage:[UIImage imageWithData:imageData]];
             
             // animate icon
             [self animateWeatherIcon];
@@ -491,25 +491,25 @@ const long defaultCityId = 2172797;
     [_weatherManager getWeatherForecastDataByLocationId:locationId :_weatherSettings.unitOfMeasurement :_weatherSettings.numberOfDaysInForecast :^(WeatherForecastDto * weatherForecast) {
         
         // clear out old data
-        [_forecastDataArray removeAllObjects];
+        [self.forecastDataArray removeAllObjects];
         
         for (CurrentWeatherDto *forecastItem in weatherForecast.weatherForecastList)
         {
-            [_forecastDataArray addObject:forecastItem];
+            [self.forecastDataArray addObject:forecastItem];
         }
         
         // update UI
         dispatch_async(queue, ^{
 
-            if (_forecastDataArray.count == 0)
+            if (self.forecastDataArray.count == 0)
             {
                 // TODO: NO DATA CASE
                 [self signalNetworkFetchingError];
                 return;
             }
             
-            [_dailyForecastCollectionView reloadData];
-            [_graph reloadData];
+            [self.dailyForecastCollectionView reloadData];
+            [self.graph reloadData];
             [self updateChartLabels];
         });
     }];
@@ -533,12 +533,12 @@ const long defaultCityId = 2172797;
     
     // zoom in
     [UIView animateWithDuration:2.0f animations:^{
-        _weatherStatusIcon.transform = CGAffineTransformMakeScale(3, 3);
+        self.weatherStatusIcon.transform = CGAffineTransformMakeScale(3, 3);
     } completion:^(BOOL finished){}];
     
     // zoom out
     [UIView animateWithDuration:1.7f animations:^{
-        _weatherStatusIcon.transform = CGAffineTransformMakeScale(1, 1);
+        self.weatherStatusIcon.transform = CGAffineTransformMakeScale(1, 1);
     } completion:^(BOOL finished){}];
 
 }
@@ -560,16 +560,16 @@ const long defaultCityId = 2172797;
 -(void) startSpinner
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [_loadingSpinner setHidden:NO];
-        [_loadingSpinner startAnimating];
+        [self.loadingSpinner setHidden:NO];
+        [self.loadingSpinner startAnimating];
     });
 }
 
--(void) stopSpinner: (BOOL)withDelay
+-(void) stopSpinner: (BOOL __unused)withDelay
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [_loadingSpinner stopAnimating];
-        [_loadingSpinner setHidden:YES];
+        [self.loadingSpinner stopAnimating];
+        [self.loadingSpinner setHidden:YES];
     });
 }
 

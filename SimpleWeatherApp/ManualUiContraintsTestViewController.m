@@ -48,7 +48,7 @@
     titleLabel.text = @"The next few questions will help calculate:";
     [baseView addSubview:titleLabel];
     [titleLabel setAutoresizesSubviews:YES];
-    [titleLabel setNumberOfLines:@2];
+    [titleLabel setNumberOfLines:2];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -211,7 +211,7 @@
     [baseView addSubview:titleLabel];
     [titleLabel setAutoresizesSubviews:YES];
     [titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [titleLabel setNumberOfLines:@2];
+    [titleLabel setNumberOfLines:2];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     
     NSLayoutConstraint *vertical = [NSLayoutConstraint constraintWithItem:titleLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:baseView attribute:NSLayoutAttributeTop multiplier:1 constant:75];

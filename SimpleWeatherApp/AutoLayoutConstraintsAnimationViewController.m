@@ -53,7 +53,7 @@
     
     [animateSwitchLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top).offset(75);
-        make.trailing.equalTo(_animateSwitch.mas_leading).offset(-15);
+        make.trailing.equalTo(self.animateSwitch.mas_leading).offset(-15);
     }];
     
     _leftView = [[UIView alloc] init];
@@ -65,8 +65,8 @@
     knockLabel.textColor = [UIColor blueColor];
     [_leftView addSubview:knockLabel];
     [knockLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(_leftView.mas_centerX);
-        make.centerY.equalTo(_leftView.mas_centerY);
+        make.centerX.equalTo(self.leftView.mas_centerX);
+        make.centerY.equalTo(self.leftView.mas_centerY);
     }];
     
     _rightView = [[UIView alloc] init];
@@ -78,21 +78,21 @@
     whosLabel.textColor = [UIColor yellowColor];
     [_rightView addSubview:whosLabel];
     [whosLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(_rightView.mas_centerX);
-        make.centerY.equalTo(_rightView.mas_centerY);
+        make.centerX.equalTo(self.rightView.mas_centerX);
+        make.centerY.equalTo(self.rightView.mas_centerY);
     }];
     
     [_leftView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_animateSwitch.mas_bottom).offset(20);
+        make.top.equalTo(self.animateSwitch.mas_bottom).offset(20);
         make.bottom.equalTo(self.view.mas_bottom).offset(-20);
         make.leading.equalTo(self.view.mas_leading).offset(20);
-        make.trailing.equalTo(_rightView.mas_leading).offset(-10);
+        make.trailing.equalTo(self.rightView.mas_leading).offset(-10);
     }];
 
     [_rightView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_animateSwitch.mas_bottom).offset(20);
+        make.top.equalTo(self.animateSwitch.mas_bottom).offset(20);
         make.bottom.equalTo(self.view.mas_bottom).offset(-20);
-        make.leading.equalTo(_leftView.mas_trailing).offset(10);
+        make.leading.equalTo(self.leftView.mas_trailing).offset(10);
         make.trailing.equalTo(self.view.mas_trailing).offset(-10);
     }];
 
@@ -112,7 +112,7 @@
     if (_animateSwitch.isOn)
     {
         [_leftView mas_makeConstraints:^(MASConstraintMaker *make) {
-            _dynamicConstraint = make.width.equalTo(self.view.mas_width).multipliedBy(.5).offset(-20);
+            self.dynamicConstraint = make.width.equalTo(self.view.mas_width).multipliedBy(.5).offset(-20);
         }];
     }
     else

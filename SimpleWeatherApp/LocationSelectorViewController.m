@@ -72,17 +72,17 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
         [self updateProgressView:0.15 : 0.45];
-        NSData *cityFileContents = [_fileReader readFileContentsToData:@"city.list" : @"json"];
+        NSData *cityFileContents = [self.fileReader readFileContentsToData:@"city.list" : @"json"];
 
         [self updateProgressView:0.35 : 0.85];
-        _tableData = [self parseCityJsonFile:cityFileContents];
+        self.tableData = [self parseCityJsonFile:cityFileContents];
 
         [self updateProgressView:0.85 : 1];
-        _fullTableData = _tableData.copy;
+        self.fullTableData = self.tableData.copy;
         
         // update any UI elements back on the main thread
         dispatch_async(dispatch_get_main_queue(), ^{
-            [_locationsListView reloadData];
+            [self.locationsListView reloadData];
             [self stopSpinner];
         });
     });
@@ -92,7 +92,7 @@
 {
     [NSThread sleepForTimeInterval:delayInSeconds];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [_progressView setProgress:percentage];
+        [self.progressView setProgress:percentage];
     });
 }
 
