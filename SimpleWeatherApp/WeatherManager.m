@@ -115,7 +115,11 @@ NSString* const GetImageForWeatherEndpoint = @"http://openweathermap.org/img/w/%
     // get general info
     currentWeatherModel.cityName = [jsonDictionary objectForKey:@"name"];
     currentWeatherModel.cityId = [[jsonDictionary objectForKey:@"id"] longValue];
-    
+
+    // get country
+    NSDictionary *sysDict = [jsonDictionary objectForKey:@"sys"];
+    currentWeatherModel.country = [sysDict objectForKey:@"country"];
+
     // get weather
     NSDictionary *weatherDict = [jsonDictionary objectForKey:@"weather"][0];
     currentWeatherModel.weatherMain = [weatherDict objectForKey:@"main"];

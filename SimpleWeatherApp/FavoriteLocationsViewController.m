@@ -46,8 +46,7 @@
     _weatherSettings = [_appDataUtil loadWeatherOptions];
     weatherLocationDictionary = [[NSMutableDictionary alloc] init];
 
-    // TODO: ... load up saved favorites
-    _tableData = [[NSMutableArray alloc] init];
+    [self loadUpData];
     [self initializeViewComponents];
     [self arrangeViewControls];
 }
@@ -61,14 +60,33 @@
 
     if (![[self.navigationController viewControllers] containsObject:self])
     {
-        // TODO: begin saving favorites & notify favorites changed
-        // ...
+        [_appDataUtil saveWeatherArray:weatherLocationDictionary];
     }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) loadUpData
+{
+    _tableData = [[NSMutableArray alloc] init];
+    NSArray *data = [_appDataUtil loadWeatherArray];
+
+    for (CurrentWeatherDto *currentWeatherItem in data)
+    {
+        LocationDto *currentLocation = [[LocationDto alloc] init];
+        currentLocation.cityId = currentWeatherItem.cityId;
+        currentLocation.cityName = currentWeatherItem.cityName;
+        currentLocation.latitude = currentWeatherItem.latitude;
+        currentLocation.longitude = currentWeatherItem.longitude;
+        currentLocation.country = currentWeatherItem.country;
+
+        [weatherLocationDictionary setObject:currentWeatherItem forKey:[NSNumber numberWithLong:currentWeatherItem.cityId]];
+        [_tableData addObject:currentLocation];
+        _favoritesCount++;
+    }
 }
 
 - (void)initializeViewComponents

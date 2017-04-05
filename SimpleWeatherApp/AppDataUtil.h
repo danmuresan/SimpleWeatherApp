@@ -19,7 +19,9 @@
 -(WeatherSettings *) loadWeatherOptions;
 -(void) saveLocation:(LocationDto *)location;
 -(LocationDto *) loadLocation;
-- (void) saveWeatherDto: (CurrentWeatherDto *)weatherDto;
-- (CurrentWeatherDto *) loadWeatherDto;
+-(void) saveWeatherDto: (CurrentWeatherDto *)weatherDto;
+-(CurrentWeatherDto *) loadWeatherDto;
+- (void) saveWeatherArray:(NSDictionary *)weatherDiction;
+-(NSArray *) loadWeatherArray;
 
 @end

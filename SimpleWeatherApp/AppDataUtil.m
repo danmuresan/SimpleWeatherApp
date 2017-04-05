@@ -79,4 +79,31 @@
     return [NSKeyedUnarchiver unarchiveObjectWithData:data];
 }
 
+- (void) saveWeatherArray:(NSDictionary *)weatherDictionary
+{
+    NSMutableArray *weatherArray = [NSMutableArray arrayWithCapacity:weatherDictionary.count];
+    for (id key in weatherDictionary)
+    {
+        CurrentWeatherDto *currentItemWeather = (CurrentWeatherDto *)[weatherDictionary objectForKey:key];
+        NSData *encodedWeatherObject = [NSKeyedArchiver archivedDataWithRootObject:currentItemWeather];
+        [weatherArray addObject:encodedWeatherObject];
+    }
+
+    [[NSUserDefaults standardUserDefaults] setObject:weatherArray forKey:@"weatherArray"];
+}
+
+- (NSArray *)loadWeatherArray
+{
+    NSArray *arr = [[NSUserDefaults standardUserDefaults] objectForKey:@"weatherArray"];
+    NSMutableArray *weatherArr = [NSMutableArray arrayWithCapacity:arr.count];
+
+    for (NSData *dataItem in arr)
+    {
+        CurrentWeatherDto *decodedItem = [NSKeyedUnarchiver unarchiveObjectWithData:dataItem];
+        [weatherArr addObject:decodedItem];
+    }
+
+    return weatherArr;
+}
+
 @end

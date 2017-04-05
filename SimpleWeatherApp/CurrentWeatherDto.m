@@ -25,6 +25,8 @@
         self.maxTemperature = [aDecoder decodeDoubleForKey:@"maxTemperature"];
         self.temperature = [aDecoder decodeDoubleForKey:@"temperature"];
         self.pressure = [aDecoder decodeDoubleForKey:@"pressure"];
+        self.weatherDescription = [aDecoder decodeObjectForKey:@"weatherDescription"];
+        self.country = [aDecoder decodeObjectForKey:@"country"];
     }
     
     return self;
@@ -42,6 +44,8 @@
     [aCoder encodeDouble:self.maxTemperature forKey:@"maxTemperature"];
     [aCoder encodeDouble:self.temperature forKey:@"temperature"];
     [aCoder encodeDouble:self.pressure forKey:@"pressure"];
+    [aCoder encodeObject:self.weatherDescription forKey:@"weatherDescription"];
+    [aCoder encodeObject:self.country forKey:@"country"];
 }
 
 @end

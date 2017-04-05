@@ -20,6 +20,7 @@ struct Coordinates
 @property double longitude;
 @property NSString* cityName;
 @property long cityId;
+@property NSString *country;
 @property NSString* weatherMain;
 @property NSString* weatherDescription;
 @property NSString* weatherIcon;
