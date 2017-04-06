@@ -28,7 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self initializeViewComponents];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,17 +37,25 @@
 
 -(void) initializeViewComponents
 {
-    UIView *baseView = self.view;
     self.title = @"BT Peripheral";
-    baseView.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
+
+    UIScrollView *baseView = [[UIScrollView alloc] init];
+    [self.view addSubview:baseView];
+
+    [baseView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top).offset(15);
+        make.leading.equalTo(self.view.mas_leading);
+        make.trailing.equalTo(self.view.mas_trailing);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
 
     _infoLabel = [[UILabel alloc] init];
     _infoLabel.text = @"Gatt server (peripheral) sample. Press start server button to begin broadcast. Press send data button to notify data.";
     _infoLabel.textAlignment = NSTextAlignmentCenter;
     _infoLabel.numberOfLines = 0;
-    [self.view addSubview:_infoLabel];
 
     _advertiseDataButton = [[UIButton alloc] init];
     [_advertiseDataButton setTitle:@"Start server" forState:UIControlStateNormal];
@@ -56,20 +63,16 @@
     [_advertiseDataButton setTitleColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0] forState:UIControlStateNormal];
     [_advertiseDataButton setTitleColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:0.6] forState:UIControlEventTouchDown];
     [_advertiseDataButton addTarget:self action:@selector(onStartServerClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_advertiseDataButton];
 
     _subscribeInfoLabel = [[UILabel alloc] init];
     _subscribeInfoLabel.text = @"No centrals (clients) connected to this peripheral (server)";
     _subscribeInfoLabel.textAlignment = NSTextAlignmentCenter;
     _subscribeInfoLabel.numberOfLines = 0;
-    [self.view addSubview:_subscribeInfoLabel];
-
 
     _dataTextView = [[UITextView alloc] init];
     _dataTextView.editable = YES;
     _dataTextView.hidden = NO;
     _dataTextView.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:_dataTextView];
 
     _sendDataButton = [[UIButton alloc] init];
     [_sendDataButton setTitle:@"Send data" forState:UIControlStateNormal];
@@ -77,11 +80,10 @@
     [_sendDataButton setTitleColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0] forState:UIControlStateNormal];
     [_sendDataButton setTitleColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:0.6] forState:UIControlEventTouchDown];
     [_sendDataButton addTarget:self action:@selector(onSendDataBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_sendDataButton];
 
     [baseView addSubview:_infoLabel];
     [_infoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(baseView.mas_top).offset(80);
+        make.top.equalTo(baseView.mas_top).offset(5);
         make.leading.equalTo(baseView.mas_leading).offset(35);
         make.trailing.equalTo(baseView.mas_trailing).offset(-35);
         make.centerX.equalTo(baseView.mas_centerX);
@@ -118,7 +120,17 @@
         make.leading.equalTo(baseView.mas_leading).offset(35);
         make.trailing.equalTo(baseView.mas_trailing).offset(-35);
         make.centerX.equalTo(baseView.mas_centerX);
+        make.bottom.equalTo(baseView.mas_bottom);
     }];
+
+    baseView.scrollEnabled = YES;
+    //baseView.contentSize = CGSizeMake(self.view.frame.size.width, 100);
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self initializeViewComponents];
 }
 
 -(void) onStartServerClick

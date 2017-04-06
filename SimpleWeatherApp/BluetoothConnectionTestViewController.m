@@ -84,23 +84,33 @@
 {
     self.view.backgroundColor = [UIColor whiteColor];
 
+    UIScrollView *baseView = [[UIScrollView alloc] init];
+    [self.view addSubview:baseView];
+
+    [baseView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top);
+        make.leading.equalTo(self.view.mas_leading);
+        make.trailing.equalTo(self.view.mas_trailing);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
+
     _infoLabel = [[UILabel alloc] init];
     _infoLabel.text = @"Bluetooth device connected. Data will appear in the box below.";
     _infoLabel.textAlignment = NSTextAlignmentCenter;
     _infoLabel.numberOfLines = 0;
-    [self.view addSubview:_infoLabel];
+    [baseView addSubview:_infoLabel];
 
     _infoCharLabel = [[UILabel alloc] init];
     _infoCharLabel.text = @"Characteristic state: --";
     _infoCharLabel.textAlignment = NSTextAlignmentCenter;
     _infoCharLabel.numberOfLines = 0;
-    [self.view addSubview:_infoCharLabel];
+    [baseView addSubview:_infoCharLabel];
 
     _textView = [[UITextView alloc] init];
     _textView.editable = NO;
     _textView.hidden = NO;
     _textView.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:_textView];
+    [baseView addSubview:_textView];
 
     _doneBtn = [[UIButton alloc] init];
     [_doneBtn setTitle:@"Done" forState:UIControlStateNormal];
@@ -108,11 +118,8 @@
     [_doneBtn setTitleColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0] forState:UIControlStateNormal];
     [_doneBtn setTitleColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:0.6] forState:UIControlEventTouchDown];
     [_doneBtn addTarget:self action:@selector(onDoneButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_doneBtn];
+    [baseView addSubview:_doneBtn];
 
-
-    UIView *baseView = self.view;
-    [baseView addSubview:_infoLabel];
     [_infoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(baseView.mas_top).offset(50);
         make.leading.equalTo(baseView.mas_leading).offset(35);
@@ -140,7 +147,10 @@
         make.leading.equalTo(baseView.mas_leading).offset(20);
         make.trailing.equalTo(baseView.mas_trailing).offset(-20);
         make.centerX.equalTo(baseView.mas_centerX);
+        make.bottom.equalTo(baseView.mas_bottom);
     }];
+
+    baseView.scrollEnabled = YES;
 }
 
 /*
