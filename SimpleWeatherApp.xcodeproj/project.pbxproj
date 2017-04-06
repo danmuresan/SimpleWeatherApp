@@ -25,6 +25,7 @@
 		B259823B1E9520B1009E82B5 /* BluetoothTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B259823A1E9520B1009E82B5 /* BluetoothTestViewController.m */; };
 		B259823D1E95249F009E82B5 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B259823C1E95249F009E82B5 /* CoreBluetooth.framework */; };
 		B25982401E961A1F009E82B5 /* BluetoothConnectionTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B259823F1E961A1F009E82B5 /* BluetoothConnectionTestViewController.m */; };
+		B25982431E963CE6009E82B5 /* BluetoothPeripheralTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25982421E963CE6009E82B5 /* BluetoothPeripheralTestViewController.m */; };
 		B26FD63D1E6F0FFC0077BCC5 /* WeatherSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD63C1E6F0FFC0077BCC5 /* WeatherSettings.m */; };
 		B26FD6401E6F124F0077BCC5 /* AppDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD63F1E6F124F0077BCC5 /* AppDataUtil.m */; };
 		B26FD6441E714B290077BCC5 /* LocationSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD6421E714B290077BCC5 /* LocationSelectorViewController.m */; };
@@ -157,6 +158,9 @@
 		B259823C1E95249F009E82B5 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		B259823E1E961A1F009E82B5 /* BluetoothConnectionTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothConnectionTestViewController.h; sourceTree = "<group>"; };
 		B259823F1E961A1F009E82B5 /* BluetoothConnectionTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothConnectionTestViewController.m; sourceTree = "<group>"; };
+		B25982411E963CE6009E82B5 /* BluetoothPeripheralTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothPeripheralTestViewController.h; sourceTree = "<group>"; };
+		B25982421E963CE6009E82B5 /* BluetoothPeripheralTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothPeripheralTestViewController.m; sourceTree = "<group>"; };
+		B26E0D7F1E9663790033CCF8 /* Consts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Consts.h; sourceTree = "<group>"; };
 		B26FD63B1E6F0FBC0077BCC5 /* WeatherSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherSettings.h; sourceTree = "<group>"; };
 		B26FD63C1E6F0FFC0077BCC5 /* WeatherSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherSettings.m; sourceTree = "<group>"; };
 		B26FD63E1E6F11D40077BCC5 /* AppDataUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDataUtil.h; sourceTree = "<group>"; };
@@ -287,6 +291,9 @@
 				B259823A1E9520B1009E82B5 /* BluetoothTestViewController.m */,
 				B259823E1E961A1F009E82B5 /* BluetoothConnectionTestViewController.h */,
 				B259823F1E961A1F009E82B5 /* BluetoothConnectionTestViewController.m */,
+				B25982411E963CE6009E82B5 /* BluetoothPeripheralTestViewController.h */,
+				B25982421E963CE6009E82B5 /* BluetoothPeripheralTestViewController.m */,
+				B26E0D7F1E9663790033CCF8 /* Consts.h */,
 			);
 			path = SimpleWeatherApp;
 			sourceTree = "<group>";
@@ -530,6 +537,7 @@
 				B259821E1E926C60009E82B5 /* AutoLayoutConstraintsAnimationViewController.m in Sources */,
 				B26FD64D1E71854B0077BCC5 /* FileReader.m in Sources */,
 				B22AE30B1E6D75CD00651C84 /* SimpleWeatherApp.xcdatamodeld in Sources */,
+				B25982431E963CE6009E82B5 /* BluetoothPeripheralTestViewController.m in Sources */,
 				B25982381E93E49D009E82B5 /* AddFavoriteLocationViewController.m in Sources */,
 				B26FD6401E6F124F0077BCC5 /* AppDataUtil.m in Sources */,
 				B22AE3021E6D75CD00651C84 /* AppDelegate.m in Sources */,

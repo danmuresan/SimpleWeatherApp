@@ -1,5 +1,5 @@
 //
-//  BluetoothConnectionTestViewController.h
+//  BluetoothPeripheralTestViewController.h
 //  SimpleWeatherApp
 //
 //  Created by Muresan, Dan-Sorin on 4/6/17.
@@ -11,6 +11,6 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "Consts.h"
 
-@interface BluetoothConnectionTestViewController : UIViewController
+@interface BluetoothPeripheralTestViewController : UIViewController<CBPeripheralManagerDelegate>
 
 @end

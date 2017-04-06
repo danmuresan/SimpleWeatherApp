@@ -8,6 +8,7 @@
 
 #import "BluetoothTestViewController.h"
 #import "BluetoothConnectionTestViewController.h"
+#import "BluetoothPeripheralTestViewController.h"
 
 @interface BluetoothTestViewController ()
 {
@@ -28,9 +29,6 @@
 
 @implementation BluetoothTestViewController
 
-NSString* const serviceUuid = @"171bd16c-ab9c-4bb8-96e6-71aa5a1ee70d";
-NSString* const characteristicUuid = @"5d6207f4-856d-4c5d-a0d9-3698c936765f";
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -47,8 +45,8 @@ NSString* const characteristicUuid = @"5d6207f4-856d-4c5d-a0d9-3698c936765f";
 -(void) initializeViewComponents
 {
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"Bluetooth test page";
-
+    self.title = @"BT Central";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"GATT Server" style:UIBarButtonSystemItemAction target:self action:@selector(goToGattServerPage)];
     _infoLabel = [[UILabel alloc] init];
     _infoLabel.text = @"Bluetooth LE Central - scan and send data to peripherals";
     _infoLabel.textAlignment = NSTextAlignmentCenter;
@@ -333,11 +331,10 @@ NSString* const characteristicUuid = @"5d6207f4-856d-4c5d-a0d9-3698c936765f";
     // TODO: ... error handling
 }
 
-
-
--(void) checkBluetoothOn
+-(void)goToGattServerPage
 {
-
+    BluetoothPeripheralTestViewController *bluetoothPeripheral = [[BluetoothPeripheralTestViewController alloc] init];
+    [self.navigationController pushViewController:bluetoothPeripheral animated:YES];
 }
 
 /*

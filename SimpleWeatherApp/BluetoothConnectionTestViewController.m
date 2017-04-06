@@ -132,7 +132,7 @@
         make.leading.equalTo(baseView.mas_leading).offset(20);
         make.trailing.equalTo(baseView.mas_trailing).offset(-20);
         make.centerX.equalTo(baseView.mas_centerX);
-        make.height.equalTo(baseView.mas_height).multipliedBy(.45);
+        make.height.equalTo(baseView.mas_height).multipliedBy(.4);
     }];
 
     [_doneBtn mas_makeConstraints:^(MASConstraintMaker *make) {
