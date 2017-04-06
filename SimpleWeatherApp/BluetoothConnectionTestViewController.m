@@ -13,6 +13,7 @@
 @property (strong, nonatomic) UITextView *textView;
 @property (strong, nonatomic) UILabel *infoLabel;
 @property (strong, nonatomic) UILabel *infoCharLabel;
+@property (strong, nonatomic) UIButton *doneBtn;
 
 @end
 
@@ -57,7 +58,6 @@
         [[NSNotificationCenter defaultCenter] removeObserver:self];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onCharacteristicValueUpdateReceived:) name:@"CharacteristicValueUpdate" object:nil];
     }
-
 }
 
 -(void)onCharacteristicValueUpdateReceived: (NSNotification *) notification
@@ -73,6 +73,11 @@
         }
 
     });
+}
+
+-(void)onDoneButtonClicked
+{
+    [self dismissViewControllerAnimated:YES completion:^{ }];
 }
 
 -(void) initializeViewComponents
@@ -97,6 +102,15 @@
     _textView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:_textView];
 
+    _doneBtn = [[UIButton alloc] init];
+    [_doneBtn setTitle:@"Done" forState:UIControlStateNormal];
+    _doneBtn.enabled = YES;
+    [_doneBtn setTitleColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0] forState:UIControlStateNormal];
+    [_doneBtn setTitleColor:[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:0.6] forState:UIControlEventTouchDown];
+    [_doneBtn addTarget:self action:@selector(onDoneButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_doneBtn];
+
+
     UIView *baseView = self.view;
     [baseView addSubview:_infoLabel];
     [_infoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -119,6 +133,13 @@
         make.trailing.equalTo(baseView.mas_trailing).offset(-20);
         make.centerX.equalTo(baseView.mas_centerX);
         make.height.equalTo(baseView.mas_height).multipliedBy(.45);
+    }];
+
+    [_doneBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.textView.mas_bottom).offset(30);
+        make.leading.equalTo(baseView.mas_leading).offset(20);
+        make.trailing.equalTo(baseView.mas_trailing).offset(-20);
+        make.centerX.equalTo(baseView.mas_centerX);
     }];
 }
 
