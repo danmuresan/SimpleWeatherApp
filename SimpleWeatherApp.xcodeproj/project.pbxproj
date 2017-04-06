@@ -24,6 +24,7 @@
 		B25982381E93E49D009E82B5 /* AddFavoriteLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25982371E93E49D009E82B5 /* AddFavoriteLocationViewController.m */; };
 		B259823B1E9520B1009E82B5 /* BluetoothTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B259823A1E9520B1009E82B5 /* BluetoothTestViewController.m */; };
 		B259823D1E95249F009E82B5 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B259823C1E95249F009E82B5 /* CoreBluetooth.framework */; };
+		B25982401E961A1F009E82B5 /* BluetoothConnectionTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B259823F1E961A1F009E82B5 /* BluetoothConnectionTestViewController.m */; };
 		B26FD63D1E6F0FFC0077BCC5 /* WeatherSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD63C1E6F0FFC0077BCC5 /* WeatherSettings.m */; };
 		B26FD6401E6F124F0077BCC5 /* AppDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD63F1E6F124F0077BCC5 /* AppDataUtil.m */; };
 		B26FD6441E714B290077BCC5 /* LocationSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B26FD6421E714B290077BCC5 /* LocationSelectorViewController.m */; };
@@ -154,6 +155,8 @@
 		B25982391E9520B1009E82B5 /* BluetoothTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothTestViewController.h; sourceTree = "<group>"; };
 		B259823A1E9520B1009E82B5 /* BluetoothTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothTestViewController.m; sourceTree = "<group>"; };
 		B259823C1E95249F009E82B5 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		B259823E1E961A1F009E82B5 /* BluetoothConnectionTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothConnectionTestViewController.h; sourceTree = "<group>"; };
+		B259823F1E961A1F009E82B5 /* BluetoothConnectionTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothConnectionTestViewController.m; sourceTree = "<group>"; };
 		B26FD63B1E6F0FBC0077BCC5 /* WeatherSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherSettings.h; sourceTree = "<group>"; };
 		B26FD63C1E6F0FFC0077BCC5 /* WeatherSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherSettings.m; sourceTree = "<group>"; };
 		B26FD63E1E6F11D40077BCC5 /* AppDataUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDataUtil.h; sourceTree = "<group>"; };
@@ -282,6 +285,8 @@
 				B25982371E93E49D009E82B5 /* AddFavoriteLocationViewController.m */,
 				B25982391E9520B1009E82B5 /* BluetoothTestViewController.h */,
 				B259823A1E9520B1009E82B5 /* BluetoothTestViewController.m */,
+				B259823E1E961A1F009E82B5 /* BluetoothConnectionTestViewController.h */,
+				B259823F1E961A1F009E82B5 /* BluetoothConnectionTestViewController.m */,
 			);
 			path = SimpleWeatherApp;
 			sourceTree = "<group>";
@@ -517,6 +522,7 @@
 				B26FD6931E817D630077BCC5 /* PercentageCircleView.m in Sources */,
 				B259823B1E9520B1009E82B5 /* BluetoothTestViewController.m in Sources */,
 				B26FD6441E714B290077BCC5 /* LocationSelectorViewController.m in Sources */,
+				B25982401E961A1F009E82B5 /* BluetoothConnectionTestViewController.m in Sources */,
 				B26FD6591E72F19C0077BCC5 /* WeatherForecastDto.m in Sources */,
 				B22AE3201E6D961100651C84 /* CurrentWeatherDto.m in Sources */,
 				B25981FD1E8E3756009E82B5 /* ManualUiContraintsTestViewController.m in Sources */,

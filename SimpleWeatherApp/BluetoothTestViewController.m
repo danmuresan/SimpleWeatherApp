@@ -7,6 +7,7 @@
 //
 
 #import "BluetoothTestViewController.h"
+#import "BluetoothConnectionTestViewController.h"
 
 @interface BluetoothTestViewController ()
 {
@@ -99,22 +100,23 @@ NSString* const characteristicUuid = @"5d6207f4-856d-4c5d-a0d9-3698c936765f";
         make.centerX.equalTo(baseView.mas_centerX);
     }];
 
+    // TODO: fix constraints
     [_allDevicesSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.scanForDevicesBtn.mas_bottom).offset(20);
-        make.leading.equalTo(baseView.mas_leading).offset(25);
-        make.trailing.equalTo(baseView.mas_trailing).offset(-25);
+        make.top.equalTo(self.scanForDevicesBtn.mas_bottom).offset(15);
+       // make.leading.equalTo(baseView.mas_leading).offset(40);
+       // make.trailing.equalTo(baseView.mas_trailing).offset(-40);
         make.centerX.equalTo(baseView.mas_centerX);
     }];
 
     [_scanResultsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.scanForDevicesBtn.mas_bottom).offset(30);
+        make.top.equalTo(self.allDevicesSwitch.mas_bottom).offset(20);
         make.leading.equalTo(baseView.mas_leading).offset(25);
         make.trailing.equalTo(baseView.mas_trailing).offset(-25);
         make.centerX.equalTo(baseView.mas_centerX);
     }];
 
     [_peripheralsTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.scanResultsLabel.mas_bottom).offset(30);
+        make.top.equalTo(self.scanResultsLabel.mas_bottom).offset(20);
         make.centerX.equalTo(baseView.mas_centerX);
         make.leading.equalTo(baseView.mas_leading).offset(10);
         make.trailing.equalTo(baseView.mas_trailing).offset(-10);
@@ -262,7 +264,8 @@ NSString* const characteristicUuid = @"5d6207f4-856d-4c5d-a0d9-3698c936765f";
 
     for (CBService *discoveredService in peripheral.services)
     {
-        [peripheral discoverCharacteristics:[NSArray arrayWithObject:characteristicUuid] forService:discoveredService];
+        //[peripheral discoverCharacteristics:[NSArray arrayWithObject:characteristicUuid] forService:discoveredService];
+        [peripheral discoverCharacteristics:nil forService:discoveredService];
     }
 }
 
@@ -274,6 +277,15 @@ NSString* const characteristicUuid = @"5d6207f4-856d-4c5d-a0d9-3698c936765f";
         [self popupAlertController:@"Failed to connect" :@"Failed to discover characteristic for peripheral" :@"OK"];
         return;
     }
+
+    BluetoothConnectionTestViewController *btConnVc = [[BluetoothConnectionTestViewController alloc] init];
+
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:btConnVc animated:YES completion:^{
+
+        }];
+    });
 
     for (CBCharacteristic *discoveredCharacteristic in service.characteristics)
     {
@@ -294,6 +306,23 @@ NSString* const characteristicUuid = @"5d6207f4-856d-4c5d-a0d9-3698c936765f";
     {
         // TODO: update UI
         //self.bluetoothDataTextView.text =
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"CharacteristicStatusUpdate" object:characteristic];
+    }
+}
+
+-(void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+    if (error)
+    {
+        NSLog(@"Error getting updated characteristic value: %@", [error localizedDescription]);
+        [self popupAlertController:@"Failed to connect" :@"Failed to receive value from updated characteristic" :@"OK"];
+        return;
+    }
+
+    if (characteristic.value != nil)
+    {
+        NSString *charValueAsUtf8 = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"CharacteristicValueUpdate" object:charValueAsUtf8];
     }
 }
 
