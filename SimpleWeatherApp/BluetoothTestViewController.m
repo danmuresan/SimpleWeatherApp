@@ -245,6 +245,7 @@
 
 -(void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
+    [bluetoothCentralManager stopScan];
     peripheral.delegate = self;
 
     CBUUID *myDesiredService = [CBUUID UUIDWithString:serviceUuid];

@@ -23,7 +23,9 @@
 
 @end
 
-@implementation BluetoothPeripheralTestViewController
+@implementation BluetoothPeripheralTestViewController {
+    BOOL isAdvertising;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -124,7 +126,6 @@
     }];
 
     baseView.scrollEnabled = YES;
-    //baseView.contentSize = CGSizeMake(self.view.frame.size.width, 100);
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -135,7 +136,16 @@
 
 -(void) onStartServerClick
 {
-    _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+    if (isAdvertising)
+    {
+        [_peripheralManager stopAdvertising];
+        isAdvertising = NO;
+        [self updateServerButtonStatus];
+        NSLog(@"Server stopped advertising");
+        return;
+    }
+
+    _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 }
 
 -(void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
@@ -153,6 +163,9 @@
 
     NSLog(@"%@", [NSString stringWithFormat: @"Starting advertising on service %@ with characteristic %@...", serviceUuid, characteristicUuid]);
     [_peripheralManager startAdvertising:@{CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:serviceUuid]]}];
+
+    isAdvertising = YES;
+    [self updateServerButtonStatus];
 }
 
 -(void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic
@@ -195,6 +208,13 @@
 -(void) dismissKeyboard
 {
     [_dataTextView resignFirstResponder];
+}
+
+-(void) updateServerButtonStatus
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.advertiseDataButton setTitle:self->isAdvertising ? @"Stop server" : @"Start server" forState:UIControlStateNormal];
+    });
 }
 
 /*
