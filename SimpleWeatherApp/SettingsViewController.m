@@ -204,10 +204,45 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Dummy POST request" message:responseStatus preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *ok = [UIAlertAction actionWithTitle:wasRequestSuccessful ? @"OK:)" : @"OK :(" style:UIAlertActionStyleDefault handler:nil];
+            UIAlertAction *testDispatchGroups = [UIAlertAction actionWithTitle:@"Test Dispatch Group" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                [self testDispatchGroupAsync];
+            }];
             [alert addAction:ok];
+            [alert addAction:testDispatchGroups];
+
             [self presentViewController:alert animated:YES completion:nil];
         });
     }];
+}
+
+-(void) testDispatchGroupAsync
+{
+    NetworkManager *netwMgr = [[NetworkManager alloc] init];
+
+    dispatch_group_t serviceGroup = dispatch_group_create();
+    __block BOOL wasSuccessful = YES;
+
+    for (int i = 0; i < 5; i++)
+    {
+        dispatch_group_enter(serviceGroup);
+        [netwMgr makeDummyAfGetRequest:^(BOOL wasRequestSuccessful, int responseCode) {
+            [NSThread sleepForTimeInterval: [self getRandomNumberBetween:1 to:2]];
+            dispatch_group_leave(serviceGroup);
+            wasSuccessful = wasSuccessful && wasRequestSuccessful;
+        }];
+    }
+
+    dispatch_group_notify(serviceGroup, dispatch_get_main_queue(), ^{
+        NSString *responseStatus = wasSuccessful ? [NSString stringWithFormat:@"Dispatch group executed successfully :)", @""] : [NSString stringWithFormat:@"Dispatch group failed :(", @""];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Dummy dispatch group" message:responseStatus preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:wasSuccessful ? @"OK:)" : @"OK :(" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    });
+}
+
+-(int) getRandomNumberBetween:(int)from to:(int)to{
+    return (int)from + arc4random() % (to - from + 1);
 }
 
 - (void) addFavoritesButtonClick
